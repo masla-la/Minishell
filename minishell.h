@@ -24,7 +24,7 @@ typedef struct	s_mini
 {
 	char			**comand;
 	char			**path;
-	char			*cmd_path;
+	char			*cmd_path;//quizas es necesario
 	int				pid;//
 	char			**env;
 	struct	s_exprt	*exprt;

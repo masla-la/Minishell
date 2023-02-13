@@ -17,7 +17,7 @@ void	ft_free_comand(t_mini *mini)
 		free(mini->path[i]);
 		i++;
 	}
-	//free(mini->path);
+	free(mini->path);
 }
 
 void	ft_free_exprt(t_exprt *exprt)

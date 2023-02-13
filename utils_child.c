@@ -7,7 +7,7 @@ void	ft_wait_childs(t_mini *mini)
 	lst = mini->lst;
 	while (lst)
 	{
-		waitpid(lst->pid, 0, WUNTRACED);
+		waitpid(lst->pid, 0, 0);
 		lst = lst->next;
 	}
 }
