@@ -18,7 +18,7 @@ char	*ft_strdup(const char *src)//quita los parentesis si existen
 	i = 0;
 	if (src[0] == 34 || src[0] == 39)
 		i = -2;
-	dest = (char *)malloc(ft_strlen((char *)(src)) + i + 1);
+	dest = (char *)malloc(sizeof(char *) * (ft_strlen((char *)(src)) + i + 1));
 	if (!dest)
 		return (NULL);
 	if (*src == 39 || *src == 34)
@@ -27,7 +27,7 @@ char	*ft_strdup(const char *src)//quita los parentesis si existen
 	while (src[i] != 00)
 	{
 		if (!src[i + 1] && (src[i] == 34 || src[i] == 39))
-			break;
+			break ;
 		dest[i] = src[i];
 		i++;
 	}
@@ -35,7 +35,7 @@ char	*ft_strdup(const char *src)//quita los parentesis si existen
 	return (dest);
 }
 
-int		ft_strncmp(char const *s1, char const *s2, int n)
+int	ft_strncmp(char const *s1, char const *s2, int n)
 {
 	int	i;
 

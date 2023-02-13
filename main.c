@@ -93,7 +93,7 @@ int	ft_init(t_mini *mini)
 			return (EXIT_FAILURE);
 		if (ft_executor(mini) == EXIT_FAILURE)
 			return (EXIT_FAILURE);
-		//ft_free_lst(mini->lst);
+		ft_free_lst(mini->lst);
 		ft_free_comand(mini);
 	}
 	ft_free_exprt(mini->exprt);

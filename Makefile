@@ -18,7 +18,7 @@ SRC = $(addsuffix .c, $(FILES))
 OBJ = $(addsuffix .o, $(FILES))
 
 CC = clang
-##CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 ##CFLAGS += -Wstring-compare -fsanitize=address -g3
 RM = rm -rf
 
