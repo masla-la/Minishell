@@ -44,7 +44,6 @@ int	ft_ex_bin(t_mini *mini, t_list *lst)
 	{
 		path  = ft_strjoin(mini->path[i], "/");
 		cmd_path = ft_strjoin(path, lst->content[0]);
-		printf("%s\n", cmd_path);
 		execve(cmd_path, lst->content, mini->env);
 		free(path);
 		free(cmd_path);

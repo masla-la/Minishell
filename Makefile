@@ -3,6 +3,7 @@ NAME = minishell
 B 	= 	cd\
 		env\
 		redir_ex\
+		echo\
 
 FILES = main\
 		utils_env\

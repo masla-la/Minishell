@@ -14,44 +14,6 @@ void	ft_sig(int sig)
 		exit(0);
 }
 
-/*int	ft_executor(t_mini *mini)
-{
-	int		fd[3][2];
-	int		i;
-	int		pid[3];
-	char	*path;
-
-	i = 0;
-	mini->pipes = 2;//
-	path = ft_find_env(mini, "PATH");//
-	mini->path = ft_split(path, ':');//
-	while (i < mini->pipes && mini->pipes > 1)
-	{
-		pipe(fd[i]);
-		pid[i] = fork();
-		g_signal.pid_line = pid[i];
-		if (pid[i] == 0)
-			ft_reddir_childs(mini, fd, i, mini->lst);
-		else
-		{
-			if (i != mini->pipes)
-				close(fd[i][WRITE]);
-		}
-		waitpid(pid[i], 0, 0);
-		//close(fd[i][READ]);
-		if (i == mini->pipes)
-			close(fd[i][WRITE]);
-		mini->lst = mini->lst->next;
-		i++;
-	}
-	pid[0] = fork();
-	if (mini->pipes == 1 && pid[0] == 0)
-		ft_reddir_childs(mini, fd, i, mini->lst);
-		//ft_redir_ex(mini);
-	wait(NULL);
-	return (0);
-}//revisar*/
-
 int	ft_executor(t_mini *mini)
 {
 	t_list	*lst;
@@ -118,7 +80,7 @@ int	main(int ac, char **av, char **env)
 
 //agregar señales
 //ignorar las redirecciones dando valor a los outputs e intputs
-//ejecutar codigo
+//ejecutar codigo *
 //extender env
 //agregar $? con a ft de error
 
@@ -126,7 +88,8 @@ int	main(int ac, char **av, char **env)
 // 130 = cntl + c
 //127 = comando no existente
 //257 = error al ejecutar comando
+//investigar
 //https://www.cyberciti.biz/faq/linux-bash-exit-status-set-exit-statusin-bash/
 
 //dar el valor de error a g_signal.sigexit
-//
+//lo q implica cambiar la variable global

@@ -99,6 +99,7 @@ int		ft_exit_error(t_mini *mini, int	error);
 //Builtings
 int		ft_redir_ex(t_mini *mini, t_list *lst);
 int		ft_cd(t_mini *mini, t_list *lst);
+int		ft_echo(t_list *lst);
 int		ft_rm_to_env(t_mini *mini, char *str);
 int		ft_print_env(t_mini *mini);
 int		ft_add_to_env(t_mini *mini, char *str);

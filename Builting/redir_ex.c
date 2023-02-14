@@ -12,6 +12,8 @@ int	ft_redir_ex(t_mini *mini, t_list *lst)
 		return (ft_add_to_env(mini, lst->content[1]));//
 	else if (!ft_strncmp("unset", lst->content[0], 5))
 		return (ft_rm_to_env(mini, lst->content[1]));
+	else if (!ft_strncmp("echo", lst->content[0], 4))
+		return (ft_echo(lst));
 	//else if (!strncmp("exit", lst->content[0], 4))
 	return (ft_ex_bin(mini, lst));
 }
