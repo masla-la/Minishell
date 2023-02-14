@@ -1,5 +1,9 @@
 NAME = minishell
 
+B 	= 	cd\
+		env\
+		redir_ex\
+
 FILES = main\
 		utils_env\
 		utils_expander\
@@ -13,7 +17,9 @@ FILES = main\
 		ft_expander\
 		ft_exit\
 		ft_itoa\
+		$(BLT)
 
+BLT = $(addprefix Builting/, $(B))
 SRC = $(addsuffix .c, $(FILES))
 OBJ = $(addsuffix .o, $(FILES))
 

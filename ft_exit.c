@@ -2,13 +2,18 @@
 
 int	ft_isnum(const char *str)
 {
-	while (*str && *str < 30 && *str > 39)
+	int	i;
+
+	i = 0;
+	while (str[i] && (str[i] < '0' || str[i] > '9'))
 	{
-		if (*str == '=')
+		if (str[i] == '=')
 			return (0);
-		str++;
+		i++;
 	}
-	return (1);
+	if (!str[i])
+		return (0);
+	return (EXIT_FAILURE);
 }
 
 int	ft_check_export(t_mini *mini, char *str)
@@ -29,12 +34,12 @@ int	ft_add_to_env(t_mini *mini, char *str)
 {
 	t_exprt	*exprt;
 
-	exprt = mini->exprt;
 	if (ft_isnum(str))
 		return (ft_exit_error(mini, 1));
-	while (exprt)
+	exprt = mini->exprt;
+	while (exprt->env)
 	{
-		if (strncmp(str, exprt->env, ft_check_export(mini, str)))
+		if (!strncmp(str, exprt->env, ft_check_export(mini, str)))
 		{
 			free(exprt->env);
 			exprt->env = ft_strdup(str);
@@ -44,9 +49,9 @@ int	ft_add_to_env(t_mini *mini, char *str)
 	}
 	ft_lstadd_exp(&exprt, ft_lstnew_exp(NULL));
 	exprt = exprt->next;
-	exprt->env =	ft_strdup(str);
+	exprt->env = ft_strdup(str);
 	return (0);
-}
+}//se pierden los datos
 
 int	ft_exit_error(t_mini *mini, int	error)
 {
@@ -54,7 +59,7 @@ int	ft_exit_error(t_mini *mini, int	error)
 	char	*er;
 
 	er = ft_itoa(error);
-	dest = ft_strjoin("$?=", er);
+	dest = ft_strjoin("?=", er);
 	ft_free(mini);
 	ft_add_to_env(mini, dest);
 	free(dest);

@@ -4,7 +4,7 @@ t_exprt	*ft_lstnew_exp(void *content)
 {
 	t_exprt *rtn;
 
-	rtn = (t_exprt *)malloc(sizeof(t_exprt));
+	rtn = malloc(sizeof(t_exprt));
 	if (!rtn)
 		return (NULL);
 	rtn->next = NULL;
@@ -65,6 +65,6 @@ int		ft_get_env(t_mini *mini, char **env)
 		exprt = exprt->next;
 		env++;
 	}
-	exprt->env = ft_strdup("?=0");
+	ft_add_to_env(mini, "?=0");
 	return (0);
 }

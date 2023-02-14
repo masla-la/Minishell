@@ -33,7 +33,7 @@ void	ft_reddir_childs(t_mini *mini, int fd[2], int fd2[2], t_list *lst)
 		ft_child_2(mini, fd, fd2, lst);
 }
 
-int	ft_redir_ex(t_mini *mini, t_list *lst)
+int	ft_ex_bin(t_mini *mini, t_list *lst)
 {
 	int		i;
 	char	*path;

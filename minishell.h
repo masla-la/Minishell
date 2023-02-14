@@ -70,15 +70,13 @@ char	*ft_itoa(int n);//
 void	ft_init_var(t_mini *mini);
 
 //Utils_lexer
-int		ft_total_arg(char **ptr);
-int		ft_count_arg(char **ptr, int i);
-void	ft_count_pipes(t_mini *mini);
-int		ft_lexer(t_mini *mini, t_list *lst);
+int		ft_total_arg(char **ptr);//
+int		ft_count_arg(char **ptr, int i);//
+void	ft_count_pipes(t_mini *mini);//
 
 //Utils_expander
 void	ft_reddir(t_mini *mini, char **arg, t_list *lst);
-//int		ft_expander(t_mini *mini, t_list *lst, t_cmd *cmd);
-
+char	*ft_expand(char *arg, t_mini *mini);
 
 //Ft_free
 void	ft_free_comand(t_mini *mini);
@@ -86,16 +84,23 @@ void	ft_free_exprt(t_exprt *exprt);
 void	ft_free_lst(t_list *lst);
 void	ft_free(t_mini *mini);
 
+//
 int		ft_parse(t_mini *mini, char **arg);
-char	*ft_expand(char *arg, t_mini *mini);
 
+//Executor
 void	ft_reddir_childs(t_mini *mini, int fd[2], int fd2[2], t_list *lst);
-int		ft_redir_ex(t_mini *mini, t_list *lst);
 void	ft_wait_childs(t_mini *mini);
+int		ft_redir_ex(t_mini *mini, t_list *lst);
+int		ft_ex_bin(t_mini *mini, t_list *lst);
 
+//Error
 int		ft_exit_error(t_mini *mini, int	error);
+
+//Builtings
+int		ft_redir_ex(t_mini *mini, t_list *lst);
+int		ft_cd(t_mini *mini, t_list *lst);
+int		ft_rm_to_env(t_mini *mini, char *str);
+int		ft_print_env(t_mini *mini);
 int		ft_add_to_env(t_mini *mini, char *str);
-
-
 
 #endif
