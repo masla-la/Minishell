@@ -42,7 +42,7 @@ int	ft_parse_to_lst(t_mini *mini, char **arg)
 	lst = (t_list *)malloc(sizeof(t_list));
 	mini->lst = lst;
 	lst->next = NULL;
-	lst->content = (char **)malloc(sizeof(char *) * (2));//FT q devuelva el numero de arg del comando + 1
+	lst->content = (char **)malloc(sizeof(char *) * (3));//FT q devuelva el numero de arg del comando + 1
 	while (arg && *arg)
 	{
 		if (!ft_strncmp(*arg, "<", 1) || !ft_strncmp(*arg, ">", 1))

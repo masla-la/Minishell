@@ -93,23 +93,23 @@ char	*ft_expand(char *arg, t_mini *mini)
 	char	*path;
 	char	*var;
 	char	*arg_cpy;
-	char	*dest;
 
 	i = -1;
 	arg_cpy = ft_strdup(arg);
 	while (arg[0] != 39 && arg_cpy[++i])
 	{
-		if (arg_cpy[i] == '$')
+		if (arg_cpy[i] == '$' && arg_cpy[i + 1])
 		{
 			var = ft_cpy_var(arg_cpy + (i + 1));
 			path = ft_find_env(mini, var);
-			dest = ft_join_path(arg_cpy, path);
-			dest = ft_cpy_rest(arg_cpy, dest);
-			free(path);
 			free(var);
-			free(arg_cpy);
+			var = ft_join_path(arg_cpy, path);
+			var = ft_cpy_rest(arg_cpy, var);
+			if (path && path != var && arg[0] != '$')
+				free(path);
 			free(arg);
-			return (ft_expand(dest, mini));
+			free(arg_cpy);
+			return (ft_expand(var, mini));
 		}
 	}
 	free(arg);

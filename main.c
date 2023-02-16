@@ -4,13 +4,16 @@ t_signal	g_signal;
 
 void	ft_sig(int sig)
 {
-	if (sig == 2)
+	if (sig == SIGINT)
 	{
-		g_signal.siginit = 1;
+		write(1, "\n", 1);
+		write(1, "\033[0;31mMiniShell: \033[0;37m", 25);
+		rl_on_new_line();
+		/*g_signal.siginit = 1;
 		if (g_signal.pid_line)
-			kill(g_signal.pid_line, SIGKILL);
+			kill(g_signal.pid_line, SIGKILL);*/
 	}
-	else if (sig)
+	if (sig == SIGQUIT)
 		exit(0);
 }
 
@@ -25,7 +28,10 @@ int	ft_executor(t_mini *mini)
 		pipe(lst->fd);
 		lst->pid = fork();
 		if (lst->pid == 0)
+		{
 			ft_reddir_childs(mini, lst->fd, fd, lst);//agregar errores
+			exit(0);//temp, evita crear procesos de más durante las pruevas
+		}
 		if (lst->pid != 0)
 			close(lst->fd[WRITE]);
 		fd = lst->fd;
@@ -43,13 +49,13 @@ int	ft_init(t_mini *mini)
 	{
 		ft_init_var(mini);
 		comand = readline("\033[0;31mMiniShell: \033[0;37m");
-		if (!comand || g_signal.siginit)
-			break ;
+		if (comand[0] == '\0')//
+			comand = NULL;
 		else
 			add_history(comand);
 		mini->comand = ft_split_exp(comand, ' ');
 		free(comand);
-		if (!mini->comand)
+		if (!mini->comand || mini->comand[0] == NULL)
 			return (EXIT_FAILURE);
 		if (ft_parse(mini, mini->comand) == EXIT_FAILURE)
 			return (EXIT_FAILURE);
@@ -70,7 +76,8 @@ int	main(int ac, char **av, char **env)
 	
 	mini.env = env;
 	g_signal.siginit = 0;
-	signal(SIGINT, ft_sig);
+	signal(SIGINT, ft_sig);//
+	signal(SIGQUIT, ft_sig);
 	if (ft_get_env(&mini, env) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (ft_init(&mini) == EXIT_FAILURE)
@@ -90,6 +97,8 @@ int	main(int ac, char **av, char **env)
 //257 = error al ejecutar comando
 //investigar
 //https://www.cyberciti.biz/faq/linux-bash-exit-status-set-exit-statusin-bash/
+
+//separar los builtings
 
 //dar el valor de error a g_signal.sigexit
 //lo q implica cambiar la variable global

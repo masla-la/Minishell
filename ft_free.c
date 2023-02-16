@@ -48,7 +48,8 @@ void	ft_free_lst(t_list *lst)
 			i++;
 		}
 		free(lst->content);
-		close(lst->fd[READ]);
+		if (lst->fd[READ])
+			close(lst->fd[READ]);
 		free(lst);
 		lst = aux;
 	}
