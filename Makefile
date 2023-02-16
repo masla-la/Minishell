@@ -10,6 +10,7 @@ FILES = main\
 		utils_expander\
 		utils_executor\
 		utils_child\
+		utils_parser\
 		utils\
 		ft_parser\
 		ft_split\
@@ -26,7 +27,7 @@ OBJ = $(addsuffix .o, $(FILES))
 
 CC = clang
 CFLAGS = -Wall -Wextra -Werror
-##CFLAGS += -Wstring-compare -fsanitize=address -g3
+CFLAGS += -Wstring-compare -fsanitize=address -g3
 RM = rm -rf
 
 ifneq (,$(findstring xterm,${TERM}))

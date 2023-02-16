@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-char	*ft_cpy_rest(char *arg, char *dest)
+char	*ft_cpy_rest(char *arg, char *dest, char *path)
 {
 	int		i;
 	int		n;
@@ -21,7 +21,8 @@ char	*ft_cpy_rest(char *arg, char *dest)
 	if (!arg[i])
 		return (dest);
 	cpy = ft_strjoin(dest, arg + i);
-	free(dest);
+	if (dest != path)
+		free(dest);
 	return (cpy);
 }
 
@@ -104,8 +105,8 @@ char	*ft_expand(char *arg, t_mini *mini)
 			path = ft_find_env(mini, var);
 			free(var);
 			var = ft_join_path(arg_cpy, path);
-			var = ft_cpy_rest(arg_cpy, var);
-			if (path && path != var && arg[0] != '$')
+			var = ft_cpy_rest(arg_cpy, var, path);
+			if (path && path != var)
 				free(path);
 			free(arg);
 			free(arg_cpy);

@@ -33,35 +33,6 @@ void	ft_lstadd(t_list **lst, t_list *new)
 		ft_lstlast(*lst)->next = new;
 }
 
-int	ft_parse_to_lst(t_mini *mini, char **arg)
-{
-	int		i;
-	t_list	*lst;
-
-	i = 0;
-	lst = (t_list *)malloc(sizeof(t_list));
-	mini->lst = lst;
-	lst->next = NULL;
-	lst->content = (char **)malloc(sizeof(char *) * (3));//FT q devuelva el numero de arg del comando + 1
-	while (arg && *arg)
-	{
-		if (!ft_strncmp(*arg, "<", 1) || !ft_strncmp(*arg, ">", 1))
-			ft_reddir(mini, arg, lst);
-		else if (ft_strncmp(*arg, "|", 1))
-			lst->content[i++] = ft_strdup(*arg);
-		else if (!ft_strncmp(*arg, "|", 1))
-		{
-			i = 0;
-			ft_lstadd(&lst, ft_lstnew(NULL));
-			lst = lst->next;
-			lst->content = (char **)malloc(sizeof(char *) * 3);//FT q devuelva el numero de arg del comando + 1
-		}
-		arg++;
-	}
-	lst->content[i] = NULL;//agregar el null al final de cada array
-	return (EXIT_SUCES);
-}
-
 int	ft_parse(t_mini *mini, char **arg)
 {
 	int		i;

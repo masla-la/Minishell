@@ -74,6 +74,15 @@ int		ft_total_arg(char **ptr);//
 int		ft_count_arg(char **ptr, int i);//
 void	ft_count_pipes(t_mini *mini);//
 
+//Utils_lst
+void	ft_lstadd(t_list **lst, t_list *new);
+t_list	*ft_lstlast(t_list *lst);
+t_list	*ft_lstnew(void *content);
+
+//Utils_parser
+int	ft_arg_len(char **arg);
+int	ft_parse_to_lst(t_mini *mini, char **arg);
+
 //Utils_expander
 void	ft_reddir(t_mini *mini, char **arg, t_list *lst);
 char	*ft_expand(char *arg, t_mini *mini);
