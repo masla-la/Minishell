@@ -20,27 +20,38 @@ char	*ft_cd_return(char *str)
 	return (dest);
 }
 
+char	*ft_join_dir(char *str, t_list *lst)
+{
+	char	*tmp;
+	char	*dest;
+
+	tmp = ft_strjoin(str, "/");
+	dest = ft_strjoin(tmp, lst->content[1]);
+	if (!dest)
+		return (NULL);
+	return  (dest);
+}
+
 int	ft_cd(t_mini *mini, t_list *lst)
 {
 	char	*dest;
-	char	*str;
+	char	str[2056];
 
 	dest = NULL;
-	str = NULL;
 	if (lst->content[1])
 	{
-		str = malloc(sizeof(char *));
-		getcwd(str, 100);
+		getcwd(str, sizeof(str));
 		if (!ft_strncmp("..", lst->content[1], 2))
 			dest = ft_cd_return(str);
 		else
-			dest = ft_strjoin(str, lst->content[1]);//comprobar acceso
-		free(str);
+			dest = ft_join_dir(str, lst);
 	}
 	else
 		dest = ft_find_env(mini, "HOME");//
-	if (access(dest, F_OK))
+	if (!access(dest, F_OK))
+	{
 		chdir(dest);
+	}
 	free(dest);
 	return (EXIT_SUCCESS);
 }

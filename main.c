@@ -2,13 +2,14 @@
 
 t_signal	g_signal;
 
+// Gestiona las señales
 void	ft_sig(int sig)
 {
 	if (sig == SIGINT)
 	{
 		write(1, "\n", 1);
 		write(1, "\033[0;31mMiniShell: \033[0;37m", 25);
-		rl_on_new_line();
+		//rl_on_new_line();
 		/*g_signal.siginit = 1;
 		if (g_signal.pid_line)
 			kill(g_signal.pid_line, SIGKILL);*/
@@ -17,6 +18,7 @@ void	ft_sig(int sig)
 		exit(0);
 }
 
+// Crea los procesos "hijos"
 int	ft_executor(t_mini *mini)
 {
 	t_list	*lst;
@@ -25,22 +27,28 @@ int	ft_executor(t_mini *mini)
 	lst  = mini->lst;
 	while (lst)
 	{
-		pipe(lst->fd);
-		lst->pid = fork();
-		if (lst->pid == 0)
+		if (!is_builting(lst->content[0]))
 		{
-			ft_reddir_childs(mini, lst->fd, fd, lst);//agregar errores
-			exit(0);//temp, evita crear procesos de más durante las pruevas
+			pipe(lst->fd);
+			lst->pid = fork();
+			if (lst->pid == 0)
+			{
+				ft_reddir_childs(mini, lst->fd, fd, lst);//agregar errores
+				exit(0);//temp, evita crear procesos de más durante las pruevas
+			}
+			if (lst->pid != 0)
+				close(lst->fd[WRITE]);
+			fd = lst->fd;
 		}
-		if (lst->pid != 0)
-			close(lst->fd[WRITE]);
-		fd = lst->fd;
+		else
+			ft_redir_ex(mini, lst);
 		lst = lst->next;
 	}
 	ft_wait_childs(mini);
 	return (EXIT_SUCES);
 }
 
+// Gestiona el input (readline) y redirije al Parser y Executer
 int	ft_init(t_mini *mini)
 {
 	char	*comand;
@@ -97,8 +105,3 @@ int	main(int ac, char **av, char **env)
 //257 = error al ejecutar comando
 //investigar
 //https://www.cyberciti.biz/faq/linux-bash-exit-status-set-exit-statusin-bash/
-
-//separar los builtings
-
-//dar el valor de error a g_signal.sigexit
-//lo q implica cambiar la variable global

@@ -14,8 +14,8 @@
 # define WRITE 1
 # define EXIT_FAILURE 1
 # define EXIT_SUCES 0
-# define REDIR_INPUT 3
-# define REDIR_OUTPUT 3
+# define REDIR_INPUT 3//
+# define REDIR_OUTPUT 3//
 
 # define STDIN	0
 # define STDOUT	1
@@ -113,4 +113,6 @@ int		ft_rm_to_env(t_mini *mini, char *str);
 int		ft_print_env(t_mini *mini);
 int		ft_add_to_env(t_mini *mini, char *str);
 
+
+int	is_builting(char *c);
 #endif
