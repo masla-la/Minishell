@@ -25,7 +25,7 @@ int	ft_parse_to_lst(t_mini *mini, char **arg)
 			ft_reddir(mini, arg, lst);
 		else if (ft_strncmp(*arg, "|", 1))
 			lst->content[i++] = ft_strdup(*arg);
-		else if (!ft_strncmp(*arg, "|", 1))
+		else if (!ft_strncmp(*arg, "|", 1) && (arg + 1) != NULL) //Hace 1 linked de más si encuentra '|' sin más arg
 		{
 			lst->content[i] = NULL;
 			i = 0;
@@ -38,3 +38,4 @@ int	ft_parse_to_lst(t_mini *mini, char **arg)
 	lst->content[i] = NULL;
 	return (EXIT_SUCCESS);
 }
+//Falta revisar el error de las redirecciones

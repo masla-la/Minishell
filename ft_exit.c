@@ -48,7 +48,6 @@ int	ft_add_to_env(t_mini *mini, char *str)
 		exprt = exprt->next;
 	}
 	ft_lstadd_exp(&exprt, ft_lstnew_exp(NULL));
-	exprt = exprt->next;
 	exprt->env = ft_strdup(str);
 	return (0);
 }//se pierden los datos
