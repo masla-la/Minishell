@@ -1,12 +1,8 @@
 #ifndef MINISHELL_H
 #define MINISHELL_H
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <fcntl.h>
+# include "libft/libft.h"
 # include <signal.h>
-# include <string.h>//
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -14,8 +10,8 @@
 # define WRITE 1
 # define EXIT_FAILURE 1
 # define EXIT_SUCES 0
-# define REDIR_INPUT 3
-# define REDIR_OUTPUT 3
+# define REDIR_INPUT 3//
+# define REDIR_OUTPUT 3//
 
 # define STDIN	0
 # define STDOUT	1
@@ -31,7 +27,7 @@ typedef struct	s_mini
 	struct	s_list	*lst;
 }				t_mini;
 
-typedef struct	s_list
+/* typedef struct	s_list
 {
 	char			**content;
 	int				input;//
@@ -39,7 +35,7 @@ typedef struct	s_list
 	int				pid;
 	int				fd[2];
 	struct	s_list	*next;
-}				t_list;
+}				t_list; */
 
 typedef struct	s_exprt
 {
@@ -60,24 +56,13 @@ t_exprt	*ft_lstnew_exp(void *content);
 void	ft_lstadd_exp(t_exprt **exprt, t_exprt *new);
 
 //Utils
-char	*ft_strdup(const char *src);
-size_t	ft_strlen(const char *c);
-int		ft_strncmp(char const *s1, char const *s2, int n);//modificar
-char	**ft_split(char const *s, char c);
 char	**ft_split_exp(char const *s, char c);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_itoa(int n);//
 void	ft_init_var(t_mini *mini);
 
 //Utils_lexer
 int		ft_total_arg(char **ptr);//
 int		ft_count_arg(char **ptr, int i);//
 void	ft_count_pipes(t_mini *mini);//
-
-//Utils_lst
-void	ft_lstadd(t_list **lst, t_list *new);
-t_list	*ft_lstlast(t_list *lst);
-t_list	*ft_lstnew(void *content);
 
 //Utils_parser
 int	ft_arg_len(char **arg);
@@ -113,4 +98,5 @@ int		ft_rm_to_env(t_mini *mini, char *str);
 int		ft_print_env(t_mini *mini);
 int		ft_add_to_env(t_mini *mini, char *str);
 
+int	is_builting(char *c);
 #endif

@@ -13,20 +13,20 @@ FILES = main\
 		utils_parser\
 		utils\
 		ft_parser\
-		ft_split\
 		ft_split_exp\
 		ft_free\
 		ft_expander\
 		ft_exit\
-		ft_itoa\
 		$(BLT)
+
+LIBFT = libft/libft.a
 
 BLT = $(addprefix Builting/, $(B))
 SRC = $(addsuffix .c, $(FILES))
 OBJ = $(addsuffix .o, $(FILES))
 
 CC = clang
-CFLAGS = -Wall -Wextra -Werror
+##CFLAGS = -Wall -Wextra -Werror
 CFLAGS += -Wstring-compare -fsanitize=address -g3
 RM = rm -rf
 
@@ -58,15 +58,18 @@ all: $(NAME)
 	@$(CC) $(CFLAGS) -c -o $@ $^
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) -lreadline $(OBJ) -o $(NAME)
+	@make -C libft
+	@$(CC) $(CFLAGS) $(LIBFT) -lreadline $(OBJ) -o $(NAME)
 	@echo "$(GREEN)Done$(RESET)"
 
 clean:
 	@$(RM) $(OBJ)
+	@make clean -C libft/
 	@echo "$(RED)Cleaned$(RESET)"
 
 fclean: clean
 	@$(RM) $(NAME)
+	@make fclean -C libft/
 
 re: clean all
 

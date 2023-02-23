@@ -38,7 +38,7 @@ char	*ft_find_env(t_mini *mini, char *str)
 	t_exprt *exprt;
 
 	exprt = mini->exprt;
-	while (ft_strncmp(str, exprt->env, ft_strlen(str)))
+	while (exprt->env && ft_strncmp(str, exprt->env, ft_strlen(str)))
 	{
 		exprt = exprt->next;
 		if (!exprt->next)

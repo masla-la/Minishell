@@ -34,7 +34,7 @@ int	ft_add_to_env(t_mini *mini, char *str)
 {
 	t_exprt	*exprt;
 
-	if (ft_isnum(str))
+	if (!str && ft_isnum(str))
 		return (ft_exit_error(mini, 1));
 	exprt = mini->exprt;
 	while (exprt->env)
@@ -48,7 +48,6 @@ int	ft_add_to_env(t_mini *mini, char *str)
 		exprt = exprt->next;
 	}
 	ft_lstadd_exp(&exprt, ft_lstnew_exp(NULL));
-	exprt = exprt->next;
 	exprt->env = ft_strdup(str);
 	return (0);
 }//se pierden los datos

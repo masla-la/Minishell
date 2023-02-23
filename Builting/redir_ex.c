@@ -1,5 +1,24 @@
 #include "../minishell.h"
 
+// Comprueba si el comando es un built-in
+int	is_builting(char *c)
+{
+	if (!ft_strncmp("env", c, 3))//
+		return (1);
+	else if (!ft_strncmp("cd", c, 2))//
+		return (1);
+	else if (!ft_strncmp("pwd", c, 3))//
+		return (1);
+	else if (!ft_strncmp("export", c, 6))
+		return (1);//
+	else if (!ft_strncmp("unset", c, 5))
+		return (1);
+	else if (!ft_strncmp("echo", c, 4))
+		return (1);
+	return (0);
+}
+
+// Redirige hacia los buit-ins o continua normalmente
 int	ft_redir_ex(t_mini *mini, t_list *lst)
 {
 	if (!ft_strncmp("env", lst->content[0], 3))//
