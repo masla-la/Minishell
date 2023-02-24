@@ -80,7 +80,6 @@ int	ft_cd(t_mini *mini, t_list *lst)
 		dest = ft_find_env(mini, "HOME");//
 	if (!access(dest, F_OK))
 	{
-		ft_update_pwd(mini);
 		chdir(dest);
 		ft_update_pwd(mini);
 	}

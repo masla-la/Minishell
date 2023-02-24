@@ -55,9 +55,9 @@ int	ft_export_dcr(t_mini *mini)
 		while (exprt->env[i])
 		{
 			printf("%c", exprt->env[i]);
-			i++;
 			if (exprt->env[i] == '=')
 				printf("%c", 34);
+			i++;
 		}
 		printf("%c\n", 34);
 		exprt = exprt->next;
