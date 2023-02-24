@@ -20,7 +20,7 @@ int	ft_echo(t_list *lst)
 	int	i;
 
 	i = 1;
-	if (!ft_strncmp("-n", lst->content[i], 2))
+	if (lst->content[i] && !ft_strncmp("-n", lst->content[i], 2))
 		return (ft_echo_n(lst));
 	while (lst->content[i])
 	{

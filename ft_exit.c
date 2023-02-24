@@ -34,7 +34,7 @@ int	ft_add_to_env(t_mini *mini, char *str)
 {
 	t_exprt	*exprt;
 
-	if (!str && ft_isnum(str))
+	if (!str || ft_isnum(str))
 		return (ft_exit_error(mini, 1));
 	exprt = mini->exprt;
 	while (exprt->env)
@@ -59,7 +59,7 @@ int	ft_exit_error(t_mini *mini, int	error)
 
 	er = ft_itoa(error);
 	dest = ft_strjoin("?=", er);
-	ft_free(mini);
+	//ft_free(mini);
 	ft_add_to_env(mini, dest);
 	free(dest);
 	return (error);

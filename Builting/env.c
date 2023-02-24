@@ -40,3 +40,28 @@ int	ft_print_env(t_mini *mini)
 	}
 	return (EXIT_SUCCESS);
 }
+
+//FT especifica del comando export sin argumentos
+int	ft_export_dcr(t_mini *mini)
+{
+	t_exprt	*exprt;
+	int		i;
+
+	exprt = mini->exprt;
+	while (exprt->next)
+	{
+		i = 0;
+		printf("declare -x ");
+		while (exprt->env[i])
+		{
+			printf("%c", exprt->env[i]);
+			i++;
+			if (exprt->env[i] == '=')
+				printf("%c", 34);
+		}
+		printf("%c\n", 34);
+		exprt = exprt->next;
+	}
+	return (EXIT_SUCCESS);
+}
+//Debe mostar las variables del sistema no todas

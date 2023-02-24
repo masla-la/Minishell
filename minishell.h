@@ -97,6 +97,7 @@ int		ft_echo(t_list *lst);
 int		ft_rm_to_env(t_mini *mini, char *str);
 int		ft_print_env(t_mini *mini);
 int		ft_add_to_env(t_mini *mini, char *str);
+int		ft_export_dcr(t_mini *mini);
 
 int	is_builting(char *c);
 #endif

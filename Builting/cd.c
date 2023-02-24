@@ -1,5 +1,34 @@
 #include "../minishell.h"
 
+void	ft_update_pwd(t_mini *mini)
+{
+	t_exprt	*exprt;
+	char	*cpy;
+	char	pwd[2056];
+	char	*tmp;
+
+	exprt = mini->exprt;
+	while (exprt->next)
+	{
+		if (!ft_strncmp("PWD", exprt->env, 3))
+		{
+			cpy = ft_strjoin("OLD", exprt->env);
+			free(exprt->env);
+			getcwd(pwd, sizeof(pwd));
+			tmp = ft_strjoin("PWD=", pwd);
+			exprt->env = ft_strdup(tmp);
+			free(tmp);
+		}
+		if (!ft_strncmp("OLDPWD", exprt->env, 6))
+		{
+			free(exprt->env);
+			exprt->env = ft_strdup(cpy);
+			free(cpy);
+		}
+		exprt = exprt->next;
+	}
+}
+
 char	*ft_cd_return(char *str)
 {
 	int		i;
@@ -29,7 +58,7 @@ char	*ft_join_dir(char *str, t_list *lst)
 	dest = ft_strjoin(tmp, lst->content[1]);
 	if (!dest)
 		return (NULL);
-	return  (dest);
+	return (dest);
 }
 
 int	ft_cd(t_mini *mini, t_list *lst)
@@ -44,14 +73,17 @@ int	ft_cd(t_mini *mini, t_list *lst)
 		if (!ft_strncmp("..", lst->content[1], 2))
 			dest = ft_cd_return(str);
 		else
-			dest = ft_join_dir(str, lst);
+			dest = ft_strdup(lst->content[1]);
+			//dest = ft_join_dir(str, lst);
 	}
 	else
 		dest = ft_find_env(mini, "HOME");//
 	if (!access(dest, F_OK))
 	{
+		ft_update_pwd(mini);
 		chdir(dest);
+		ft_update_pwd(mini);
 	}
 	free(dest);
 	return (EXIT_SUCCESS);
-}
+}//cambiar el OLDPWD, ya lo hace con el cd  sin argumentos
