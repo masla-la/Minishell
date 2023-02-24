@@ -44,6 +44,9 @@ SRCS = ft_isalpha.c\
 	  ft_lstdelone.c\
 	  ft_lstclear.c\
 	  ft_lstiter.c\
+	  ft_doublestrdup.c\
+	  ft_doublefree.c\
+	  ft_doublestrlen.c\
 	  get_next_line.c\
 
 OBJS = $(SRCS:.c=.o)

@@ -58,6 +58,8 @@ void	ft_lstadd_exp(t_exprt **exprt, t_exprt *new);
 //Utils
 char	**ft_split_exp(char const *s, char c);
 void	ft_init_var(t_mini *mini);
+int		order_env(t_mini *s);
+void	print_export(char **export);
 
 //Utils_lexer
 int		ft_total_arg(char **ptr);//

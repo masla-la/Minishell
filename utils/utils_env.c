@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../minishell.h"
 
 t_exprt	*ft_lstnew_exp(void *content)
 {

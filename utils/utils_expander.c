@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../minishell.h"
 
 void	ft_reddir_input(t_mini *mini, char *arg, t_list *lst)
 {

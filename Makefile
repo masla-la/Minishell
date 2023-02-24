@@ -6,12 +6,12 @@ B 	= 	cd\
 		echo\
 
 FILES = main\
-		utils_env\
-		utils_expander\
-		utils_executor\
-		utils_child\
-		utils_parser\
-		utils\
+		utils/utils_env\
+		utils/utils_expander\
+		utils/utils_executor\
+		utils/utils_child\
+		utils/utils_parser\
+		utils/utils\
 		ft_parser\
 		ft_split_exp\
 		ft_free\
@@ -26,8 +26,8 @@ SRC = $(addsuffix .c, $(FILES))
 OBJ = $(addsuffix .o, $(FILES))
 
 CC = clang
-CFLAGS = -Wall -Wextra -Werror
-##CFLAGS += -Wstring-compare -fsanitize=address -g3
+##CFLAGS = -Wall -Wextra -Werror
+CFLAGS += -Wstring-compare -fsanitize=address -g3
 RM = rm -rf
 
 ifneq (,$(findstring xterm,${TERM}))

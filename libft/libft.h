@@ -6,7 +6,7 @@
 /*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 18:18:05 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/02/23 12:19:59 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/02/24 18:58:52 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <errno.h>
 
 # define BUFFER_SIZE 1
 
@@ -79,6 +80,10 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+//----------FUNCIONES------EXTENDED---LIBFT----------//
+char	**ft_doublestrdup(char **str);
+char	**ft_doublefree(char **str);
+int		ft_doublestrlen(char **str);
 //------------GET-----NEXT----LINE----------------//
 char	*get_next_line(int fd);
 #endif

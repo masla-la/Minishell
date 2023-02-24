@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../minishell.h"
 
 void	ft_child_1(t_mini *mini, int fd[2], t_list *lst)
 {
