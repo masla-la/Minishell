@@ -99,6 +99,11 @@ int	main(int ac, char **av, char **env)
 //extender env *
 //agregar $? con a ft de error
 
+//Built-ins en mayusculas debe interpretarse
+
+//ls | cd .. | wc
+//	0	0	0
+
 // 1 =  permiso denegado
 // 130 = cntl + c
 //127 = comando no existente

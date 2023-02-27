@@ -3,17 +3,17 @@
 // Comprueba si el comando es un built-in
 int	is_builting(char *c)
 {
-	if (!ft_strncmp("env", c, 3))//
+	if (!ft_strcmp("env", c))//
 		return (1);
-	else if (!ft_strncmp("cd", c, 2))//
+	else if (!ft_strcmp("cd", c))//
 		return (1);
-	else if (!ft_strncmp("pwd", c, 3))//
+	else if (!ft_strcmp("pwd", c))//
 		return (1);
-	else if (!ft_strncmp("export", c, 6))
+	else if (!ft_strcmp("export", c))
 		return (1);//
-	else if (!ft_strncmp("unset", c, 5))
+	else if (!ft_strcmp("unset", c))
 		return (1);
-	else if (!ft_strncmp("echo", c, 4))
+	else if (!ft_strcmp("echo", c))
 		return (1);
 	return (0);
 }

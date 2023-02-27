@@ -63,30 +63,58 @@ void	print_export(char **export)
 	}
 }
 
+char	**ft_lst_to_doublestr(t_exprt *s)
+{
+	t_exprt		*len;
+	char		**env_cpy;
+	int			i;
+
+	len = s;
+	i = 0;
+	while (len->next)
+	{
+		len = len->next;
+		i++;
+	}
+	len = s;
+	env_cpy = malloc(sizeof(char *) * (i + 1));
+	if (!env_cpy)
+		return (NULL);
+	i = 0;
+	while (len->next)
+	{
+		env_cpy[i] = ft_strdup(len->env);
+		len = len->next;
+		i++;
+	}
+	env_cpy[i] = NULL;
+	return (env_cpy);
+}
+
 //FT especifica del comando export sin argumentos
 int	order_env(t_mini *s)
 {
-	int		i[2];
+	int		i;
+	int		j;
 	char	**env_cpy;
-	char	*tmp = NULL;
+	char	*tmp;
 
-	env_cpy = ft_doublestrdup((*s).env);
-	i[0] = 0;
-	while (env_cpy[i[0] + 1])
+	env_cpy = ft_lst_to_doublestr(s->exprt);
+	i = 0;
+	while (env_cpy[i + 1])
 	{
-		i[1] = i[0] + 1;
-		while (i[1] < ft_doublestrlen(s->env))
+		j = i + 1;
+		while (j < ft_doublestrlen(env_cpy))
 		{
-			if (ft_strcmp(env_cpy[i[0]], env_cpy[i[1]]) > 0)
+			if (ft_strcmp(env_cpy[i], env_cpy[j]) > 0)
 			{
-				tmp = ft_strdup(env_cpy[i[0]]);
-				env_cpy[i[0]] = ft_strdup(env_cpy[i[1]]);
-				env_cpy[i[1]] = ft_strdup(tmp);
-				free(tmp);
+				tmp = env_cpy[i];
+				env_cpy[i] = env_cpy[j];
+				env_cpy[j] = tmp;
 			}
-			i[1]++;
+			j++;
 		}
-		i[0]++;
+		i++;
 	}
 	print_export(env_cpy);
 	ft_doublefree(env_cpy);
