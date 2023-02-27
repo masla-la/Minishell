@@ -5,23 +5,26 @@ B 	= 	cd\
 		redir_ex\
 		echo\
 
+U	=	utils_env\
+		utils_executor\
+		utils_expander\
+		utils_parser\
+		utils_child\
+		utils\
+
 FILES = main\
-		utils/utils_env\
-		utils/utils_expander\
-		utils/utils_executor\
-		utils/utils_child\
-		utils/utils_parser\
-		utils/utils\
 		ft_parser\
 		ft_split_exp\
 		ft_free\
 		ft_expander\
 		ft_exit\
-		$(BLT)
+		$(BLT)\
+		$(ULT)\
 
-LIBFT = libft/libft.a
+LIBFT = Libft/libft.a
 
 BLT = $(addprefix Builting/, $(B))
+ULT = $(addprefix Utils/, $(U))
 SRC = $(addsuffix .c, $(FILES))
 OBJ = $(addsuffix .o, $(FILES))
 
@@ -58,18 +61,18 @@ all: $(NAME)
 	@$(CC) $(CFLAGS) -c -o $@ $^
 
 $(NAME): $(OBJ)
-	@make -C libft
+	@make -C Libft/
 	@$(CC) $(CFLAGS) $(LIBFT) -lreadline $(OBJ) -o $(NAME)
 	@echo "$(GREEN)Done$(RESET)"
 
 clean:
 	@$(RM) $(OBJ)
-	@make clean -C libft/
+	@make clean -C Libft/
 	@echo "$(RED)Cleaned$(RESET)"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@make fclean -C libft/
+	@make fclean -C Libft/
 
 re: clean all
 

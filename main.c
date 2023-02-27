@@ -96,7 +96,7 @@ int	main(int ac, char **av, char **env)
 //agregar señales
 //ignorar las redirecciones dando valor a los outputs e intputs
 //ejecutar codigo *
-//extender env
+//extender env *
 //agregar $? con a ft de error
 
 // 1 =  permiso denegado

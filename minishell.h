@@ -1,7 +1,7 @@
 #ifndef MINISHELL_H
 #define MINISHELL_H
 
-# include "libft/libft.h"
+# include "Libft/libft.h"
 # include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -58,8 +58,6 @@ void	ft_lstadd_exp(t_exprt **exprt, t_exprt *new);
 //Utils
 char	**ft_split_exp(char const *s, char c);
 void	ft_init_var(t_mini *mini);
-int		order_env(t_mini *s);
-void	print_export(char **export);
 
 //Utils_lexer
 int		ft_total_arg(char **ptr);//
@@ -99,7 +97,8 @@ int		ft_echo(t_list *lst);
 int		ft_rm_to_env(t_mini *mini, char *str);
 int		ft_print_env(t_mini *mini);
 int		ft_add_to_env(t_mini *mini, char *str);
-int		ft_export_dcr(t_mini *mini);
+int		order_env(t_mini *s);
+void	print_export(char **export);
 
 int	is_builting(char *c);
 #endif

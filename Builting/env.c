@@ -41,27 +41,54 @@ int	ft_print_env(t_mini *mini)
 	return (EXIT_SUCCESS);
 }
 
-//FT especifica del comando export sin argumentos
-int	ft_export_dcr(t_mini *mini)
+void	print_export(char **export)
 {
-	t_exprt	*exprt;
-	int		i;
+	int	i;
+	int	n;
 
-	exprt = mini->exprt;
-	while (exprt->next)
+	n = 0;
+	while (export[n])
 	{
 		i = 0;
 		printf("declare -x ");
-		while (exprt->env[i])
+		while(export[n][i])
 		{
-			printf("%c", exprt->env[i]);
-			if (exprt->env[i] == '=')
-				printf("%c", 34);
+			printf("%c", export[n][i]);
+			if (export[n][i] == '=')
+				printf("%c", 39);
 			i++;
 		}
-		printf("%c\n", 34);
-		exprt = exprt->next;
+		printf("%c\n", 39);
+		n++;
 	}
-	return (EXIT_SUCCESS);
 }
-//Debe mostar las variables del sistema no todas
+
+//FT especifica del comando export sin argumentos
+int	order_env(t_mini *s)
+{
+	int		i[2];
+	char	**env_cpy;
+	char	*tmp = NULL;
+
+	env_cpy = ft_doublestrdup((*s).env);
+	i[0] = 0;
+	while (env_cpy[i[0] + 1])
+	{
+		i[1] = i[0] + 1;
+		while (i[1] < ft_doublestrlen(s->env))
+		{
+			if (ft_strcmp(env_cpy[i[0]], env_cpy[i[1]]) > 0)
+			{
+				tmp = ft_strdup(env_cpy[i[0]]);
+				env_cpy[i[0]] = ft_strdup(env_cpy[i[1]]);
+				env_cpy[i[1]] = ft_strdup(tmp);
+				free(tmp);
+			}
+			i[1]++;
+		}
+		i[0]++;
+	}
+	print_export(env_cpy);
+	ft_doublefree(env_cpy);
+	return (1);
+}
