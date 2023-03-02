@@ -28,9 +28,15 @@ ULT = $(addprefix Utils/, $(U))
 SRC = $(addsuffix .c, $(FILES))
 OBJ = $(addsuffix .o, $(FILES))
 
+READLINE_DIR = ${HOME}/.brew/opt/readline
+
+F_READLINE = -I$(READLINE_DIR)/include
+
+COMPILE = -lreadline -L$(READLINE_DIR)/lib
+
 CC = clang
-CFLAGS = -Wall -Wextra -Werror
-##CFLAGS += -Wstring-compare -fsanitize=address -g3
+##CFLAGS = -Wall -Wextra -Werror
+CFLAGS += -Wstring-compare -fsanitize=address -g3
 RM = rm -rf
 
 ifneq (,$(findstring xterm,${TERM}))
@@ -43,26 +49,16 @@ ifneq (,$(findstring xterm,${TERM}))
 	BLUE         := $(shell tput -Txterm setaf 6)
 	WHITE        := $(shell tput -Txterm setaf 7)
 	RESET := $(shell tput -Txterm sgr0)
-else
-	BLACK        := ""
-	RED          := ""
-	GREEN        := ""
-	YELLOW       := ""
-	LIGHTPURPLE  := ""
-	PURPLE       := ""
-	BLUE         := ""
-	WHITE        := ""
-	RESET        := ""
 endif
 
 all: $(NAME)
 
 .c.o: $(SRC)
-	@$(CC) $(CFLAGS) -c -o $@ $^
+	@$(CC) $(CFLAGS) $(F_READLINE) -c -o $@ $^
 
 $(NAME): $(OBJ)
 	@make -C Libft/
-	@$(CC) $(CFLAGS) $(LIBFT) -lreadline $(OBJ) -o $(NAME)
+	@$(CC) $(CFLAGS) $(LIBFT) $(COMPILE) $(OBJ) -o $(NAME)
 	@echo "$(GREEN)Done$(RESET)"
 
 clean:
