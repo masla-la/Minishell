@@ -1,22 +1,21 @@
 #include "minishell.h"
 
-t_signal	g_signal;
-
 // Gestiona las señales
-void	ft_sig(int sig)
+
+/*void	ft_sig(int sig)
 {
 	if (sig == SIGINT)
 	{
-		write(1, "\n", 1);
-		write(1, "\033[0;31mMiniShell: \033[0;37m", 25);
+		//write(1, "\n", 1);
+		//write(1, "\033[0;31mMiniShell: \033[0;37m", 25);
 		//rl_on_new_line();
-		/*g_signal.siginit = 1;
+		g_signal.siginit = 1;
 		if (g_signal.pid_line)
-			kill(g_signal.pid_line, SIGKILL);*/
+			kill(g_signal.pid_line, SIGKILL);
 	}
 	if (sig == SIGQUIT)
 		exit(0);
-}
+}*/
 
 // Crea los procesos "hijos"
 int	ft_executor(t_mini *mini)
@@ -53,11 +52,12 @@ int	ft_init(t_mini *mini)
 {
 	char	*comand;
 
-	while (g_signal.siginit == 0)//
+	signal(SIGQUIT,	sig_rl);
+	while (!g_sig)//
 	{
 		ft_init_var(mini);
 		comand = readline("\033[0;31mMiniShell: \033[0;37m");
-		if (comand[0] == '\0')//
+		if (!comand || comand[0] == '\0')//
 			comand = NULL;
 		else
 			add_history(comand);
@@ -83,13 +83,23 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	
 	mini.env = env;
-	g_signal.siginit = 0;
+	g_sig = 0;
+	
+	/*struct termios old_termios, new_termios;
+	tcgetattr(0,&old_termios);
+
+	new_termios = old_termios;
+	new_termios.c_cc[VQUIT]  = 4; // ^C
+	new_termios.c_cc[VINTR] = 3; // ^D
+	tcsetattr(0,TCSANOW,&new_termios);*/
+
 	signal(SIGINT, ft_sig);//
-	signal(SIGQUIT, ft_sig);
+	signal(SIGQUIT, SIG_IGN);
+	//signal(SIGQUIT,	sig_rl);
 	if (ft_get_env(&mini, env) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	if (ft_init(&mini) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+	ft_init(&mini);
+	printf("\n%d\n", g_sig);
 	return (EXIT_SUCES);
 }
 

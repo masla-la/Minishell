@@ -18,6 +18,7 @@ FILES = main\
 		ft_free\
 		ft_expander\
 		ft_exit\
+		signals\
 		$(BLT)\
 		$(ULT)\
 

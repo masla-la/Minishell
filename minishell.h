@@ -3,6 +3,7 @@
 
 # include "Libft/libft.h"
 # include <signal.h>
+# include <termios.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -15,6 +16,8 @@
 
 # define STDIN	0
 # define STDOUT	1
+
+int	g_sig;
 
 typedef struct	s_mini
 {
@@ -101,4 +104,9 @@ int		order_env(t_mini *s);
 void	print_export(char **export);
 
 int	is_builting(char *c);
+
+//Signals
+void	sig_child(int sig);
+void	sig_rl(int sig);
+void	ft_sig(int sig);
 #endif
