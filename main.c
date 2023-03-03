@@ -24,18 +24,21 @@ int	ft_executor(t_mini *mini)
 	int		*fd;
 
 	lst  = mini->lst;
+	signal(SIGINT, ft_sig2);
 	while (lst)
 	{
-		if (!is_builting(lst->content[0]))
+		if (!is_builting(lst->content[0]) )
 		{
 			pipe(lst->fd);
 			lst->pid = fork();
-			if (lst->pid == 0)
+			if (!lst->pid)
 			{
+				signal(SIGINT, sig_child);
+				signal(SIGIOT, sig_child);
 				ft_reddir_childs(mini, lst->fd, fd, lst);//agregar errores
 				exit(0);//temp, evita crear procesos de más durante las pruevas
 			}
-			if (lst->pid != 0)
+			if (!lst->pid)
 				close(lst->fd[WRITE]);
 			fd = lst->fd;
 		}
@@ -52,9 +55,9 @@ int	ft_init(t_mini *mini)
 {
 	char	*comand;
 
-	signal(SIGQUIT,	sig_rl);
 	while (!g_sig)//
 	{
+		signal(SIGINT, ft_sig);
 		ft_init_var(mini);
 		comand = readline("\033[0;31mMiniShell: \033[0;37m");
 		if (!comand || comand[0] == '\0')//
@@ -84,23 +87,13 @@ int	main(int ac, char **av, char **env)
 	
 	mini.env = env;
 	g_sig = 0;
-	
-	/*struct termios old_termios, new_termios;
-	tcgetattr(0,&old_termios);
-
-	new_termios = old_termios;
-	new_termios.c_cc[VQUIT]  = 4; // ^C
-	new_termios.c_cc[VINTR] = 3; // ^D
-	tcsetattr(0,TCSANOW,&new_termios);*/
-
-	signal(SIGINT, ft_sig);//
-	signal(SIGQUIT, SIG_IGN);
-	//signal(SIGQUIT,	sig_rl);
+	signal(SIGQUIT, SIG_IGN);//'^\'
+	signal(SIGIOT,	sig_rl);//^D
+	signal(SIGTSTP, SIG_IGN);//^Z
 	if (ft_get_env(&mini, env) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	ft_init(&mini);
-	printf("\n%d\n", g_sig);
-	return (EXIT_SUCES);
+	return (g_sig);
 }
 
 //agregar señales

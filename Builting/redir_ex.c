@@ -15,6 +15,8 @@ int	is_builting(char *c)
 		return (1);
 	else if (!ft_strcmp("echo", c))
 		return (1);
+	else if (!ft_strcmp("exit", c))
+		return (1);
 	return (0);
 }
 
@@ -37,6 +39,8 @@ int	ft_redir_ex(t_mini *mini, t_list *lst)
 		return (EXIT_SUCCESS);
 	else if (!ft_strcmp("unset", lst->content[0]))
 		return (ft_rm_to_env(mini, lst->content[1]));
+	else if (!ft_strcmp("exit", lst->content[0]))
+		exit(1);
 	return (ft_ex_bin(mini, lst));
 }
 //falta el echo

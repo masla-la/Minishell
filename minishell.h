@@ -3,7 +3,7 @@
 
 # include "Libft/libft.h"
 # include <signal.h>
-# include <termios.h>
+# include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -109,4 +109,5 @@ int	is_builting(char *c);
 void	sig_child(int sig);
 void	sig_rl(int sig);
 void	ft_sig(int sig);
+void	ft_sig2(int sig);
 #endif

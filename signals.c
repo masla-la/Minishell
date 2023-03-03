@@ -2,17 +2,30 @@
 
 void	sig_child(int sig)
 {
-	if (sig == SIGINT)
-		exit(0);
+	if (sig == SIGINT || sig == SIGIOT)
+	{
+		close(WRITE);
+		exit(1);
+	}
 }
 
 void	sig_rl(int sig)
 {
-	if (sig == SIGQUIT)
+	if (sig == SIGIOT)
 	{
 		g_sig = 1;
 		write(1, "\n", 1);
-		exit(g_sig);
+		exit(1);
+	}
+}
+
+void	ft_sig2(int sig)
+{
+	if (sig == SIGINT)
+	{
+		write(1, "\n", 1);
+		rl_on_new_line();
+		rl_replace_line("", 0);
 	}
 }
 
