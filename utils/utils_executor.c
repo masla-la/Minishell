@@ -33,6 +33,7 @@ void	ft_reddir_childs(t_mini *mini, int fd[2], int fd2[2], t_list *lst)
 		ft_child_2(mini, fd, fd2, lst);
 }
 
+
 int	ft_ex_bin(t_mini *mini, t_list *lst)
 {
 	int		i;
@@ -49,6 +50,8 @@ int	ft_ex_bin(t_mini *mini, t_list *lst)
 		free(cmd_path);
 		i++;
 	}
+	if (lst->content[0])
+		execve(lst->content[0], lst->content, mini->env);
 	printf("Error\n");
 	return (EXIT_FAILURE);
 }
