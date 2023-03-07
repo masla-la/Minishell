@@ -1,7 +1,7 @@
 #ifndef MINISHELL_H
 #define MINISHELL_H
 
-# include "Libft/libft.h"
+# include "libft/libft.h"
 # include <signal.h>
 # include <sys/wait.h>
 # include <readline/readline.h>
