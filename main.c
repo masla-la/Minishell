@@ -60,20 +60,19 @@ int	ft_init(t_mini *mini)
 		signal(SIGINT, ft_sig);
 		ft_init_var(mini);
 		comand = readline("\033[0;31mMiniShell: \033[0;37m");
-		if (!comand || comand[0] == '\0')//
-			comand = NULL;
+		if (!comand)//
+			return (EXIT_FAILURE);
 		else
 			add_history(comand);
 		mini->comand = ft_split_exp(comand, ' ');
 		free(comand);
-		if (!mini->comand || mini->comand[0] == NULL)
-			return (EXIT_FAILURE);
-		if (ft_parse(mini, mini->comand) == EXIT_FAILURE)
-			return (EXIT_FAILURE);
-		if (ft_executor(mini) == EXIT_FAILURE)
-			return (EXIT_FAILURE);
-		ft_free_lst(mini->lst);
-		ft_free_comand(mini);
+		if (mini->comand && mini->comand[0] != NULL)
+		{
+			ft_parse(mini, mini->comand);
+			ft_executor(mini);
+			ft_free_lst(mini->lst);
+			ft_free_comand(mini);
+		}
 	}
 	ft_free_exprt(mini->exprt);
 	return (EXIT_SUCES);
@@ -84,7 +83,7 @@ int	main(int ac, char **av, char **env)
 	t_mini	mini;
 	(void)ac;
 	(void)av;
-	
+
 	mini.env = env;
 	g_sig = 0;
 	signal(SIGQUIT, SIG_IGN);//'^\'
