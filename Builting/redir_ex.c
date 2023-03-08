@@ -40,7 +40,7 @@ int	ft_redir_ex(t_mini *mini, t_list *lst)
 	else if (!ft_strcmp("unset", lst->content[0]))
 		return (ft_rm_to_env(mini, lst->content[1]));
 	else if (!ft_strcmp("exit", lst->content[0]))
-		exit(1);
+		return (g_sig = 1);
 	return (ft_ex_bin(mini, lst));
 }
 //falta el echo

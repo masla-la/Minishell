@@ -30,16 +30,6 @@ typedef struct	s_mini
 	struct	s_list	*lst;
 }				t_mini;
 
-/* typedef struct	s_list
-{
-	char			**content;
-	int				input;//
-	int				output;//
-	int				pid;
-	int				fd[2];
-	struct	s_list	*next;
-}				t_list; */
-
 typedef struct	s_exprt
 {
 	char			*env;

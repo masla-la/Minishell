@@ -18,36 +18,36 @@
 }*/
 
 // Crea los procesos "hijos"
+void	ft_pid_pipe(t_list *lst)
+{
+	pipe(lst->fd);
+	lst->pid = fork();
+}
+
 int	ft_executor(t_mini *mini)
 {
-	t_list	*lst;
+	t_list *lst;
 	int		*fd;
 
-	lst  = mini->lst;
+	lst = mini->lst;
 	signal(SIGINT, ft_sig2);
 	while (lst)
 	{
-		if (!is_builting(lst->content[0]) )
+		ft_pid_pipe(lst);
+		if (!lst->pid)
 		{
-			pipe(lst->fd);
-			lst->pid = fork();
-			if (!lst->pid)
-			{
-				signal(SIGINT, sig_child);
-				signal(SIGIOT, sig_child);
-				ft_reddir_childs(mini, lst->fd, fd, lst);//agregar errores
-				exit(0);//temp, evita crear procesos de más durante las pruevas
-			}
-			if (!lst->pid)
-				close(lst->fd[WRITE]);
-			fd = lst->fd;
+			signal(SIGINT, sig_child);
+			signal(SIGIOT, sig_child);
+			ft_reddir_childs(mini, lst->fd, fd, lst);
+			exit(g_sig);
 		}
-		else
-			ft_redir_ex(mini, lst);
+		if (lst->pid)
+			close(lst->fd[WRITE]);
+		fd = lst->fd;
 		lst = lst->next;
 	}
 	ft_wait_childs(mini);
-	return (EXIT_SUCES);
+	return (EXIT_SUCCESS);
 }
 
 // Gestiona el input (readline) y redirije al Parser y Executer
