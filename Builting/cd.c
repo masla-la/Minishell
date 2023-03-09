@@ -12,10 +12,10 @@ void	ft_update_pwd(t_mini *mini)
 	{
 		if (!ft_strncmp("PWD", exprt->env, 3))
 		{
-			cpy = ft_strjoin("OLD", exprt->env);
+			cpy = ft_strjoin2("OLD", exprt->env);
 			free(exprt->env);
 			getcwd(pwd, sizeof(pwd));
-			tmp = ft_strjoin("PWD=", pwd);
+			tmp = ft_strjoin2("PWD=", pwd);
 			exprt->env = ft_strdup(tmp);
 			free(tmp);
 		}

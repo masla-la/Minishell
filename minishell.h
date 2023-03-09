@@ -99,4 +99,7 @@ void	sig_child(int sig);
 void	sig_rl(int sig);
 void	ft_sig(int sig);
 void	ft_sig2(int sig);
+
+//Pepe
+void	print_pepe(void);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 18:18:05 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/02/24 18:58:52 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/09 12:36:03 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ char	*ft_strdup(const char *s1);
 //---------------------FUNCIONES----PARTE----DOS------------------------//
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoin2(char *s1, char *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);

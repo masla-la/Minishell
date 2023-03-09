@@ -12,6 +12,8 @@ U	=	utils_env\
 		utils_child\
 		utils\
 
+P	=	print_pepe\
+
 FILES = main\
 		ft_parser\
 		ft_split_exp\
@@ -21,11 +23,13 @@ FILES = main\
 		signals\
 		$(BLT)\
 		$(ULT)\
+		$(PLT)\
 
 LIBFT = Libft/libft.a
 
 BLT = $(addprefix Builting/, $(B))
 ULT = $(addprefix Utils/, $(U))
+PLT = $(addprefix PrintPepe/, $(P))
 SRC = $(addsuffix .c, $(FILES))
 OBJ = $(addsuffix .o, $(FILES))
 

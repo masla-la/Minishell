@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:45 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/09 11:22:56 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/09 12:28:32 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,6 @@
 	if (sig == SIGQUIT)
 		exit(0);
 }*/
-
-// Crea los procesos "hijos"
-void	ft_pid_pipe(t_list *lst)
-{
-	pipe(lst->fd);
-	lst->pid = fork();
-}
 
 // Significa Too_Many_Lines_executor()
 void	tml_executor(t_mini *mini, int *fd, t_list *lst)
@@ -60,11 +53,7 @@ int	ft_executor(t_mini *mini)
 		if (!lst->pid && !is_builting(lst->content[0]))
 			tml_executor(mini, fd, lst);
 		else if (is_builting(lst->content[0]))
-		{
 			ft_reddir_childs(mini, lst->fd, fd, lst);
-			if (!ft_strcmp("exit", lst->content[0]))
-				exit (g_sig);
-		}
 		if (lst->pid)
 			close(lst->fd[WRITE]);
 		fd = lst->fd;
@@ -108,6 +97,7 @@ int	main(int ac, char **av, char **env)
 
 	(void)ac;
 	(void)av;
+	print_pepe();
 	mini.env = env;
 	g_sig = 0;
 	signal(SIGQUIT, SIG_IGN); //'^\'
