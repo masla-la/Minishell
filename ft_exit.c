@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/08 17:36:58 by jchamorr          #+#    #+#             */
+/*   Updated: 2023/03/08 17:38:04 by jchamorr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int	ft_isnum(const char *str)
@@ -50,9 +62,10 @@ int	ft_add_to_env(t_mini *mini, char *str)
 	ft_lstadd_exp(&exprt, ft_lstnew_exp(NULL));
 	exprt->env = ft_strdup(str);
 	return (0);
-}//se pierden los datos
+}
+//se pierden los datos
 
-int	ft_exit_error(t_mini *mini, int	error)
+int	ft_exit_error(t_mini *mini, int error)
 {
 	char	*dest;
 	char	*er;

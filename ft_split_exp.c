@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split_exp.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/08 17:38:41 by jchamorr          #+#    #+#             */
+/*   Updated: 2023/03/08 18:02:50 by jchamorr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 size_t	ft_ignore_split(char const *s, size_t i)
@@ -7,7 +19,7 @@ size_t	ft_ignore_split(char const *s, size_t i)
 
 	n = 0;
 	c = 0;
-	while  (s[i + c] && (s[i] == 34 || s[i] == 39) && n < 2)
+	while (s[i + c] && (s[i] == 34 || s[i] == 39) && n < 2)
 	{
 		if (s[i + c] == 34 || s[i + c] == 39)
 			n++;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/08 17:38:45 by jchamorr          #+#    #+#             */
+/*   Updated: 2023/03/09 11:22:56 by jchamorr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 // Gestiona las señales
@@ -24,22 +36,34 @@ void	ft_pid_pipe(t_list *lst)
 	lst->pid = fork();
 }
 
+// Significa Too_Many_Lines_executor()
+void	tml_executor(t_mini *mini, int *fd, t_list *lst)
+{
+	signal(SIGINT, sig_child);
+	signal(SIGIOT, sig_child);
+	ft_reddir_childs(mini, lst->fd, fd, lst);
+	exit(g_sig);
+}
+
 int	ft_executor(t_mini *mini)
 {
-	t_list *lst;
+	t_list	*lst;
 	int		*fd;
 
 	lst = mini->lst;
 	signal(SIGINT, ft_sig2);
 	while (lst)
 	{
-		ft_pid_pipe(lst);
-		if (!lst->pid)
+		pipe(lst->fd);
+		if (!is_builting(lst->content[0]))
+			lst->pid = fork();
+		if (!lst->pid && !is_builting(lst->content[0]))
+			tml_executor(mini, fd, lst);
+		else if (is_builting(lst->content[0]))
 		{
-			signal(SIGINT, sig_child);
-			signal(SIGIOT, sig_child);
 			ft_reddir_childs(mini, lst->fd, fd, lst);
-			exit(g_sig);
+			if (!ft_strcmp("exit", lst->content[0]))
+				exit (g_sig);
 		}
 		if (lst->pid)
 			close(lst->fd[WRITE]);
@@ -55,16 +79,16 @@ int	ft_init(t_mini *mini)
 {
 	char	*comand;
 
-	while (!g_sig)//
+	while (!g_sig) //
 	{
 		signal(SIGINT, ft_sig);
 		ft_init_var(mini);
 		comand = readline("\033[0;31mMiniShell: \033[0;37m");
-		if (!comand)//
+		if (!comand) //
 			return (EXIT_FAILURE);
-		else
-			add_history(comand);
 		mini->comand = ft_split_exp(comand, ' ');
+		if (mini->comand[0])
+			add_history(comand);
 		free(comand);
 		if (mini->comand && mini->comand[0] != NULL)
 		{
@@ -81,14 +105,14 @@ int	ft_init(t_mini *mini)
 int	main(int ac, char **av, char **env)
 {
 	t_mini	mini;
+
 	(void)ac;
 	(void)av;
-
 	mini.env = env;
 	g_sig = 0;
-	signal(SIGQUIT, SIG_IGN);//'^\'
-	signal(SIGIOT,	sig_rl);//^D
-	signal(SIGTSTP, SIG_IGN);//^Z
+	signal(SIGQUIT, SIG_IGN); //'^\'
+	signal(SIGIOT, sig_rl);   //^D
+	signal(SIGTSTP, SIG_IGN); //^Z
 	if (ft_get_env(&mini, env) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	ft_init(&mini);

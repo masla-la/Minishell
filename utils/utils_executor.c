@@ -28,7 +28,9 @@ void	ft_reddir_childs(t_mini *mini, int fd[2], int fd2[2], t_list *lst)
 	if (mini->lst->content[0] == lst->content[0] && lst->next)
 		ft_child_1(mini, fd, lst);
 	else if (!lst->next)
+	{
 		ft_child_3(mini, fd2, lst);
+	}
 	else
 		ft_child_2(mini, fd, fd2, lst);
 }

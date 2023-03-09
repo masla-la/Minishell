@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/08 17:38:37 by jchamorr          #+#    #+#             */
+/*   Updated: 2023/03/08 18:03:32 by jchamorr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	ft_free_comand(t_mini *mini)
@@ -24,7 +36,7 @@ void	ft_free_exprt(t_exprt *exprt)
 {
 	t_exprt	*aux;
 
-	while (exprt)
+	while (exprt) 
 	{
 		aux = exprt->next;
 		free(exprt->env);
@@ -35,7 +47,7 @@ void	ft_free_exprt(t_exprt *exprt)
 
 void	ft_free_lst(t_list *lst)
 {
-	int	i;
+	int		i;
 	t_list	*aux;
 
 	while (lst)
