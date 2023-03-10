@@ -31,13 +31,13 @@ void	ft_reddir_output_2(t_mini *mini, char *arg, t_list *lst)//
 
 void	ft_reddir(t_mini *mini, char **arg, t_list *lst)
 {
-	if (!ft_strncmp(*arg, "<", 1))
-		ft_reddir_input(mini, ++*arg, lst);
-	else if (!ft_strncmp(*arg, ">", 1))
-		ft_reddir_output(mini, ++*arg, lst);
-	else if  (!ft_strncmp(*arg, "<<", 2))
+	if (!ft_strcmp(*arg, "<"))
+		ft_reddir_input(mini, *(arg + 1), lst);
+	else if (!ft_strcmp(*arg, ">"))
+		ft_reddir_output(mini, *(arg +1), lst);
+	else if  (!ft_strcmp(*arg, "<<"))
 		ft_reddir_input_2(mini, ++*arg, lst);
-	else if (!ft_strncmp(*arg, ">>", 2))
+	else if (!ft_strcmp(*arg, ">>"))
 		ft_reddir_output_2(mini, ++*arg, lst);
 	arg++;
 }

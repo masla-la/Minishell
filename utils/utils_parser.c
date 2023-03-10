@@ -51,3 +51,4 @@ int ft_parse_to_lst(t_mini *mini, char **arg)
     return (EXIT_SUCCESS);
 }
 //Falta revisar el error de las redirecciones
+// ls > 123, hay q eliminar los output o inputs, q no los meta en la list

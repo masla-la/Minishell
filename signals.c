@@ -9,14 +9,16 @@ void	sig_child(int sig)
 	}
 }
 
-void	sig_rl(int sig)
+int	sig_rl(char	*c, t_mini *mini)
 {
-	if (sig == SIGIOT)
-	{
-		g_sig = 1;
-		write(1, "\n", 1);
-		exit(1);
-	}
+	//printf("\x1b[31mMinishell:\x1b[0m exit\n");
+	free(c);
+	ft_free_exprt(mini->exprt);
+	g_sig = 1;
+	rl_replace_line("exit", 0);
+	print_pepe("PrintPepe/pepe2");
+	printf("\x1b[31mMinishell:\x1b[0m exit\n");
+	return (1);
 }
 
 void	ft_sig2(int sig)

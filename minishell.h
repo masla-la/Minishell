@@ -96,10 +96,10 @@ int	is_builting(char *c);
 
 //Signals
 void	sig_child(int sig);
-void	sig_rl(int sig);
 void	ft_sig(int sig);
 void	ft_sig2(int sig);
+int		sig_rl(char *c, t_mini *mini);
 
 //Pepe
-void	print_pepe(void);
+void	print_pepe(char *n);
 #endif

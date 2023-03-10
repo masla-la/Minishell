@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:45 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/09 12:28:32 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/10 12:21:09 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	ft_init(t_mini *mini)
 		ft_init_var(mini);
 		comand = readline("\033[0;31mMiniShell: \033[0;37m");
 		if (!comand) //
-			return (EXIT_FAILURE);
+			return (sig_rl(comand, mini));
 		mini->comand = ft_split_exp(comand, ' ');
 		if (mini->comand[0])
 			add_history(comand);
@@ -97,11 +97,10 @@ int	main(int ac, char **av, char **env)
 
 	(void)ac;
 	(void)av;
-	print_pepe();
+	print_pepe("PrintPepe/pepe");
 	mini.env = env;
 	g_sig = 0;
 	signal(SIGQUIT, SIG_IGN); //'^\'
-	signal(SIGIOT, sig_rl);   //^D
 	signal(SIGTSTP, SIG_IGN); //^Z
 	if (ft_get_env(&mini, env) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
