@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 18:18:05 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/09 12:36:03 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/10 12:47:24 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct	s_list
 	int				output;//
 	int				pid;
 	int				fd[2];
+	int				index;
 	struct	s_list	*next;
 }				t_list;
 

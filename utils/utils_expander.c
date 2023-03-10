@@ -31,6 +31,7 @@ void	ft_reddir_output_2(t_mini *mini, char *arg, t_list *lst)//
 
 void	ft_reddir(t_mini *mini, char **arg, t_list *lst)
 {
+	lst->index = 1;
 	if (!ft_strcmp(*arg, "<"))
 		ft_reddir_input(mini, *(arg + 1), lst);
 	else if (!ft_strcmp(*arg, ">"))

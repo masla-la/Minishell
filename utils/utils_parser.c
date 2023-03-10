@@ -14,6 +14,7 @@ int ft_add_something(t_list **linked, int len, int i)
 {
     t_list  *new;
     t_list  *copy;
+
     new = (t_list *)malloc(sizeof(t_list));
     if (!new)
         return (0);
@@ -26,24 +27,28 @@ int ft_add_something(t_list **linked, int len, int i)
     copy->next = new;
     return (0);
 }
+
 int ft_parse_to_lst(t_mini *mini, char **arg)
 {
     int     i;
     t_list  *lst;
+
     i = 0;
     lst = ft_lstnew(NULL);
     mini->lst = lst;
     lst->content = malloc(sizeof(char *) * ft_arg_len(arg));
+	lst->index = 0;
     while (arg && *arg)
     {
         if (!ft_strcmp(*arg, "<") || !ft_strcmp(*arg, ">"))
-            ft_reddir(mini, arg, lst);
-        else if (ft_strcmp(*arg, "|"))
+            ft_reddir(mini, arg, lst);//
+        else if (ft_strcmp(*arg, "|") && lst->index == 0)
             lst->content[i++] = ft_strdup(*arg);
-        else if (!ft_strcmp(*arg, "|") && (arg + 1)) //Hace 1 linked de más si encuentra '|' sin más arg
+        else if (!ft_strcmp(*arg, "|") && *(arg + 1))
         {
             i = ft_add_something(&lst, ft_arg_len(arg + 1), i);
             lst = lst->next;
+			lst->index = 0;
         }
         arg++;
     }
