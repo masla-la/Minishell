@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 18:18:05 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/10 12:47:24 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/13 19:04:33 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@
 
 # define BUFFER_SIZE 1
 
-typedef struct	s_list
+typedef struct s_list
 {
 	char			**content;
-	int				input;//
-	int				output;//
+	int				input;
+	int				output;
 	int				pid;
 	int				fd[2];
 	int				index;
-	struct	s_list	*next;
+	struct s_list	*next;
 }				t_list;
 
 int		ft_isalpha(int i);

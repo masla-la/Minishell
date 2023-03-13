@@ -17,6 +17,7 @@ P	=	print_pepe\
 FILES = main\
 		ft_parser\
 		ft_split_exp\
+		ft_split_utils\
 		ft_free\
 		ft_expander\
 		ft_exit\

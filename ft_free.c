@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:37 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/10 12:30:57 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:59:31 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_free_comand(t_mini *mini)
 	int	i;
 
 	i = 0;
-	while  (mini->comand[i])
+	while (mini->comand[i])
 	{
 		free(mini->comand[i]);
 		i++;
@@ -36,7 +36,7 @@ void	ft_free_exprt(t_exprt *exprt)
 {
 	t_exprt	*aux;
 
-	while (exprt) 
+	while (exprt)
 	{
 		aux = exprt->next;
 		free(exprt->env);

@@ -49,8 +49,16 @@ t_exprt	*ft_lstnew_exp(void *content);
 void	ft_lstadd_exp(t_exprt **exprt, t_exprt *new);
 
 //Utils
-char	**ft_split_quotes(char const *s, char c);
+char	**ft_split_quotes(char *s, char c);
 void	ft_init_var(t_mini *mini);
+
+//Split Utils
+int     ft_cmd_len(char *s, int i, char c);
+void	final_split_condition(int *i, char **dst);
+int		split_condition_2(int in_quotes, char *type, char c);
+char	**split_condition(char **dst, int *i,  char *s, char c);
+int		another_condition(char *s, int *i, int in_quotes, char **dst);
+int 	split_condition_quote(char **dst, int *i,  char *s, char quote);
 
 //Utils_lexer
 int		ft_total_arg(char **ptr);//

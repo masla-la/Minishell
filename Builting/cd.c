@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cd.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/13 19:00:06 by jchamorr          #+#    #+#             */
+/*   Updated: 2023/03/13 19:02:18 by jchamorr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	ft_update_pwd(t_mini *mini)
@@ -74,10 +86,9 @@ int	ft_cd(t_mini *mini, t_list *lst)
 			dest = ft_cd_return(str);
 		else
 			dest = ft_strdup(lst->content[1]);
-			//dest = ft_join_dir(str, lst);
 	}
 	else
-		dest = ft_find_env(mini, "HOME");//
+		dest = ft_find_env(mini, "HOME");
 	if (!access(dest, F_OK))
 	{
 		chdir(dest);
@@ -85,4 +96,4 @@ int	ft_cd(t_mini *mini, t_list *lst)
 	}
 	free(dest);
 	return (EXIT_SUCCESS);
-}//cambiar el OLDPWD, ya lo hace con el cd  sin argumentos
+}

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/13 19:00:12 by jchamorr          #+#    #+#             */
+/*   Updated: 2023/03/13 19:01:40 by jchamorr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 int	ft_rm_to_env(t_mini *mini, char *str)
@@ -9,7 +21,7 @@ int	ft_rm_to_env(t_mini *mini, char *str)
 	exprt = mini->exprt;
 	aux = NULL;
 	tmp = NULL;
-	while(strncmp(exprt->env, str, ft_strlen(str)))
+	while (strncmp(exprt->env, str, ft_strlen(str)))
 	{
 		aux = exprt;
 		exprt = exprt->next;
@@ -33,7 +45,7 @@ int	ft_print_env(t_mini *mini)
 	t_exprt	*exprt;
 
 	exprt = mini->exprt;
-	while(exprt->env)
+	while (exprt->env)
 	{
 		printf("%s\n", exprt->env);
 		exprt = exprt->next;
@@ -51,7 +63,7 @@ void	print_export(char **export)
 	{
 		i = 0;
 		printf("declare -x ");
-		while(export[n][i])
+		while (export[n][i])
 		{
 			printf("%c", export[n][i]);
 			if (export[n][i] == '=')
