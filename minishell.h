@@ -49,7 +49,7 @@ t_exprt	*ft_lstnew_exp(void *content);
 void	ft_lstadd_exp(t_exprt **exprt, t_exprt *new);
 
 //Utils
-char	**ft_split_exp(char const *s, char c);
+char	**ft_split_quotes(char const *s, char c);
 void	ft_init_var(t_mini *mini);
 
 //Utils_lexer

@@ -12,20 +12,20 @@ int	ft_arg_len(char **arg)
 
 int ft_add_something(t_list **linked, int len, int i)
 {
-    t_list  *new;
-    t_list  *copy;
+	t_list  *new;
+	t_list  *copy;
 
-    new = (t_list *)malloc(sizeof(t_list));
-    if (!new)
-        return (0);
-    new->content = malloc(sizeof(char *) * len);
-    new->next = NULL;
-    copy = (*linked);
-    while (copy->next)
-        copy = copy->next;
-    copy->content[i] = NULL;
-    copy->next = new;
-    return (0);
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
+		return (0);
+	new->content = malloc(sizeof(char *) * len);
+	new->next = NULL;
+	copy = (*linked);
+	while (copy->next)
+		copy = copy->next;
+	copy->content[i] = NULL;
+	copy->next = new;
+	return (0);
 }
 
 int ft_parse_to_lst(t_mini *mini, char **arg)
