@@ -34,12 +34,14 @@ size_t	ft_lines_2(char *s, char c, int quotes)
 	{
 		if (*s == 34 || *s == 39)
 		{
+			if (quotes == *s && (*(s) == 34 || *(s + 1) == 39))//
+				i++;
 			if (quotes == 0)
 				quotes = *s;
 			else if (quotes == *s)
 				quotes = 0;
 		}
-		if (*s == c && quotes == 0)
+		if (*s == c && quotes == 0 && *(s + 1) && *(s + 1) != 32)//
 		{
 			i++;
 			while (*s == c && *s != '\0')
@@ -70,9 +72,15 @@ char	**ft_fill_2(char **dst, char *s, char c)
 	in_quotes = init_vars(i, in_quotes, dst, s);
 	while (s[i[0]])
 	{
+		//
 		if (s[i[0]] == c && in_quotes == 0 && s[i[0] + 1] \
 			!= 34 && s[i[0] + 1] != 39)
-			dst = split_condition(dst, i, s, c);
+			{
+				if (s[i[0] + 1] == c)
+					i[0]++;
+				else if (s[i[0] + 1])
+					dst = split_condition(dst, i, s, c);
+			}
 		if (s[i[0]] == 34 || s[i[0]] == 39)
 		{
 			if (!in_quotes)

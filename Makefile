@@ -64,7 +64,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make -C Libft/
-	@$(CC) $(CFLAGS) $(LIBFT) $(COMPILE) $(OBJ) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(COMPILE) -o $(NAME)
 	@echo "$(GREEN)Done$(RESET)"
 
 clean:

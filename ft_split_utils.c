@@ -52,11 +52,11 @@ int	another_condition(char *s, int *i, int in_quotes, char **dst)
 
 void	final_split_condition(int *i, char **dst)
 {
-	printf("%d\n", i[2]);
+	//printf("%d\n", i[2]);
 	if (i[2] > 0)
 	{
 		dst[i[1]][i[2]] = '\0';
-		printf("I de 1 de 0 %c\n", dst[i[1]][0]);
+		//printf("I de 1 de 0 %c\n", dst[i[1]][0]);
 		if (dst[i[1]][0] != '\0')
 			i[1]++;
 	}
