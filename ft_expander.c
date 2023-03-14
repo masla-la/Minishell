@@ -6,7 +6,7 @@
 /*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:33 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/08 17:38:34 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/14 18:48:29 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,16 +108,17 @@ char	*ft_expand(char *arg, t_mini *mini)
 	char	*arg_cpy;
 
 	i = -1;
+	printf("EL ARG EN EL QUE FALLA %s\n", arg);
 	arg_cpy = ft_strdup(arg);
-	while (arg[0] != 39 && arg_cpy[++i])
+	while (arg[++i])
 	{
-		if (arg_cpy[i] == '$' && arg_cpy[i + 1])
+		if (arg[i] == '$' && arg[i + 1])
 		{
-			var = ft_cpy_var(arg_cpy + (i + 1));
+			var = ft_cpy_var(arg + (i + 1));
 			path = ft_find_env(mini, var);
 			free(var);
-			var = ft_join_path(arg_cpy, path);
-			var = ft_cpy_rest(arg_cpy, var, path);
+			var = ft_join_path(arg, path);
+			var = ft_cpy_rest(arg, var, path);
 			if (path && path != var)
 				free(path);
 			free(arg);

@@ -6,7 +6,7 @@
 /*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:31:54 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/13 18:55:02 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/14 18:03:53 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	another_condition(char *s, int *i, int in_quotes, char **dst)
 
 void	final_split_condition(int *i, char **dst)
 {
-	//printf("%d\n", i[2]);
 	if (i[2] > 0)
 	{
 		dst[i[1]][i[2]] = '\0';

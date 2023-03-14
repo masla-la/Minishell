@@ -6,7 +6,7 @@
 /*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:41 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/13 18:55:12 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/14 17:39:36 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,12 @@ size_t	ft_lines_2(char *s, char c, int quotes)
 	{
 		if (*s == 34 || *s == 39)
 		{
-			if (quotes == *s && (*(s) == 34 || *(s + 1) == 39))//
+			if (quotes == *s && (*(s) == 34 || *(s + 1) == 39))
+			{
 				i++;
+				if (*(s + 1) != '\0' && *(s + 1) != ' ')
+					s++;
+			}
 			if (quotes == 0)
 				quotes = *s;
 			else if (quotes == *s)
@@ -50,6 +54,7 @@ size_t	ft_lines_2(char *s, char c, int quotes)
 		else
 			s++;
 	}
+	printf("Nº ARGS %zu\n", i);
 	return (i + 1);
 }
 
