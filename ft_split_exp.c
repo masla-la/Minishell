@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_exp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:41 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/14 17:39:36 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/15 11:44:10 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,11 @@ size_t	ft_lines_2(char *s, char c, int quotes)
 int	ft_cmd_len(char *s, int i, char c)
 {
 	int	n;
+	int	z;
 
-	n = 1;
-	while (s[i + n] && s[i + n] != c)
+	n = 0;
+	z = i;
+	while (s[z + n])
 		n++;
 	return (n + 1);
 }

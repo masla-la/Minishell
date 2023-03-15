@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expander.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:33 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/14 18:48:29 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/15 10:28:27 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,33 @@ char	*ft_join_path(char *s1, char *s2)
 	return (dest);
 }
 
+char	*ft_sust(char *str, char c)//
+{
+	int	i;
+	int	n;
+	char	*dest;
+
+	i = ft_strlen(str) + 1;
+	n = 0;
+	while (str[n])
+	{
+		if (str[n] == c)
+			i--;
+		n++;
+	}
+	dest = (char *)malloc(sizeof(char) * i);
+	n = 0;
+	i = 0;
+	while (str[n])
+	{
+		if (str[n] != c)
+			dest[i++] = str[n];
+		n++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
 char	*ft_expand(char *arg, t_mini *mini)
 {
 	int		i;
@@ -109,7 +136,11 @@ char	*ft_expand(char *arg, t_mini *mini)
 
 	i = -1;
 	printf("EL ARG EN EL QUE FALLA %s\n", arg);
-	arg_cpy = ft_strdup(arg);
+	//arg_cpy = ft_strdup(arg);
+	if (arg[0] == arg[1])
+		arg_cpy = ft_sust(arg, arg[0]);
+	else
+		arg_cpy = ft_strdup(arg);
 	while (arg[++i])
 	{
 		if (arg[i] == '$' && arg[i + 1])

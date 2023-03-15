@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:31:54 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/14 18:03:53 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/15 11:43:26 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	split_condition_quote(char **dst, int *i, char *s, char quote)
 	dst[i[1]][i[2]] = '\0';
 	i[1]++;
 	dst[i[1]] = malloc(sizeof(char) * (ft_cmd_len(s, i[0], quote) + 2));
+	printf("d-> %d\n", (ft_cmd_len(s, i[0], quote) + 2));
+	printf("str2->%c\n", s[i[0]]);
 	if (!dst[i[1]])
 		exit (1);
 	return (0);
