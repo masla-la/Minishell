@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:00:06 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/13 19:02:18 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/16 12:06:16 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,21 @@ int	ft_cd(t_mini *mini, t_list *lst)
 {
 	char	*dest;
 	char	str[2056];
+	int		i;
 
 	dest = NULL;
+	i = 0;
 	if (lst->content[1])
 	{
 		getcwd(str, sizeof(str));
-		if (!ft_strncmp("..", lst->content[1], 2))
-			dest = ft_cd_return(str);
+		if (!ft_strcmp("..", (lst->content[1] + i)))
+		{
+			while (!ft_strcmp("..", (lst->content[1] + i)))
+			{
+				dest = ft_cd_return(str);
+				i += 3;
+			}
+		}
 		else
 			dest = ft_strdup(lst->content[1]);
 	}

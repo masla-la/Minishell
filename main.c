@@ -6,28 +6,11 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:45 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/16 10:40:24 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/16 12:15:50 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// Gestiona las señales
-
-/*void	ft_sig(int sig)
-{
-	if (sig == SIGINT)
-	{
-		//write(1, "\n", 1);
-		//write(1, "\033[0;31mMiniShell: \033[0;37m", 25);
-		//rl_on_new_line();
-		g_signal.siginit = 1;
-		if (g_signal.pid_line)
-			kill(g_signal.pid_line, SIGKILL);
-	}
-	if (sig == SIGQUIT)
-		exit(0);
-}*/
 
 // Significa Too_Many_Lines_executor()
 void	tml_executor(t_mini *mini, int *fd, t_list *lst)
@@ -68,16 +51,17 @@ int	ft_init(t_mini *mini)
 {
 	char	*comand;
 
-	while (!g_sig) //
+	while (!g_sig)
 	{
 		signal(SIGINT, ft_sig);
 		ft_init_var(mini);
 		comand = readline("\033[0;31mMiniShell: \033[0;37m");
-		if (!comand) //
+		if (!comand)
 			return (sig_rl(comand, mini));
 		if (comand)
 			add_history(comand);
 		mini->comand = ft_split_quotes(comand, ' ');
+		printf("%s\n", mini->comand[1]);
 		free(comand);
 		if (mini->comand && mini->comand[0] != NULL)
 		{
@@ -100,8 +84,8 @@ int	main(int ac, char **av, char **env)
 	print_pepe("PrintPepe/pepe");
 	mini.env = env;
 	g_sig = 0;
-	signal(SIGQUIT, SIG_IGN); //'^\'
-	signal(SIGTSTP, SIG_IGN); //^Z
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGTSTP, SIG_IGN);
 	if (ft_get_env(&mini, env) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	ft_init(&mini);

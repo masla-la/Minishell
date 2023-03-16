@@ -6,7 +6,7 @@ char	*ft_strdup(const char *src)//quita las comillas si existen
 	int		i;
 
 	i = 0;
-	dest = malloc(sizeof(char) * (ft_strlen((src)) + i + 1));
+	dest = malloc(sizeof(char) * (ft_strlen((src)) + i + 100000));
 	if (!dest)
 		return (NULL);
 	if (*src == 39 || *src == 34)

@@ -101,6 +101,7 @@ int		order_env(t_mini *s);
 void	print_export(char **export);
 
 int	is_builting(char *c);
+int	ft_isnum(const char *str);
 
 //Signals
 void	sig_child(int sig);
@@ -110,4 +111,5 @@ int		sig_rl(char *c, t_mini *mini);
 
 //Pepe
 void	print_pepe(char *n);
+
 #endif

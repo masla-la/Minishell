@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:41 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/16 10:18:13 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/16 12:31:15 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ char	**ft_fill_2(char **dst, char *s, char c)
 	in_quotes = init_vars(i, in_quotes, dst, s);
 	while (s[i[0]])
 	{
-		//
 		if (s[i[0]] == c && in_quotes == 0 && s[i[0] + 1] \
 			!= 34 && s[i[0] + 1] != 39)
 			{
@@ -97,7 +96,8 @@ char	**ft_fill_2(char **dst, char *s, char c)
 				in_quotes = 0;
 				dst[i[1]][i[2]] = s[i[0]];
 				s[i[0]] = c;
-				i[0]--;
+				if (s[i[0] - 1] == quote_type)
+					i[0]--;
 			}
 			if (in_quotes && s[i[0]] == quote_type)
 				i[2] = split_condition_quote(dst, i, s, quote_type);

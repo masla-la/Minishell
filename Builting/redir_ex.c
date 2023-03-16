@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_ex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:00:15 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/13 19:00:56 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/16 12:28:08 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,13 @@ int	ft_redir_ex(t_mini *mini, t_list *lst)
 	else if (!ft_strcmp("unset", lst->content[0]))
 		return (ft_rm_to_env(mini, lst->content[1]));
 	else if (!ft_strcmp("exit", lst->content[0]))
+	{
+		if (lst->content[1] && ft_isnum(lst->content[1]))
+			exit ((g_sig = ft_atoi(lst->content[1])));
+		if (lst->content[1] && !ft_isnum(lst->content[1]))
+			ft_exit_error(mini, 2);
 		exit ((g_sig = 1));
+	}
 	return (ft_ex_bin(mini, lst));
 }
 

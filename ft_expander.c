@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:33 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/16 11:23:16 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/16 12:15:13 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,10 +135,8 @@ char	*ft_expand(char *arg, t_mini *mini)
 	char	*arg_cpy;
 
 	i = -1;
-	printf("EL ARG EN EL QUE FALLA %s\n", arg);
-	//arg_cpy = ft_strdup(arg);
-	
 	arg_cpy = ft_strdup(arg);
+	printf("%s\n", arg_cpy);
 	while (arg[++i])
 	{
 		if (arg[i] == '$' && arg[i + 1])
