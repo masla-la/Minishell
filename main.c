@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:45 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/13 11:15:33 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/16 10:40:24 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,9 @@ int	ft_init(t_mini *mini)
 		comand = readline("\033[0;31mMiniShell: \033[0;37m");
 		if (!comand) //
 			return (sig_rl(comand, mini));
-		mini->comand = ft_split_quotes(comand, ' ');
-		printf("1->%s\n", mini->comand[1]);
-		if (mini->comand[0])
+		if (comand)
 			add_history(comand);
+		mini->comand = ft_split_quotes(comand, ' ');
 		free(comand);
 		if (mini->comand && mini->comand[0] != NULL)
 		{

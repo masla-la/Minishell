@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:33 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/15 10:28:27 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/16 11:23:16 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,10 +137,8 @@ char	*ft_expand(char *arg, t_mini *mini)
 	i = -1;
 	printf("EL ARG EN EL QUE FALLA %s\n", arg);
 	//arg_cpy = ft_strdup(arg);
-	if (arg[0] == arg[1])
-		arg_cpy = ft_sust(arg, arg[0]);
-	else
-		arg_cpy = ft_strdup(arg);
+	
+	arg_cpy = ft_strdup(arg);
 	while (arg[++i])
 	{
 		if (arg[i] == '$' && arg[i + 1])
@@ -158,6 +156,7 @@ char	*ft_expand(char *arg, t_mini *mini)
 		}
 	}
 	free(arg);
+	printf("%s\n", arg_cpy);
 	return (arg_cpy);
 }
 //no reconoce las comillas entre otras comillas, las separa.

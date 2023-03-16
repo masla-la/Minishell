@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:41 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/15 11:44:10 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/16 10:18:13 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,13 @@ char	**ft_fill_2(char **dst, char *s, char c)
 		{
 			if (!in_quotes)
 				in_quotes = split_condition_2(in_quotes, &quote_type, s[i[0]]);
-			else if (quote_type == s[i[0]])
+			else if (quote_type == s[i[0]])//
+			{
 				in_quotes = 0;
+				dst[i[1]][i[2]] = s[i[0]];
+				s[i[0]] = c;
+				i[0]--;
+			}
 			if (in_quotes && s[i[0]] == quote_type)
 				i[2] = split_condition_quote(dst, i, s, quote_type);
 		}
