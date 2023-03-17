@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:00:12 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/13 19:01:40 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/17 10:26:07 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ int	ft_print_env(t_mini *mini)
 	exprt = mini->exprt;
 	while (exprt->env)
 	{
-		printf("%s\n", exprt->env);
+		if (ft_strncmp("?=", exprt->env, 2))
+			printf("%s\n", exprt->env);
 		exprt = exprt->next;
 	}
 	return (EXIT_SUCCESS);
@@ -62,15 +63,18 @@ void	print_export(char **export)
 	while (export[n])
 	{
 		i = 0;
-		printf("declare -x ");
-		while (export[n][i])
+		if (ft_strncmp("?=", export[n], 2))
 		{
-			printf("%c", export[n][i]);
-			if (export[n][i] == '=')
-				printf("%c", 39);
-			i++;
+			printf("declare -x ");
+			while (export[n][i])
+			{
+				printf("%c", export[n][i]);
+				if (export[n][i] == '=')
+					printf("%c", 39);
+				i++;
+			}
+			printf("%c\n", 39);
 		}
-		printf("%c\n", 39);
 		n++;
 	}
 }

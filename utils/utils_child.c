@@ -12,7 +12,7 @@ void	ft_wait_childs(t_mini *mini)
 		lst = lst->next;
 	}
 	WEXITSTATUS(i);
-	if (i / 256 == 1)
+	if (i / 256 == 11) //falta gestionar los posibles errores para q no den conflicto con el exit o  podemos borrar esta parte
 		g_sig = i / 256;
 	else
 		g_sig = 0;

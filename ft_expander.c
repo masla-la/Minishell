@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:33 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/16 12:15:13 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/17 11:41:19 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ char	*ft_cpy_rest(char *arg, char *dest, char *path)
 	}
 	if (!arg[i])
 		return (dest);
-	cpy = ft_strjoin(dest, arg + i);
-	if (dest != path)
-		free(dest);
+	cpy = ft_strjoin(dest, arg + i);//quite un if dest != path free dest
 	return (cpy);
 }
 
@@ -89,6 +87,8 @@ char	*ft_join_path(char *s1, char *s2)
 		return (NULL);
 	while (s1[i] && s1[i] != '$')
 		i++;
+	if (!s2 && i == 0)
+		return (ft_strdup(""));
 	if (i > 0)
 		cpy = ft_strdup_len(s1, i);
 	if (!cpy)
@@ -96,7 +96,6 @@ char	*ft_join_path(char *s1, char *s2)
 	if (!s2)
 		return (cpy);
 	dest = ft_strjoin(cpy, s2);
-	free(cpy);
 	return (dest);
 }
 
@@ -127,19 +126,28 @@ char	*ft_sust(char *str, char c)//
 	return (dest);
 }
 
+void	check_quote_to_expand(int quote, char *arg, int i)
+{
+	if (arg[i] == 39 && quote)
+		quote = 0;
+	else if (arg[i] == 39 && !quote)
+		quote = 1;
+}
+
 char	*ft_expand(char *arg, t_mini *mini)
 {
 	int		i;
 	char	*path;
 	char	*var;
 	char	*arg_cpy;
+	int		quote;
 
 	i = -1;
-	arg_cpy = ft_strdup(arg);
-	printf("%s\n", arg_cpy);
+	arg_cpy = ft_strdup2(arg);
 	while (arg[++i])
 	{
-		if (arg[i] == '$' && arg[i + 1])
+		check_quote_to_expand(quote, arg, i);
+		if (arg[i] == '$' && arg[i + 1] && !quote)
 		{
 			var = ft_cpy_var(arg + (i + 1));
 			path = ft_find_env(mini, var);
@@ -154,7 +162,6 @@ char	*ft_expand(char *arg, t_mini *mini)
 		}
 	}
 	free(arg);
-	printf("%s\n", arg_cpy);
 	return (arg_cpy);
 }
 //no reconoce las comillas entre otras comillas, las separa.

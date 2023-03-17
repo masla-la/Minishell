@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:39 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/15 11:47:48 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/17 11:25:13 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	ft_parse(t_mini *mini, char **arg)
 	while (arg[i])
 	{
 		printf("PASO POR AQUI\n");
+		printf("%s\n", arg[i]);
 		arg[i] = ft_expand(arg[i], mini);
 		i++;
 	}

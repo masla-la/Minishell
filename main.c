@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:45 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/16 12:15:50 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/17 11:52:08 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int	ft_init(t_mini *mini)
 		if (comand)
 			add_history(comand);
 		mini->comand = ft_split_quotes(comand, ' ');
-		printf("%s\n", mini->comand[1]);
 		free(comand);
 		if (mini->comand && mini->comand[0] != NULL)
 		{
@@ -92,20 +91,13 @@ int	main(int ac, char **av, char **env)
 	return (g_sig);
 }
 
-//agregar señales
 //ignorar las redirecciones dando valor a los outputs e intputs
 //ejecutar codigo *
-//extender env *
 //agregar $? con a ft de error
 
 //Built-ins en mayusculas debe interpretarse
 
-//ls | cd .. | wc
-//	0	0	0
-
-// 1 =  permiso denegado
-// 130 = cntl + c
-//127 = comando no existente
-//257 = error al ejecutar comando
-//investigar
 //https://www.cyberciti.biz/faq/linux-bash-exit-status-set-exit-statusin-bash/
+
+//Contador de comillas
+//Quitar todas las pipes q sobren

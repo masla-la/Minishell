@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-char	*ft_strdup(const char *src)//quita las comillas si existen
+char	*ft_strdup2(const char *src)//quita las comillas si existen
 {
 	char	*dest;
 	int		i;

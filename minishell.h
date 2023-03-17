@@ -112,4 +112,6 @@ int		sig_rl(char *c, t_mini *mini);
 //Pepe
 void	print_pepe(char *n);
 
+char	*ft_strdup2(const char *src);
+
 #endif
