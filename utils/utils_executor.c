@@ -41,6 +41,14 @@ int	ft_ex_bin(t_mini *mini, t_list *lst)
 	char	*cmd_path;
 
 	i = 0;
+	if (!mini->path)
+	{
+		printf("NO HAY PATH PELELE\n");/////////////////////////////
+		return (EXIT_FAILURE);
+		/* if (!ft_strcmp(mini->path[i], "PATH"))
+		{
+		} */
+	}
 	while (mini->path[i])
 	{
 		path  = ft_strjoin(mini->path[i], "/");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_exp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:41 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/17 11:34:55 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/18 19:44:20 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ size_t	ft_lines_2(char *s, char c, int quotes)
 		else
 			s++;
 	}
-	printf("Nº ARGS %zu\n", i);
+	//printf("Nº ARGS %zu\n", i);
 	return (i + 1);
 }
 
@@ -89,11 +89,15 @@ char	**ft_fill_2(char **dst, char *s, char c)
 			}
 		if (s[i[0]] == 34 || s[i[0]] == 39)
 		{
+			printf("PASO 1\n");
 			if (!in_quotes)
 				in_quotes = split_condition_2(in_quotes, &quote_type, s[i[0]]);
-			else if (quote_type == s[i[0]])//
+			else if (quote_type == s[i[0]])// No entiendo ésto.
 			{
-				dst[i[1]][i[2] + 1] = s[i[0]];
+				printf("PASO 2 -> i = %d\n", i[2]);
+				printf("El char i[2] = %c\n", dst[i[1]][i[2]]);
+				//dst[i[1]][i[2] + 1] = s[i[0]];
+				printf("El char i[2 + 1] = %c\n", dst[i[1]][i[2] + 1]);
 				in_quotes = 0;
 				dst[i[1]][i[2]] = s[i[0]];
 				i[2] += another_condition(s, i, in_quotes, dst);
@@ -121,5 +125,6 @@ char	**ft_split_quotes(char *s, char c)
 	if (!dst)
 		return (NULL);
 	ft_fill_2(dst, s, c);
+	printf("EL COMANDO = %s\n ", dst[1]);
 	return (dst);
 }
