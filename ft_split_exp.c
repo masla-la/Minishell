@@ -6,11 +6,117 @@
 /*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:41 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/18 19:44:20 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/20 21:57:17 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*ft_cpyn(char *s, int start, int end)
+{
+	int		i;
+	int		n;
+	char	*dest;
+	if (s[start] == 34 || s[start] == 39)
+		end++;
+	dest = malloc(sizeof(char) * (end - start + 2));
+	if (!dest)
+		return (NULL);
+	i = start;
+	n = 0;
+	while(s[i] && i < end)
+	{
+		dest[n] = s[i];
+		n++;
+		i++;
+	}
+	dest[n] = '\0';
+    //printf("dest->%s\n", dest);
+	return (dest);
+}
+char	*ft_strdup_space(char *s, char c, int start)
+{
+	int i;
+
+	i = start + 1;
+	while(s[i] && s[i] != c && s[i] != 34 && s[i] != 39)
+		i++;
+	return (ft_cpyn(s, start, i));
+}
+
+/// La he cambiado 3 veces y la he dejado a medias para mañana. La idea es llamar a la ft antes de hacer el split o fill
+int		is_quote_closed(char *s)
+{
+	int	i;
+	int	n_quotes;
+	int	type;
+
+	n_quotes = 0;
+	i = 0;
+	type = 0;
+	while(s[i])
+	{
+		if (s[i] == 34 || s[i] == 39)
+		{
+			type = s[i];
+			n_quotes++;
+		}
+		i++;
+	}
+	if (n_quotes % 2 == 0)
+		return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
+}
+
+char	*ft_strdup_quote(char *s, int start, char quote_type)
+{
+	int i;
+// si avanzas en una comilla cuando está abierta se muere. No se si está bien el if, me ha solucionado una cosa pero igual he roto otra.
+	if (start + 1)
+		i = start + 1;
+	while(s[i] != quote_type)
+		i++;
+	return (ft_cpyn(s, start, i));
+}
+char	**ft_fill_2(char **dst, char *s, char c)
+{
+	int		i;
+	int		n;
+	int		in_quote;
+	char	quote_type;
+
+	i = 0;
+	n = 0;
+	in_quote = 0;
+	while(s[i])
+	{
+		while (s[i] == c)
+			i++;
+		if (s[i + 1] && (s[i] == 34 || s[i] == 39))
+		{
+			in_quote = 1;
+			quote_type = s[i];
+		}
+		if (s[i] != c && in_quote == 0)
+		{
+			dst[n] = ft_strdup_space(s, c, i);
+			n++;
+			i += ft_strlen(dst[n - 1]) - 1;
+		}
+		else if (in_quote == 1) /*&&  is_quote_closed(s, i, quote_type)) */ // Lo comentado no va a hacer falta
+		{
+			dst[n] = ft_strdup_quote(s, i, quote_type);
+			in_quote = 0;
+			n++;
+			i += ft_strlen(dst[n - 1]) - 1;
+		}
+		if (s[i] == '\0')
+			break;
+		i++;
+	}
+	dst[n] = NULL;
+	return (dst);
+}
 
 int	init_vars(int *i, int quotes, char **dst, char *s)
 {
@@ -70,7 +176,7 @@ int	ft_cmd_len(char *s, int i, char c)
 	return (n + 1);
 }
 
-char	**ft_fill_2(char **dst, char *s, char c)
+/* char	**ft_fill_2(char **dst, char *s, char c)
 {
 	int		i[3];
 	int		in_quotes;
@@ -89,18 +195,22 @@ char	**ft_fill_2(char **dst, char *s, char c)
 			}
 		if (s[i[0]] == 34 || s[i[0]] == 39)
 		{
-			printf("PASO 1\n");
+			printf("PASO 1\n");//////////////////////////////
 			if (!in_quotes)
 				in_quotes = split_condition_2(in_quotes, &quote_type, s[i[0]]);
-			else if (quote_type == s[i[0]])// No entiendo ésto.
+			else if (quote_type == s[i[0]])// Entra si el primer char son comillas
 			{
-				printf("PASO 2 -> i = %d\n", i[2]);
-				printf("El char i[2] = %c\n", dst[i[1]][i[2]]);
-				//dst[i[1]][i[2] + 1] = s[i[0]];
-				printf("El char i[2 + 1] = %c\n", dst[i[1]][i[2] + 1]);
+				printf("PASO 2 -> i = %d\n", i[2]); //////////////////////////////
+				printf("El char i[2] = %c\n", dst[i[1]][i[2]]);//////////////////////////////
+				printf("EL har *S; -> %s\n", s);//////////////////////////////
+				dst[i[1]][i[2] + 1] = s[i[0]];
+				printf("El char i[2 + 1] = %c\n", dst[i[1]][i[2] + 1]);//////////////////////////////
+				printf("El char i[2 + 2] = %c\n", dst[i[1]][i[2] + 2]);//////////////////////////////
 				in_quotes = 0;
 				dst[i[1]][i[2]] = s[i[0]];
+				printf("El dest[i1] = %c\n",dst[i[1]][i[2]]);
 				i[2] += another_condition(s, i, in_quotes, dst);
+				printf("El char c = %c\n", c);
 				s[i[0]] = c;
 				if (s[i[0] - 1] == quote_type)
 					i[0]--;
@@ -113,7 +223,7 @@ char	**ft_fill_2(char **dst, char *s, char c)
 	}
 	final_split_condition(i, dst);
 	return (dst);
-}
+} */
 
 char	**ft_split_quotes(char *s, char c)
 {
@@ -121,10 +231,9 @@ char	**ft_split_quotes(char *s, char c)
 
 	if (!s)
 		return (NULL);
-	dst = (char **)malloc(sizeof(char *) * (ft_lines_2(s, c, 0) + 1));
+	dst = (char **)malloc(sizeof(char *) * (ft_lines_2(s, c, 0) + ft_strlen(s)));
 	if (!dst)
 		return (NULL);
 	ft_fill_2(dst, s, c);
-	printf("EL COMANDO = %s\n ", dst[1]);
 	return (dst);
 }
