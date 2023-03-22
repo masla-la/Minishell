@@ -1,14 +1,20 @@
 #include "../minishell.h"
 
+// AQUI PAPI
 void	ft_child_1(t_mini *mini, int fd[2], t_list *lst)
 {
+	printf("HAGO COSAS\n");
+	printf("%d\n", dup2(fd[WRITE], STDOUT_FILENO)); // SEMUEEEEEEEEEEREEEEEEEEEE
+	printf("HAGO COSAS 2 \n");
 	close(fd[READ]);
-	dup2(fd[WRITE], STDOUT_FILENO);
+	// Me muero aquí.
+	//close(fd[WRITE]);
 	ft_redir_ex(mini, lst);
 }
 
 void	ft_child_2(t_mini *mini, int fd[2], int fd2[2], t_list *lst)
 {
+	printf("CHILD 2\n");
 	close(fd[READ]);
 	close(fd2[WRITE]);
 	dup2(fd[WRITE], STDOUT_FILENO);
@@ -18,7 +24,9 @@ void	ft_child_2(t_mini *mini, int fd[2], int fd2[2], t_list *lst)
 
 void	ft_child_3(t_mini *mini, int fd[2], t_list *lst)
 {
+	printf("CHILD 3\n");
 	close(fd[WRITE]);
+	printf("HE CERRADO EL WRITE\n");
 	dup2(fd[READ], STDIN_FILENO);
 	ft_redir_ex(mini, lst);
 }
@@ -43,7 +51,7 @@ int	ft_ex_bin(t_mini *mini, t_list *lst)
 	i = 0;
 	if (!mini->path)
 	{
-		printf("NO HAY PATH PELELE\n");/////////////////////////////
+		printf("NO HAY PATH PELELE\n"); /////////////////////////////
 		return (EXIT_FAILURE);
 	}
 	while (mini->path[i])

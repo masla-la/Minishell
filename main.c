@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:45 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/17 11:52:08 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/22 20:54:13 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/* int	g_sig; */
 
 // Significa Too_Many_Lines_executor()
 void	tml_executor(t_mini *mini, int *fd, t_list *lst)
@@ -31,10 +33,12 @@ int	ft_executor(t_mini *mini)
 	while (lst)
 	{
 		pipe(lst->fd);
+		/* if (pipe(lst->fd) < 0)
+			return (EXIT_FAILURE); // Por algún motivo si protejo la pipe da segfault al cerrar el fd en childs_3*/
 		if (!is_builting(lst->content[0]))
-			lst->pid = fork();
+			lst->pid = fork(); // si no el builting proceso hijo, si no perdemos datos
 		if (!lst->pid && !is_builting(lst->content[0]))
-			tml_executor(mini, fd, lst);
+			tml_executor(mini, fd, lst); // Si es proceso hijo y no es builting lanza las señale y tira el proceso
 		else if (is_builting(lst->content[0]))
 			ft_reddir_childs(mini, lst->fd, fd, lst);
 		if (lst->pid)

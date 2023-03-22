@@ -6,7 +6,7 @@
 /*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:41 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/21 18:04:42 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/22 11:14:53 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,9 @@ int		is_quote_closed(char *s)
 		{
 			inside = 1;
 			type = s[i];
-			if (s[i + 1])
-				i++;
+
 		}
-		if (s[i] == type && inside == 1)
+		else if (s[i] == type && inside == 1)
 		{
 			inside = 0;
 			type = 0;
@@ -169,7 +168,6 @@ size_t	ft_lines_2(char *s, char c, int quotes)
 		else
 			s++;
 	}
-	//printf("Nº ARGS %zu\n", i);
 	return (i + 1);
 }
 
@@ -184,49 +182,6 @@ int	ft_cmd_len(char *s, int i, char c)
 		n++;
 	return (n + 1);
 }
-
-/* char	**ft_fill_2(char **dst, char *s, char c)
-{
-	int		i[3];
-	int		in_quotes;
-	char	quote_type;
-
-	in_quotes = init_vars(i, in_quotes, dst, s);
-	while (s[i[0]])
-	{
-		if (s[i[0]] == c && in_quotes == 0 && s[i[0] + 1] \
-			!= 34 && s[i[0] + 1] != 39)
-			{
-				if (s[i[0] + 1] == c)
-					i[0]++;
-				else if (s[i[0] + 1])
-					dst = split_condition(dst, i, s, c);
-			}
-		if (s[i[0]] == 34 || s[i[0]] == 39)
-		{
-			if (!in_quotes)
-				in_quotes = split_condition_2(in_quotes, &quote_type, s[i[0]]);
-			else if (quote_type == s[i[0]])// Entra si el primer char son comillas
-			{
-				dst[i[1]][i[2] + 1] = s[i[0]];
-				in_quotes = 0;
-				dst[i[1]][i[2]] = s[i[0]];
-				printf("El dest[i1] = %c\n",dst[i[1]][i[2]]);
-				i[2] += another_condition(s, i, in_quotes, dst);
-				printf("El char c = %c\n", c);
-				s[i[0]] = c;
-				if (s[i[0] - 1] == quote_type)
-					i[0]--;
-			}
-			if (in_quotes && s[i[0]] == quote_type)
-				i[2] = split_condition_quote(dst, i, s, quote_type);
-		}
-		i[2] += another_condition(s, i, in_quotes, dst);
-		i[0]++;
-	}
-	final_split_condition(i, dst);
-	return (dst);
-} */
 
 char	**ft_split_quotes(char *s, char c)
 {

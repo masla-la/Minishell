@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir_ex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:00:15 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/17 09:56:54 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/22 20:47:22 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,5 @@ int	ft_redir_ex(t_mini *mini, t_list *lst)
 	return (ft_ex_bin(mini, lst));
 }
 
-//falta el echo
 //export no tiene mensaje de error al ser numero
 //cd no tiene mensaje si no tiene acceso
