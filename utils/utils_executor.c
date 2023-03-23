@@ -3,11 +3,11 @@
 // AQUI PAPI
 void	ft_child_1(t_mini *mini, int fd[2], t_list *lst)
 {
-	if (lst->output)
+	if (lst->output > 0)
 		dup2(lst->output, 1);
 	else
 		dup2(fd[WRITE], STDOUT_FILENO);
-	if (lst->input)
+	if (lst->input > 0)
 		dup2(lst->input, STDIN_FILENO);
 	//dup2(fd[WRITE], STDOUT_FILENO); // SEMUEEEEEEEEEEREEEEEEEEEE
 	// Me muero aquí.
@@ -19,11 +19,11 @@ void	ft_child_2(t_mini *mini, int fd[2], int fd2[2], t_list *lst)
 {
 	close(fd[READ]);
 	close(fd2[WRITE]);
-	if (lst->output)
+	if (lst->output > 0)
 		dup2(lst->output, 1);
 	else
 		dup2(fd[WRITE], STDOUT_FILENO);
-	if (lst->input)
+	if (lst->input > 0)
 		dup2(lst->input, STDIN_FILENO);
 	else
 		dup2(fd[READ], STDOUT_FILENO);
@@ -36,9 +36,9 @@ void	ft_child_3(t_mini *mini, int fd[2], t_list *lst)
 {
 	//printf("CHILD 3\n");
 	close(fd[WRITE]);
-	if (lst->output)
+	if (lst->output > 0)
 		dup2(lst->output, 1);
-	if (lst->input)
+	if (lst->input > 0)
 		dup2(lst->input, STDIN_FILENO);
 	else
 		dup2(fd[READ], STDIN_FILENO);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:45 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/23 12:01:02 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/23 19:53:08 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ int	ft_executor(t_mini *mini)
 	while (lst)
 	{
 		pipe(lst->fd);
-		//if (pipe(lst->fd) < 0)
-		//	return (EXIT_FAILURE); // Por algún motivo si protejo la pipe da segfault al cerrar el fd en childs_3*/
 		if (!is_builting(lst->content[0], lst))
 			lst->pid = fork(); // si no el builting proceso hijo, si no perdemos datos
 		if (!lst->pid && !is_builting(lst->content[0], lst))
@@ -50,6 +48,95 @@ int	ft_executor(t_mini *mini)
 	return (EXIT_SUCCESS);
 }
 
+// Cuenta las pipe sin espacio después pero devuelve +1 para el NULL de malloc
+int	ft_pipe_con(char *s)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (s[i])
+	{
+		if (s[i] == 124 && s[i + 1] != 32 && s[i - 1] != 32)
+			j += 2;
+		if (s[i] == 124 && s[i + 1] != 32 && s[i - 1] == 32)
+			j++;
+		if (s[i] == 124 && s[i - 1] != 32 && s[i - 1] != 32)
+			j++;
+		i++;
+	}
+	return (j + 1);
+}
+
+char	*ft_expand_pipes_2(char *cmd)
+{
+	int		i;
+	int		j;
+	char	*tmp;
+
+	i = 0;
+	j = 0;
+	tmp = malloc(sizeof (char *) * ft_strlen(cmd) + ft_pipe_con(cmd));
+	while (cmd[i])
+	{
+		if (cmd[i] == '|' && cmd[i - 1] != 32)
+		{
+			tmp[j++] = 32;
+			tmp[j++] = cmd[i++];
+		}
+		else
+			tmp[j++] = cmd[i++];
+	}
+	free (cmd);
+	tmp[j] = '\0';
+	return (tmp);
+}
+
+char	*ft_expand_pipes(char *cmd)
+{
+	int		i;
+	int		j;
+	char	*tmp;
+
+	i = 0;
+	j = 0;
+	tmp = malloc(sizeof (char *) * ft_strlen(cmd) + ft_pipe_con(cmd));
+	while (cmd[i])
+	{
+		if (cmd[i] == '|' && cmd[i + 1] != 32 && cmd[i + 1])
+		{
+			tmp[j++] = cmd[i++];
+			tmp[j++] = 32;
+		}
+		else
+			tmp[j++] = cmd[i++];
+	}
+	free (cmd);
+	tmp[j] = '\0';
+	return (tmp);
+}
+
+char	*ft_readline(char *name)
+{
+	int		i;
+	int		j;
+	char	*cmd;
+
+	cmd = readline(name);
+	if (!cmd)
+			return (NULL);
+	cmd = ft_strtrim(cmd, " ");
+	if (cmd)
+		add_history(cmd);
+	if (ft_strchr(cmd, 124) && !ft_strchr(cmd, 34) && !ft_strchr(cmd, 39))
+	{
+		cmd = ft_expand_pipes(cmd);
+		cmd = ft_expand_pipes_2(cmd);
+	}
+	return (cmd);
+}
+
 // Gestiona el input (readline) y redirije al Parser y Executer
 int	ft_init(t_mini *mini)
 {
@@ -59,11 +146,9 @@ int	ft_init(t_mini *mini)
 	{
 		signal(SIGINT, ft_sig);
 		ft_init_var(mini);
-		comand = readline("\033[0;31mMiniShell: \033[0;37m");
+		comand = ft_readline("\033[0;31mMiniShell: \033[0;37m");
 		if (!comand)
 			return (sig_rl(comand, mini));
-		if (comand)
-			add_history(comand);
 		mini->comand = ft_split_quotes(comand, ' ');
 		free(comand);
 		if (mini->comand && mini->comand[0] != NULL)
@@ -106,7 +191,6 @@ int	main(int ac, char **av, char **env)
 //Contador de comillas
 //Quitar todas las pipes q sobren
 
-//el split muere cuando le entra un espacio al final
 //la lista no se hace con |ls
 //parser palma cuando ls |ls
 
