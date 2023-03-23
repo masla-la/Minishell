@@ -100,7 +100,7 @@ int		ft_add_to_env(t_mini *mini, char *str);
 int		order_env(t_mini *s);
 void	print_export(char **export);
 
-int	is_builting(char *c);
+int	is_builting(char *c, t_list *lst);
 int	ft_isnum(const char *str);
 
 //Signals
@@ -113,5 +113,7 @@ int		sig_rl(char *c, t_mini *mini);
 void	print_pepe(char *n);
 
 char	*ft_strdup2(const char *src);
+
+int	ft_redir_b(t_mini *mini, t_list *lst);
 
 #endif

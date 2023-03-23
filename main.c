@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:45 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/22 20:54:13 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/23 12:01:02 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ int	ft_executor(t_mini *mini)
 	while (lst)
 	{
 		pipe(lst->fd);
-		/* if (pipe(lst->fd) < 0)
-			return (EXIT_FAILURE); // Por algún motivo si protejo la pipe da segfault al cerrar el fd en childs_3*/
-		if (!is_builting(lst->content[0]))
+		//if (pipe(lst->fd) < 0)
+		//	return (EXIT_FAILURE); // Por algún motivo si protejo la pipe da segfault al cerrar el fd en childs_3*/
+		if (!is_builting(lst->content[0], lst))
 			lst->pid = fork(); // si no el builting proceso hijo, si no perdemos datos
-		if (!lst->pid && !is_builting(lst->content[0]))
+		if (!lst->pid && !is_builting(lst->content[0], lst))
 			tml_executor(mini, fd, lst); // Si es proceso hijo y no es builting lanza las señale y tira el proceso
-		else if (is_builting(lst->content[0]))
-			ft_reddir_childs(mini, lst->fd, fd, lst);
-		if (lst->pid)
+		else if (is_builting(lst->content[0], lst))
+			ft_redir_b(mini, lst);
+		if (lst->pid && !is_builting(lst->content[0], lst))
 			close(lst->fd[WRITE]);
 		fd = lst->fd;
 		lst = lst->next;
@@ -105,3 +105,9 @@ int	main(int ac, char **av, char **env)
 
 //Contador de comillas
 //Quitar todas las pipes q sobren
+
+//el split muere cuando le entra un espacio al final
+//la lista no se hace con |ls
+//parser palma cuando ls |ls
+
+//expander no funciona sin comillas dobles

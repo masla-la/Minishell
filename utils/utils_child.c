@@ -8,7 +8,8 @@ void	ft_wait_childs(t_mini *mini)
 	lst = mini->lst;
 	while (lst)
 	{
-		waitpid(lst->pid, &i, WUNTRACED);
+		if (lst->pid)
+			waitpid(lst->pid, &i, WUNTRACED);
 		lst = lst->next;
 	}
 	WEXITSTATUS(i);

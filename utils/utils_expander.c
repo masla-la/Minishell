@@ -2,7 +2,7 @@
 
 void	ft_reddir_input(t_mini *mini, char *arg, t_list *lst)
 {
-	lst->input = open(arg, O_RDWR | O_TRUNC | O_CREAT, 0000744);
+	lst->input = open(arg, O_RDONLY);
 	if (!access(arg, F_OK))
 		ft_exit_error(mini, '1');//acceso al archivo
 }
@@ -17,7 +17,7 @@ void	ft_reddir_output(t_mini *mini, char *arg, t_list *lst)
 
 void	ft_reddir_input_2(t_mini *mini, char *arg, t_list *lst)//
 {
-	lst->input = open(arg, O_RDWR | O_TRUNC | O_CREAT, 0000744);
+	lst->input = open(arg, O_RDONLY);
 	if (!access(arg, F_OK))
 		ft_exit_error(mini, '1');//acceso al archivo
 }

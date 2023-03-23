@@ -3,31 +3,46 @@
 // AQUI PAPI
 void	ft_child_1(t_mini *mini, int fd[2], t_list *lst)
 {
-	printf("HAGO COSAS\n");
-	printf("%d\n", dup2(fd[WRITE], STDOUT_FILENO)); // SEMUEEEEEEEEEEREEEEEEEEEE
-	printf("HAGO COSAS 2 \n");
-	close(fd[READ]);
+	if (lst->output)
+		dup2(lst->output, 1);
+	else
+		dup2(fd[WRITE], STDOUT_FILENO);
+	if (lst->input)
+		dup2(lst->input, STDIN_FILENO);
+	//dup2(fd[WRITE], STDOUT_FILENO); // SEMUEEEEEEEEEEREEEEEEEEEE
 	// Me muero aquí.
-	//close(fd[WRITE]);
+	close(fd[WRITE]);
 	ft_redir_ex(mini, lst);
 }
 
 void	ft_child_2(t_mini *mini, int fd[2], int fd2[2], t_list *lst)
 {
-	printf("CHILD 2\n");
 	close(fd[READ]);
 	close(fd2[WRITE]);
-	dup2(fd[WRITE], STDOUT_FILENO);
-	dup2(fd2[READ], STDIN_FILENO);
+	if (lst->output)
+		dup2(lst->output, 1);
+	else
+		dup2(fd[WRITE], STDOUT_FILENO);
+	if (lst->input)
+		dup2(lst->input, STDIN_FILENO);
+	else
+		dup2(fd[READ], STDOUT_FILENO);
+	//dup2(fd[WRITE], STDOUT_FILENO);
+	//dup2(fd2[READ], STDIN_FILENO);
 	ft_redir_ex(mini, lst);
 }
 
 void	ft_child_3(t_mini *mini, int fd[2], t_list *lst)
 {
-	printf("CHILD 3\n");
+	//printf("CHILD 3\n");
 	close(fd[WRITE]);
-	printf("HE CERRADO EL WRITE\n");
-	dup2(fd[READ], STDIN_FILENO);
+	if (lst->output)
+		dup2(lst->output, 1);
+	if (lst->input)
+		dup2(lst->input, STDIN_FILENO);
+	else
+		dup2(fd[READ], STDIN_FILENO);
+	//printf("HE CERRADO EL WRITE\n");
 	ft_redir_ex(mini, lst);
 }
 
