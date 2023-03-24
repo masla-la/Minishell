@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:41 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/23 10:31:06 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/24 10:42:19 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char	*ft_cpyn(char *s, int start, int end)
 	int		i;
 	int		n;
 	char	*dest;
+
 	if (s[start] == 34 || s[start] == 39)
 		end++;
 	dest = malloc(sizeof(char) * (end - start + 2));
@@ -24,29 +25,29 @@ char	*ft_cpyn(char *s, int start, int end)
 		return (NULL);
 	i = start;
 	n = 0;
-	while(s[i] && i < end)
+	while (s[i] && i < end)
 	{
 		dest[n] = s[i];
 		n++;
 		i++;
 	}
 	dest[n] = '\0';
-    //printf("dest->%s\n", dest);
 	return (dest);
 }
+
 char	*ft_strdup_space(char *s, char c, int start)
 {
-	int i;
+	int	i;
 
 	i = start + 1;
-	while(s[i] && s[i] != c && s[i] != 34 && s[i] != 39)
+	while (s[i] && s[i] != c && s[i] != 34 && s[i] != 39)
 		i++;
 	return (ft_cpyn(s, start, i));
 }
 
 // La idea es llamar a la ft antes de hacer el split o fill
 // Creo que está ready, solo falta llamarla por ahí
-int		is_quote_closed(char *s)
+int	is_quote_closed(char *s)
 {
 	int	i;
 	int	type;
@@ -55,13 +56,12 @@ int		is_quote_closed(char *s)
 	i = 0;
 	type = 0;
 	inside = 0;
-	while(s[i])
+	while (s[i])
 	{
 		if ((s[i] == 34 || s[i] == 39) && inside == 0)
 		{
 			inside = 1;
 			type = s[i];
-
 		}
 		else if (s[i] == type && inside == 1)
 		{
@@ -77,11 +77,11 @@ int		is_quote_closed(char *s)
 
 char	*ft_strdup_quote(char *s, int start, char quote_type)
 {
-	int i;
+	int	i;
 
 	if (start + 1)
 		i = start + 1;
-	while(s[i] != quote_type)
+	while (s[i] != quote_type)
 		i++;
 	return (ft_cpyn(s, start, i));
 }
@@ -96,7 +96,7 @@ char	**ft_fill_2(char **dst, char *s, char c)
 	i = 0;
 	n = 0;
 	in_quote = 0;
-	while(s[i])
+	while (s[i])
 	{
 		while (s[i] == c)
 			i++;
@@ -119,7 +119,7 @@ char	**ft_fill_2(char **dst, char *s, char c)
 			i += ft_strlen(dst[n - 1]) - 1;
 		}
 		if (s[i] == '\0')
-			break;
+			break ;
 		i++;
 	}
 	dst[n] = NULL;

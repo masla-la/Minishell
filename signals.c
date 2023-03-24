@@ -11,7 +11,6 @@ void	sig_child(int sig)
 
 int	sig_rl(char	*c, t_mini *mini)
 {
-	//printf("\x1b[31mMinishell:\x1b[0m exit\n");
 	free(c);
 	ft_free_exprt(mini->exprt);
 	g_sig = 1;

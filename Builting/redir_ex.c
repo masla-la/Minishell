@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:00:15 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/23 11:58:40 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/24 10:33:57 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	is_builting(char *c, t_list *lst)
 
 int	ft_redir_b(t_mini *mini, t_list *lst)
 {
-	if (!ft_strcmp("cd", lst->content[0]) && !lst->next)//no fork
+	if (!ft_strcmp("cd", lst->content[0]) && !lst->next)
 		return (ft_cd(mini, lst));
-	if (!ft_strcmp("export", lst->content[0]))//no fork
+	if (!ft_strcmp("export", lst->content[0]))
 		return (ft_add_to_env(mini, lst->content[1]));
-	else if (!ft_strcmp("unset", lst->content[0]))//no fork
+	else if (!ft_strcmp("unset", lst->content[0]))
 		return (ft_rm_to_env(mini, lst->content[1]));
-	else if (!ft_strcmp("exit", lst->content[0]))//no fork
+	else if (!ft_strcmp("exit", lst->content[0]))
 	{
 		if (lst->content[1] && ft_isnum(lst->content[1]))
 			exit ((g_sig = ft_atoi(lst->content[1])));
@@ -46,23 +46,17 @@ int	ft_redir_b(t_mini *mini, t_list *lst)
 
 int	ft_redir_ex(t_mini *mini, t_list *lst)
 {
-	if (!ft_strcmp("env", lst->content[0]))//fork
+	if (!ft_strcmp("env", lst->content[0]))
 		return (ft_print_env(mini));
-	else if (!ft_strcmp("cd", lst->content[0]))//no fork, pero en caso de tener mas comandos debe de devolver solo si tiene acceso entonces fork si
+	else if (!ft_strcmp("cd", lst->content[0]))
 		return (ft_cd(mini, lst));
-	else if (!ft_strcmp("pwd", lst->content[0]))//fork
+	else if (!ft_strcmp("pwd", lst->content[0]))
 		return (printf("%s\n", ft_find_env(mini, "PWD")));
-	else if (!ft_strcmp("echo", lst->content[0]))//fork
+	else if (!ft_strcmp("echo", lst->content[0]))
 		return (ft_echo(lst));
-	else if (!lst->content[1] && !ft_strcmp("export", lst->content[0]))//fork
+	else if (!lst->content[1] && !ft_strcmp("export", lst->content[0]))
 		return (order_env(mini));
-	//else if (!ft_strcmp("export", lst->content[0]))//no fork
-	//	return (ft_add_to_env(mini, lst->content[1]));
-	//else if (!lst->content[1] && !ft_strcmp("unset", lst->content[0]))//no fork
-	//	return (EXIT_SUCCESS);//tiene q mostrar error
-	//else if (!ft_strcmp("unset", lst->content[0]))//no fork
-	//	return (ft_rm_to_env(mini, lst->content[1]));
-	else if (!ft_strcmp("exit", lst->content[0]))//no fork / abra q cambiar cosas
+	else if (!ft_strcmp("exit", lst->content[0]))
 	{
 		if (lst->content[1] && ft_isnum(lst->content[1]))
 			return ((g_sig = ft_atoi(lst->content[1])));

@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:33 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/17 11:41:19 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/24 10:30:41 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_cpy_rest(char *arg, char *dest, char *path)
 	}
 	if (!arg[i])
 		return (dest);
-	cpy = ft_strjoin(dest, arg + i);//quite un if dest != path free dest
+	cpy = ft_strjoin(dest, arg + i);
 	return (cpy);
 }
 
@@ -99,71 +99,19 @@ char	*ft_join_path(char *s1, char *s2)
 	return (dest);
 }
 
-char	*ft_sust(char *str, char c)//
+char	*ft_expand_var(t_mini *mini, char *arg, char *arg_cpy, int i)
 {
-	int	i;
-	int	n;
-	char	*dest;
-
-	i = ft_strlen(str) + 1;
-	n = 0;
-	while (str[n])
-	{
-		if (str[n] == c)
-			i--;
-		n++;
-	}
-	dest = (char *)malloc(sizeof(char) * i);
-	n = 0;
-	i = 0;
-	while (str[n])
-	{
-		if (str[n] != c)
-			dest[i++] = str[n];
-		n++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
-void	check_quote_to_expand(int quote, char *arg, int i)
-{
-	if (arg[i] == 39 && quote)
-		quote = 0;
-	else if (arg[i] == 39 && !quote)
-		quote = 1;
-}
-
-char	*ft_expand(char *arg, t_mini *mini)
-{
-	int		i;
 	char	*path;
 	char	*var;
-	char	*arg_cpy;
-	int		quote;
 
-	i = -1;
-	arg_cpy = ft_strdup2(arg);
-	while (arg[++i])
-	{
-		check_quote_to_expand(quote, arg, i);
-		if (arg[i] == '$' && arg[i + 1] && !quote)
-		{
-			var = ft_cpy_var(arg + (i + 1));
-			path = ft_find_env(mini, var);
-			free(var);
-			var = ft_join_path(arg, path);
-			var = ft_cpy_rest(arg, var, path);
-			if (path && path != var)
-				free(path);
-			free(arg);
-			free(arg_cpy);
-			return (ft_expand(var, mini));
-		}
-	}
+	var = ft_cpy_var(arg + (i + 1));
+	path = ft_find_env(mini, var);
+	free(var);
+	var = ft_join_path(arg, path);
+	var = ft_cpy_rest(arg, var, path);
+	if (path && path != var)
+		free(path);
 	free(arg);
-	return (arg_cpy);
+	free(arg_cpy);
+	return (ft_expand(var, mini));
 }
-//no reconoce las comillas entre otras comillas, las separa.
-//probleams con "123 ' 123"
-//free invalid pointer en ls y "123' 123"

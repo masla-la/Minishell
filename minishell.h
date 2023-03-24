@@ -50,6 +50,7 @@ void	ft_lstadd_exp(t_exprt **exprt, t_exprt *new);
 
 //Utils
 char	**ft_split_quotes(char *s, char c);
+char	*ft_strdup2(const char *src);
 void	ft_init_var(t_mini *mini);
 
 //Split Utils
@@ -66,8 +67,11 @@ int		ft_count_arg(char **ptr, int i);//
 void	ft_count_pipes(t_mini *mini);//
 
 //Utils_parser
-int	ft_arg_len(char **arg);
-int	ft_parse_to_lst(t_mini *mini, char **arg);
+int		ft_arg_len(char **arg);
+int		ft_parse_to_lst(t_mini *mini, char **arg);
+int		check_quote_to_expand(int quote, char *arg, int i);
+char	*ft_sust(char *str, char c);
+char	*ft_expand_var(t_mini *mini, char *arg, char *arg_cpy, int i);
 
 //Utils_expander
 void	ft_reddir(t_mini *mini, char **arg, t_list *lst);
@@ -79,7 +83,7 @@ void	ft_free_exprt(t_exprt *exprt);
 void	ft_free_lst(t_list *lst);
 void	ft_free(t_mini *mini);
 
-//
+//Parser
 int		ft_parse(t_mini *mini, char **arg);
 
 //Executor
@@ -87,6 +91,7 @@ void	ft_reddir_childs(t_mini *mini, int fd[2], int fd2[2], t_list *lst);
 void	ft_wait_childs(t_mini *mini);
 int		ft_redir_ex(t_mini *mini, t_list *lst);
 int		ft_ex_bin(t_mini *mini, t_list *lst);
+int		ft_redir_b(t_mini *mini, t_list *lst);
 
 //Error
 int		ft_exit_error(t_mini *mini, int	error);
@@ -111,9 +116,5 @@ int		sig_rl(char *c, t_mini *mini);
 
 //Pepe
 void	print_pepe(char *n);
-
-char	*ft_strdup2(const char *src);
-
-int	ft_redir_b(t_mini *mini, t_list *lst);
 
 #endif

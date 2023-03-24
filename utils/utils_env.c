@@ -2,7 +2,7 @@
 
 t_exprt	*ft_lstnew_exp(void *content)
 {
-	t_exprt *rtn;
+	t_exprt	*rtn;
 
 	rtn = malloc(sizeof(t_exprt));
 	if (!rtn)
@@ -35,7 +35,7 @@ void	ft_lstadd_exp(t_exprt **exprt, t_exprt *new)
 
 char	*ft_find_env(t_mini *mini, char *str)
 {
-	t_exprt *exprt;
+	t_exprt	*exprt;
 
 	exprt = mini->exprt;
 	while (exprt->env && ft_strncmp(str, exprt->env, ft_strlen(str)))
@@ -47,7 +47,7 @@ char	*ft_find_env(t_mini *mini, char *str)
 	return (ft_strdup(exprt->env + ft_strlen(str) + 1));
 }
 
-int		ft_get_env(t_mini *mini, char **env)
+int	ft_get_env(t_mini *mini, char **env)
 {
 	int		i;
 	t_exprt	*exprt;

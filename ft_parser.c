@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:39 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/17 20:24:08 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/24 10:30:11 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ int	ft_parse(t_mini *mini, char **arg)
 	i = 0;
 	while (arg[i])
 	{
-		//printf("PASO POR AQUI\n");
-		//printf("%s\n", arg[i]);
 		arg[i] = ft_expand(arg[i], mini);
 		i++;
 	}
@@ -64,5 +62,3 @@ int	ft_parse(t_mini *mini, char **arg)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCES);
 }
-
-///redirecciones

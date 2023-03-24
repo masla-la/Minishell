@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:45 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/23 19:53:08 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/24 10:07:37 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_executor(t_mini *mini)
 
 	lst = mini->lst;
 	signal(SIGINT, ft_sig2);
-	while (lst)
+	while (lst && lst->content[0] != NULL) //error para multiles pipes seguidas
 	{
 		pipe(lst->fd);
 		if (!is_builting(lst->content[0], lst))

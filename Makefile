@@ -8,6 +8,7 @@ B 	= 	cd\
 U	=	utils_env\
 		utils_executor\
 		utils_expander\
+		utils_expander_2\
 		utils_parser\
 		utils_child\
 		utils\
