@@ -42,9 +42,11 @@ int	ft_parse_to_lst(t_mini *mini, char **arg)
 	{
 		if (!ft_strcmp(*arg, "<") || !ft_strcmp(*arg, ">"))
 			ft_reddir(mini, arg, lst);
-		else if (ft_strcmp(*arg, "|") && lst->index == 0)
+		else if (!ft_strncmp(*arg, "||", 2))
+			break ;
+		else if (ft_strncmp(*arg, "|", 1) && lst->index == 0 && *arg != NULL)
 			lst->content[i++] = ft_strdup(*arg);
-		else if (!ft_strcmp(*arg, "|") && *(arg + 1))
+		else if (!ft_strncmp(*arg, "|", 1) && *(arg + 1))
 		{
 			i = ft_add_something(&lst, ft_arg_len(arg + 1), i);
 			lst = lst->next;

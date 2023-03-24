@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:36:58 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/17 10:12:55 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/24 11:56:23 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,22 @@ int	ft_check_export(t_mini *mini, char *str)
 	return (ft_exit_error(mini, 1));
 }
 
+int	check_add(char *str, char *env)
+{
+	int	i;
+	int	n;
+
+	i = 0;
+	n = 0;
+	while (env[i] && env[i] != '=')
+		i++;
+	while (n < i && env[n] == str[n])
+		n++;
+	if (env[n] != str[n])
+		return (0);
+	return (1);
+}
+
 int	ft_add_to_env(t_mini *mini, char *str)
 {
 	t_exprt	*exprt;
@@ -53,7 +69,7 @@ int	ft_add_to_env(t_mini *mini, char *str)
 		return (1);
 	while (exprt->env)
 	{
-		if (!strcmp(str, exprt->env))
+		if (check_add(str, exprt->env))
 		{
 			free(exprt->env);
 			exprt->env = ft_strdup(str);
