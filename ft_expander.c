@@ -6,13 +6,13 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:33 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/24 10:30:41 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/27 11:28:09 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_cpy_rest(char *arg, char *dest, char *path)
+char	*ft_cpy_rest(char *arg, char *dest)
 {
 	int		i;
 	int		n;
@@ -108,7 +108,7 @@ char	*ft_expand_var(t_mini *mini, char *arg, char *arg_cpy, int i)
 	path = ft_find_env(mini, var);
 	free(var);
 	var = ft_join_path(arg, path);
-	var = ft_cpy_rest(arg, var, path);
+	var = ft_cpy_rest(arg, var);
 	if (path && path != var)
 		free(path);
 	free(arg);

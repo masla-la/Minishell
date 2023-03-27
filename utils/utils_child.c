@@ -4,6 +4,7 @@ void	ft_wait_childs(t_mini *mini)
 {
 	t_list	*lst;
 	int		i;
+	char	*c;
 
 	lst = mini->lst;
 	while (lst)
@@ -11,11 +12,14 @@ void	ft_wait_childs(t_mini *mini)
 		if (lst->pid)
 			waitpid(lst->pid, &i, WUNTRACED);
 		lst = lst->next;
+		WEXITSTATUS(i);
 	}
-	WEXITSTATUS(i);
-	if (i / 256 == 11)
-		g_sig = i / 256;
-	else
-		g_sig = 0;
+	if (i >= 0)
+	{
+		c = ft_strdup("?=");
+		c = ft_strjoin(c, ft_itoa(i / 256));
+		ft_add_to_env(mini, c);
+		free(c);
+	}
 }
 //falta gestionar los posibles errores para q no den conflicto con el exit o  podemos borrar esta parte

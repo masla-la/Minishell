@@ -23,6 +23,7 @@ FILES = main\
 		ft_expander\
 		ft_exit\
 		signals\
+		error\
 		$(BLT)\
 		$(ULT)\
 		$(PLT)\
@@ -42,7 +43,8 @@ F_READLINE = -I$(READLINE_DIR)/include
 COMPILE = -lreadline -L$(READLINE_DIR)/lib
 
 CC = clang
-##CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
+##CFLAGS += valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=readline_supp
 CFLAGS += -Wstring-compare -fsanitize=address -g3
 RM = rm -rf
 

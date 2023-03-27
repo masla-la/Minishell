@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:45 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/24 11:49:08 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/27 12:17:09 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	tml_executor(t_mini *mini, int *fd, t_list *lst)
 	signal(SIGINT, sig_child);
 	signal(SIGIOT, sig_child);
 	ft_reddir_childs(mini, lst->fd, fd, lst);
-	exit(g_sig);
+	exit(1);
 }
 
 int	ft_executor(t_mini *mini)
@@ -119,8 +119,6 @@ char	*ft_expand_pipes(char *cmd)
 
 char	*ft_readline(char *name)
 {
-	int		i;
-	int		j;
 	char	*cmd;
 
 	cmd = readline(name);
@@ -189,9 +187,7 @@ int	main(int ac, char **av, char **env)
 //https://www.cyberciti.biz/faq/linux-bash-exit-status-set-exit-statusin-bash/
 
 //Contador de comillas
-//Quitar todas las pipes q sobren
 
-//la lista no se hace con |ls
-//parser palma cuando ls |ls
+//gestionar las salidas de error
 
-//expander no funciona sin comillas dobles
+//ft_rm_to_env se peta si no encuentra el env, almenos con unset

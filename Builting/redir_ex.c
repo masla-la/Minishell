@@ -6,11 +6,28 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:00:15 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/24 10:33:57 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/27 11:29:17 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int	return_b(t_mini *mini, t_list *lst)
+{
+	char	*c;
+
+	if (lst->content[1] && ft_isnum(lst->content[1]))
+	{
+		c = ft_strdup("?=");
+		c = ft_strjoin(c, lst->content[1]);
+		ft_add_to_env(mini, c);
+		free(c);
+	}
+	if (lst->content[1] && !ft_isnum(lst->content[1]))
+		ft_exit_error(mini, 2);
+	ft_add_to_env(mini, "?=1");
+	return ((g_sig = 0));
+}
 
 int	is_builting(char *c, t_list *lst)
 {
@@ -34,13 +51,7 @@ int	ft_redir_b(t_mini *mini, t_list *lst)
 	else if (!ft_strcmp("unset", lst->content[0]))
 		return (ft_rm_to_env(mini, lst->content[1]));
 	else if (!ft_strcmp("exit", lst->content[0]))
-	{
-		if (lst->content[1] && ft_isnum(lst->content[1]))
-			exit ((g_sig = ft_atoi(lst->content[1])));
-		if (lst->content[1] && !ft_isnum(lst->content[1]))
-			ft_exit_error(mini, 2);
-		exit ((g_sig = 1));
-	}
+		return (return_b(mini, lst), (g_sig = 1));
 	return (0);
 }
 
@@ -51,22 +62,20 @@ int	ft_redir_ex(t_mini *mini, t_list *lst)
 	else if (!ft_strcmp("cd", lst->content[0]))
 		return (ft_cd(mini, lst));
 	else if (!ft_strcmp("pwd", lst->content[0]))
-		return (printf("%s\n", ft_find_env(mini, "PWD")));
+	{
+		printf("%s\n", ft_find_env(mini, "PWD"));
+		exit (0);
+	}
 	else if (!ft_strcmp("echo", lst->content[0]))
 		return (ft_echo(lst));
 	else if (!lst->content[1] && !ft_strcmp("export", lst->content[0]))
 		return (order_env(mini));
 	else if (!ft_strcmp("exit", lst->content[0]))
-	{
-		if (lst->content[1] && ft_isnum(lst->content[1]))
-			return ((g_sig = ft_atoi(lst->content[1])));
-		if (lst->content[1] && !ft_isnum(lst->content[1]))
-			ft_exit_error(mini, 2);
-		return ((g_sig = 1));
-	}
+		exit (return_b(mini, lst));
 	return (ft_ex_bin(mini, lst));
 }
 
+//si no existe? pwd?
 //export no tiene mensaje de error al ser numero
 //cd no tiene mensaje si no tiene acceso
 //unset no tiene mensaje sin arg

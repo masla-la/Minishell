@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:00:12 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/17 10:26:07 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/27 10:42:44 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_print_env(t_mini *mini)
 			printf("%s\n", exprt->env);
 		exprt = exprt->next;
 	}
-	return (EXIT_SUCCESS);
+	exit (EXIT_SUCCESS);
 }
 
 void	print_export(char **export)
@@ -134,5 +134,5 @@ int	order_env(t_mini *s)
 	}
 	print_export(env_cpy);
 	ft_doublefree(env_cpy);
-	return (1);
+	exit (0);
 }

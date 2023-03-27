@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:00:06 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/23 11:15:54 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/27 12:14:03 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,35 +73,46 @@ char	*ft_join_dir(char *str, t_list *lst)
 	return (dest);
 }
 
-int	ft_cd(t_mini *mini, t_list *lst)
+char	*ft_cd_set(t_list *lst, char *dest)
 {
-	char	*dest;
 	char	str[2056];
 	int		i;
 
-	dest = NULL;
 	i = 0;
-	if (lst->content[1])
+	getcwd(str, sizeof(str));
+	if (!ft_strcmp("..", (lst->content[1] + i)))
 	{
-		getcwd(str, sizeof(str));
-		if (!ft_strcmp("..", (lst->content[1] + i)))
+		while (!ft_strcmp("..", (lst->content[1] + i)))
 		{
-			while (!ft_strcmp("..", (lst->content[1] + i)))
-			{
-				dest = ft_cd_return(str);
-				i += 3;
-			}
+			dest = ft_cd_return(str);
+			i += 3;
 		}
-		else
-			dest = ft_strdup(lst->content[1]);
 	}
 	else
+		dest = ft_strdup(lst->content[1]);
+	return (dest);
+}
+
+int	ft_cd(t_mini *mini, t_list *lst)
+{
+	char	*dest;
+
+	dest = NULL;
+	if (lst->content[1])
+		dest = ft_cd_set(lst, dest);
+	else
+	{
 		dest = ft_find_env(mini, "HOME");
+		if (!dest)
+			write_error(mini, 1, "Minishell: cd: HOME not set\n");
+	}
 	if (!access(dest, F_OK))
 	{
 		chdir(dest);
 		ft_update_pwd(mini);
 	}
+	else
+		return (write_error(mini, 1, "Minishell: cd: HOME not set\n"));//error de acceso
 	free(dest);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:41 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/24 11:30:30 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/27 11:24:52 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,7 @@ char	*ft_strdup_quote(char *s, int start, char quote_type)
 {
 	int	i;
 
-	if (start + 1)
-		i = start + 1;
+	i = start + 1;
 	while (s[i] != quote_type)
 		i++;
 	return (ft_cpyn(s, start, i));
@@ -126,12 +125,12 @@ char	**ft_fill_2(char **dst, char *s, char c)
 	return (dst);
 }
 
-int	init_vars(int *i, int quotes, char **dst, char *s)
+int	init_vars(int *i, char **dst, char *s)
 {
 	i[0] = 0;
 	i[1] = 0;
 	i[2] = 0;
-	dst[i[1]] = (char *)malloc(sizeof(char) * ft_cmd_len(s, i[0], 32));
+	dst[i[1]] = (char *)malloc(sizeof(char) * ft_cmd_len(s, i[0]));
 	if (!dst[i[1]])
 		exit (1);
 	return (0);
@@ -171,7 +170,7 @@ size_t	ft_lines_2(char *s, char c, int quotes)
 	return (i + 1);
 }
 
-int	ft_cmd_len(char *s, int i, char c)
+int	ft_cmd_len(char *s, int i)
 {
 	int	n;
 	int	z;

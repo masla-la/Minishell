@@ -1,6 +1,5 @@
 #include "../minishell.h"
 
-// AQUI PAPI
 void	ft_child_1(t_mini *mini, int fd[2], t_list *lst)
 {
 	if (lst->output > 0)
@@ -9,8 +8,6 @@ void	ft_child_1(t_mini *mini, int fd[2], t_list *lst)
 		dup2(fd[WRITE], STDOUT_FILENO);
 	if (lst->input > 0)
 		dup2(lst->input, STDIN_FILENO);
-	//dup2(fd[WRITE], STDOUT_FILENO); // SEMUEEEEEEEEEEREEEEEEEEEE
-	// Me muero aquí.
 	close(fd[WRITE]);
 	ft_redir_ex(mini, lst);
 }
@@ -19,22 +16,13 @@ void	ft_child_2(t_mini *mini, int fd[2], int fd2[2], t_list *lst)
 {
 	close(fd[READ]);
 	close(fd2[WRITE]);
-	if (lst->output > 0)
-		dup2(lst->output, 1);
-	else
-		dup2(fd[WRITE], STDOUT_FILENO);
-	if (lst->input > 0)
-		dup2(lst->input, STDIN_FILENO);
-	else
-		dup2(fd[READ], STDOUT_FILENO);
-	//dup2(fd[WRITE], STDOUT_FILENO);
-	//dup2(fd2[READ], STDIN_FILENO);
+	dup2(fd[WRITE], STDOUT_FILENO);
+	dup2(fd2[READ], STDIN_FILENO);
 	ft_redir_ex(mini, lst);
 }
 
 void	ft_child_3(t_mini *mini, int fd[2], t_list *lst)
 {
-	//printf("CHILD 3\n");
 	close(fd[WRITE]);
 	if (lst->output > 0)
 		dup2(lst->output, 1);
@@ -42,7 +30,6 @@ void	ft_child_3(t_mini *mini, int fd[2], t_list *lst)
 		dup2(lst->input, STDIN_FILENO);
 	else
 		dup2(fd[READ], STDIN_FILENO);
-	//printf("HE CERRADO EL WRITE\n");
 	ft_redir_ex(mini, lst);
 }
 
@@ -71,7 +58,7 @@ int	ft_ex_bin(t_mini *mini, t_list *lst)
 	}
 	while (mini->path[i])
 	{
-		path  = ft_strjoin(mini->path[i], "/");
+		path = ft_strjoin(mini->path[i], "/");
 		cmd_path = ft_strjoin(path, lst->content[0]);
 		execve(cmd_path, lst->content, mini->env);
 		free(cmd_path);
@@ -79,7 +66,7 @@ int	ft_ex_bin(t_mini *mini, t_list *lst)
 	}
 	if (lst->content[0])
 		execve(lst->content[0], lst->content, mini->env);
-	printf("Error\n");
+	printf("Minishell: command not found: %s\n", lst->content[0]);
 	return (EXIT_FAILURE);
 }
 

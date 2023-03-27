@@ -3,32 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:31:54 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/17 20:23:31 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/27 11:27:38 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**split_condition(char **dst, int *i, char *s, char c)
+char	**split_condition(char **dst, int *i, char *s)
 {
 	dst[i[1]][i[2]] = '\0';
 	i[2] = 0;
 	i[0]++;
 	i[1]++;
-	dst[i[1]] = (char *)malloc(sizeof(char) * ft_cmd_len(s, i[0], c));
+	dst[i[1]] = (char *)malloc(sizeof(char) * ft_cmd_len(s, i[0]));
 	if (!dst[i[1]])
 		exit (1);
 	return (dst);
 }
 
-int	split_condition_quote(char **dst, int *i, char *s, char quote)
+int	split_condition_quote(char **dst, int *i, char *s)
 {
 	dst[i[1]][i[2]] = '\0';
 	i[1]++;
-	dst[i[1]] = malloc(sizeof(char) * (ft_cmd_len(s, i[0], quote) + 20));
+	dst[i[1]] = malloc(sizeof(char) * (ft_cmd_len(s, i[0]) + 20));
 	//printf("d-> %d\n", (ft_cmd_len(s, i[0], quote) + 2));
 	//printf("str2->%c\n", s[i[0]]);
 	if (!dst[i[1]])
@@ -36,7 +36,7 @@ int	split_condition_quote(char **dst, int *i, char *s, char quote)
 	return (0);
 }
 
-int	split_condition_2(int in_quotes, char *type, char c)
+int	split_condition_2(char *type, char c)
 {
 	*type = c;
 	return (1);

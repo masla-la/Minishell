@@ -54,12 +54,12 @@ char	*ft_strdup2(const char *src);
 void	ft_init_var(t_mini *mini);
 
 //Split Utils
-int     ft_cmd_len(char *s, int i, char c);
+int     ft_cmd_len(char *s, int i);
 void	final_split_condition(int *i, char **dst);
-int		split_condition_2(int in_quotes, char *type, char c);
-char	**split_condition(char **dst, int *i,  char *s, char c);
+int		split_condition_2(char *type, char c);
+char	**split_condition(char **dst, int *i,  char *s);
 int		another_condition(char *s, int *i, int in_quotes, char **dst);
-int 	split_condition_quote(char **dst, int *i,  char *s, char quote);
+int 	split_condition_quote(char **dst, int *i,  char *s);
 
 //Utils_lexer
 int		ft_total_arg(char **ptr);//
@@ -95,6 +95,7 @@ int		ft_redir_b(t_mini *mini, t_list *lst);
 
 //Error
 int		ft_exit_error(t_mini *mini, int	error);
+int		write_error(t_mini *mini, int err, char *str);
 
 //Builtings
 int		ft_cd(t_mini *mini, t_list *lst);
@@ -104,9 +105,8 @@ int		ft_print_env(t_mini *mini);
 int		ft_add_to_env(t_mini *mini, char *str);
 int		order_env(t_mini *s);
 void	print_export(char **export);
-
-int	is_builting(char *c, t_list *lst);
-int	ft_isnum(const char *str);
+int		is_builting(char *c, t_list *lst);
+int		ft_isnum(const char *str);
 
 //Signals
 void	sig_child(int sig);
