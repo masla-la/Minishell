@@ -5,6 +5,7 @@ void	ft_wait_childs(t_mini *mini)
 	t_list	*lst;
 	int		i;
 	char	*c;
+	char	*str_itoa;
 
 	lst = mini->lst;
 	while (lst)
@@ -16,8 +17,11 @@ void	ft_wait_childs(t_mini *mini)
 	}
 	if (i >= 0)
 	{
+		str_itoa = ft_itoa(i / 256);
 		c = ft_strdup("?=");
-		c = ft_strjoin(c, ft_itoa(i / 256));
+		c = ft_strjoin(c, str_itoa);
+		if (str_itoa)
+			free(str_itoa);
 		ft_add_to_env(mini, c);
 		free(c);
 	}

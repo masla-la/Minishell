@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_env.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/27 19:24:28 by jchamorr          #+#    #+#             */
+/*   Updated: 2023/03/27 19:51:49 by jchamorr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 t_exprt	*ft_lstnew_exp(void *content)
@@ -36,6 +48,7 @@ void	ft_lstadd_exp(t_exprt **exprt, t_exprt *new)
 char	*ft_find_env(t_mini *mini, char *str)
 {
 	t_exprt	*exprt;
+	char	*str_2;
 
 	exprt = mini->exprt;
 	while (exprt->env && ft_strncmp(str, exprt->env, ft_strlen(str)))
@@ -44,7 +57,14 @@ char	*ft_find_env(t_mini *mini, char *str)
 		if (!exprt->next)
 			return (NULL);
 	}
-	return (ft_strdup(exprt->env + ft_strlen(str) + 1));
+	str_2 = ft_strjoin2(str, "=");
+	if (!ft_strncmp(str_2, exprt->env, ft_strlen(str_2)) || \
+		exprt->env[ft_strlen(str_2)] == '\0')
+		{
+			free (str_2);
+			return (ft_strdup(exprt->env + ft_strlen(str) + 1));
+		}
+	return (NULL);
 }
 
 int	ft_get_env(t_mini *mini, char **env)

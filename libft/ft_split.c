@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42urduli>       +#+  +:+       +#+        */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:48:32 by jchamorr          #+#    #+#             */
-/*   Updated: 2021/11/25 19:10:16 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/27 19:18:35 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	**ft_fill(char **dst, const char *s, char c)
 		{
 			i++;
 			if (s[i] == c || i == ft_strlen(s))
-				dst[p1++] = ft_split_2(s, st, i);
+				dst[p1++] = ft_split_2(s, st, i); // Se pierde memoria aquí.
 		}
 		while (s[i] == c && s[i])
 		{

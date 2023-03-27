@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:45 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/27 12:17:09 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/27 21:52:53 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ char	*ft_readline(char *name)
 	if (!cmd)
 			return (NULL);
 	cmd = ft_strtrim(cmd, " ");
-	if (cmd)
+	if (cmd && cmd[0] != '\0')
 		add_history(cmd);
 	if (ft_strchr(cmd, 124) && !ft_strchr(cmd, 34) && !ft_strchr(cmd, 39))
 	{
@@ -178,9 +178,17 @@ int	main(int ac, char **av, char **env)
 	return (g_sig);
 }
 
-//ignorar las redirecciones dando valor a los outputs e intputs
-//ejecutar codigo *
-//agregar $? con a ft de error
+/* Cosas que se rompren o que he roto:
+	- He puesto unset ENV y segfault
+	- Si usas /bin/ls lo tiene que hacer aunque elimines el PATH
+	- expr $? + $?
+	- El ctrl + D da leaks pero 'exit' no, asi que hay que mandar la señal a que haga el exit normal.
+	- Los fallos de '/bin/ls pepe' tiene que dar el mismo error que bash.
+*/
+
+// ignorar las redirecciones dando valor a los outputs e intputs
+// ejecutar codigo *
+// agregar $? con a ft de error
 
 //Built-ins en mayusculas debe interpretarse
 
