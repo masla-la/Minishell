@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:33 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/27 11:28:09 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/29 11:17:24 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ char	*ft_cpy_rest(char *arg, char *dest)
 	char	*cpy;
 
 	i = -1;
-	n = 0;
+	n = 1;
 	while (arg[++i])
 	{
 		if (arg[i] == '$')
 		{
-			while (arg[i + n] && arg[i] == '$' && arg[i + n] != ' ')
+			while (arg[i + n] && arg[i] == '$' && arg[i + n] != ' '\
+			&& arg[i + n] != ':' && arg[i + n] != '$')
 				n++;
 			i += n;
 			break ;
@@ -58,13 +59,15 @@ char	*ft_cpy_var(char *ptr)
 	int		i;
 
 	i = 0;
-	while (ptr[i] && ptr[i] != ' ')
+	while (ptr[i] && ptr[i] != ' ' && ptr[i] != '$'\
+	&& ptr[i] != ':' && ptr[i] != ';')
 		i++;
 	if (i < 1)
 		return (NULL);
 	var = malloc(sizeof(char *) * i + 1);
 	i = 0;
-	while (ptr[i] && ptr[i] != ' ' && ptr[i] != 34)
+	while (ptr[i] && ptr[i] != ' ' && ptr[i] != '$'\
+	&& ptr[i] != ':' && ptr[i] != ';' && ptr[i] != 34)
 	{
 		var[i] = ptr[i];
 		i++;

@@ -44,8 +44,7 @@ COMPILE = -lreadline -L$(READLINE_DIR)/lib
 
 CC = clang
 CFLAGS = -Wall -Wextra -Werror
-##CFLAGS += valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --suppressions=readline_supp
-##CFLAGS += -Wstring-compare -fsanitize=address -g3
+CFLAGS += -Wstring-compare -fsanitize=address -g3
 RM = rm -rf
 
 ifneq (,$(findstring xterm,${TERM}))

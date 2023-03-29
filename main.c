@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:45 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/27 21:52:53 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/29 11:13:28 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	tml_executor(t_mini *mini, int *fd, t_list *lst)
 	signal(SIGINT, sig_child);
 	signal(SIGIOT, sig_child);
 	ft_reddir_childs(mini, lst->fd, fd, lst);
-	exit(1);
+	exit(127);
 }
 
 int	ft_executor(t_mini *mini)

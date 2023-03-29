@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:00:06 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/27 12:14:03 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/29 09:01:30 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	ft_cd(t_mini *mini, t_list *lst)
 	{
 		dest = ft_find_env(mini, "HOME");
 		if (!dest)
-			write_error(mini, 1, "Minishell: cd: HOME not set\n");
+			write_error(mini, 1, "Minishell: cd: HOME not set", "");
 	}
 	if (!access(dest, F_OK))
 	{
@@ -112,7 +112,7 @@ int	ft_cd(t_mini *mini, t_list *lst)
 		ft_update_pwd(mini);
 	}
 	else
-		return (write_error(mini, 1, "Minishell: cd: HOME not set\n"));//error de acceso
+		return (write_error(mini, 1, "cd: permission denied: ", lst->content[0]));
 	free(dest);
 	return (EXIT_SUCCESS);
 }

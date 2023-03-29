@@ -49,6 +49,7 @@ t_exprt	*ft_lstnew_exp(void *content);
 void	ft_lstadd_exp(t_exprt **exprt, t_exprt *new);
 
 //Utils
+int		check_env(char *str);
 char	**ft_split_quotes(char *s, char c);
 char	*ft_strdup2(const char *src);
 void	ft_init_var(t_mini *mini);
@@ -95,7 +96,7 @@ int		ft_redir_b(t_mini *mini, t_list *lst);
 
 //Error
 int		ft_exit_error(t_mini *mini, int	error);
-int		write_error(t_mini *mini, int err, char *str);
+int		write_error(t_mini *mini, int err, char *str, char *str2);
 
 //Builtings
 int		ft_cd(t_mini *mini, t_list *lst);

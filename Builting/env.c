@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:00:12 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/27 10:42:44 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/29 10:45:23 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int	ft_rm_to_env(t_mini *mini, char *str)
 	exprt = mini->exprt;
 	aux = NULL;
 	tmp = NULL;
-	while (strncmp(exprt->env, str, ft_strlen(str)))
+	while (exprt->env && ft_strncmp(exprt->env, str, ft_strlen(str)))
 	{
 		aux = exprt;
 		exprt = exprt->next;
 	}
-	if (!strncmp(exprt->env, str, ft_strlen(str)))
+	if (!ft_strncmp(exprt->env, str, ft_strlen(str)))
 	{
 		if (exprt->next != NULL)
 			tmp = exprt->next;
@@ -47,7 +47,7 @@ int	ft_print_env(t_mini *mini)
 	exprt = mini->exprt;
 	while (exprt->env)
 	{
-		if (ft_strncmp("?=", exprt->env, 2))
+		if (check_env(exprt->env) && ft_strncmp("?=", exprt->env, 2))
 			printf("%s\n", exprt->env);
 		exprt = exprt->next;
 	}

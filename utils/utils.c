@@ -32,3 +32,15 @@ void	ft_init_var(t_mini *mini)
 	mini->path = ft_split(path, ':');
 	free(path);
 }
+
+int	check_env(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != '=')
+		i++;
+	if (str[i] == '=')
+		return (1);
+	return (0);
+}
