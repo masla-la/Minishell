@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_parser.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/29 15:46:32 by jchamorr          #+#    #+#             */
+/*   Updated: 2023/03/29 15:59:35 by jchamorr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 int	ft_arg_len(char **arg)
@@ -28,12 +40,10 @@ int	ft_add_something(t_list **linked, int len, int i)
 	return (0);
 }
 
-int	ft_parse_to_lst(t_mini *mini, char **arg)
+int	ft_parse_to_lst(t_mini *mini, char **arg, int i)
 {
-	int		i;
 	t_list	*lst;
 
-	i = 0;
 	lst = ft_lstnew(NULL);
 	mini->lst = lst;
 	lst->content = malloc(sizeof(char *) * ft_arg_len(arg));

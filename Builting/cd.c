@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:00:06 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/29 09:01:30 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:55:41 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,8 @@ int	ft_cd(t_mini *mini, t_list *lst)
 		ft_update_pwd(mini);
 	}
 	else
-		return (write_error(mini, 1, "cd: permission denied: ", lst->content[0]));
+		return (write_error(mini, 1, "cd: permission denied: ", \
+				lst->content[0]));
 	free(dest);
 	return (EXIT_SUCCESS);
 }

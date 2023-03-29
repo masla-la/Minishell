@@ -11,8 +11,8 @@
 # define WRITE 1
 # define EXIT_FAILURE 1
 # define EXIT_SUCES 0
-# define REDIR_INPUT 3//
-# define REDIR_OUTPUT 3//
+# define REDIR_INPUT 3
+# define REDIR_OUTPUT 3
 
 # define STDIN	0
 # define STDOUT	1
@@ -23,8 +23,8 @@ typedef struct	s_mini
 {
 	char			**comand;
 	char			**path;
-	char			*cmd_path;//quizas es necesario
-	int				pid;//
+	char			*cmd_path;
+	int				pid;
 	char			**env;
 	struct	s_exprt	*exprt;
 	struct	s_list	*lst;
@@ -69,7 +69,7 @@ void	ft_count_pipes(t_mini *mini);//
 
 //Utils_parser
 int		ft_arg_len(char **arg);
-int		ft_parse_to_lst(t_mini *mini, char **arg);
+int		ft_parse_to_lst(t_mini *mini, char **arg, int i);
 int		check_quote_to_expand(int quote, char *arg, int i);
 char	*ft_sust(char *str, char c);
 char	*ft_expand_var(t_mini *mini, char *arg, char *arg_cpy, int i);
@@ -115,6 +115,19 @@ void	sig_child(int sig);
 void	ft_sig(int sig);
 void	ft_sig2(int sig);
 int		sig_rl(char *c, t_mini *mini);
+
+// FT que faltan por nombrar
+int		write_error(t_mini *mini, int err, char *str, char *str2);
+char	*ft_strdup_space(char *s, char c, int start);
+char	*ft_strdup_quote(char *s, int start, char quote_type);
+int		init_vars(int *i, char **dst, char *s);
+char	*ft_expand_pipes(char *cmd);
+char	*ft_expand_pipes_2(char *cmd);
+int		ft_executor(t_mini *mini);
+char	*ft_cpyn(char *s, int start, int end);
+size_t	ft_lines_2(char *s, char c, int quotes);
+int		is_quote_closed(char *s);
+char	**ft_fill_2(char **dst, char *s, char c);
 
 //Pepe
 void	print_pepe(char *n);

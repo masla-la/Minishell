@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_executor.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/29 14:16:40 by jchamorr          #+#    #+#             */
+/*   Updated: 2023/03/29 15:23:31 by jchamorr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	ft_child_1(t_mini *mini, int fd[2], t_list *lst)
@@ -43,7 +55,6 @@ void	ft_reddir_childs(t_mini *mini, int fd[2], int fd2[2], t_list *lst)
 		ft_child_2(mini, fd, fd2, lst);
 }
 
-
 int	ft_ex_bin(t_mini *mini, t_list *lst)
 {
 	int		i;
@@ -51,11 +62,6 @@ int	ft_ex_bin(t_mini *mini, t_list *lst)
 	char	*cmd_path;
 
 	i = 0;
-	/*if (!mini->path)
-	{
-		printf("NO HAY PATH PELELE\n"); /////////////////////////////
-		return (EXIT_FAILURE);
-	}*/
 	while (mini->path && mini->path[i])
 	{
 		path = ft_strjoin(mini->path[i], "/");
@@ -69,21 +75,3 @@ int	ft_ex_bin(t_mini *mini, t_list *lst)
 	printf("Minishell: command not found: %s\n", lst->content[0]);
 	return (EXIT_FAILURE);
 }
-
-/*int	ft_redir_ex(t_mini *mini)
-{
-	char	**path;
-	char	*cmd_path;
-
-	path = ft_split(ft_find_env(mini, "PATH"), ':');
-	while (*path)
-	{
-		cmd_path = ft_strjoin(*path, "/");
-		execve(ft_strjoin(cmd_path, mini->lst->content[0]), mini->lst->content, mini->env);
-		path++;
-	}
-	free(path);
-	free(cmd_path);
-	printf("Error\n");
-	return (1);
-}*/

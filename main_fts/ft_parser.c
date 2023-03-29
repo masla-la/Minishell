@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:39 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/29 12:34:14 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/29 17:46:42 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 t_list	*ft_lstnew(void *content)
 {
@@ -47,9 +47,11 @@ void	ft_lstadd(t_list **lst, t_list *new)
 
 int	ft_parse(t_mini *mini, char **arg)
 {
-	int		i;
+	int	i;
+	int	j;
 
 	i = 0;
+	j = 0;
 	while (arg[i])
 	{
 		arg[i] = ft_expand(arg[i], mini);
@@ -57,7 +59,7 @@ int	ft_parse(t_mini *mini, char **arg)
 	}
 	if (arg[0][0] == '|')
 		arg++;
-	ft_parse_to_lst(mini, arg);
+	ft_parse_to_lst(mini, arg, j);
 	if (!mini->lst)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCES);

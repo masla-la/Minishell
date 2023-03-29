@@ -6,7 +6,7 @@
 /*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 19:24:28 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/27 19:51:49 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:16:03 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ char	*ft_find_env(t_mini *mini, char *str)
 	str_2 = ft_strjoin2(str, "=");
 	if (!ft_strncmp(str_2, exprt->env, ft_strlen(str_2)) || \
 		exprt->env[ft_strlen(str_2)] == '\0')
-		{
-			free (str_2);
-			return (ft_strdup(exprt->env + ft_strlen(str) + 1));
-		}
+	{
+		free (str_2);
+		return (ft_strdup(exprt->env + ft_strlen(str) + 1));
+	}
 	return (NULL);
 }
 

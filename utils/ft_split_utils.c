@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 18:31:54 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/27 11:27:38 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/29 17:53:59 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 char	**split_condition(char **dst, int *i, char *s)
 {
@@ -29,8 +29,6 @@ int	split_condition_quote(char **dst, int *i, char *s)
 	dst[i[1]][i[2]] = '\0';
 	i[1]++;
 	dst[i[1]] = malloc(sizeof(char) * (ft_cmd_len(s, i[0]) + 20));
-	//printf("d-> %d\n", (ft_cmd_len(s, i[0], quote) + 2));
-	//printf("str2->%c\n", s[i[0]]);
 	if (!dst[i[1]])
 		exit (1);
 	return (0);
@@ -57,7 +55,6 @@ void	final_split_condition(int *i, char **dst)
 	if (i[2] > 0)
 	{
 		dst[i[1]][i[2]] = '\0';
-		//printf("I de 1 de 0 %c\n", dst[i[1]][0]);
 		if (dst[i[1]][0] != '\0')
 			i[1]++;
 	}

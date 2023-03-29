@@ -1,31 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_expander_2.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/29 15:43:43 by jchamorr          #+#    #+#             */
+/*   Updated: 2023/03/29 15:43:44 by jchamorr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
-
-/*char	*ft_sust(char *str, char c)
-{
-	int	i;
-	int	n;
-	char	*dest;
-
-	i = ft_strlen(str) + 1;
-	n = 0;
-	while (str[n])
-	{
-		if (str[n] == c)
-			i--;
-		n++;
-	}
-	dest = (char *)malloc(sizeof(char) * i);
-	n = 0;
-	i = 0;
-	while (str[n])
-	{
-		if (str[n] != c)
-			dest[i++] = str[n];
-		n++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}*/
 
 int	check_quote_to_expand(int quote, char *arg, int i)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:00:12 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/29 12:58:56 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:12:33 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	ft_rm_to_env(t_mini *mini, char *str)
 		aux = exprt;
 		exprt = exprt->next;
 	}
-	if (exprt->env && str[0] != '\0' && !ft_strncmp(exprt->env, str, ft_strlen(str)))
+	if (exprt->env && str[0] != '\0' && \
+		!ft_strncmp(exprt->env, str, ft_strlen(str)))
 	{
 		if (exprt->next != NULL)
 			tmp = exprt->next;

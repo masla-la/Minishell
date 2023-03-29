@@ -6,7 +6,7 @@
 /*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:48:32 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/27 19:18:35 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:14:12 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	**ft_fill(char **dst, const char *s, char c)
 		{
 			i++;
 			if (s[i] == c || i == ft_strlen(s))
-				dst[p1++] = ft_split_2(s, st, i); // Se pierde memoria aquí.
+				dst[p1++] = ft_split_2(s, st, i);
 		}
 		while (s[i] == c && s[i])
 		{

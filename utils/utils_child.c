@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_child.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/29 14:15:29 by jchamorr          #+#    #+#             */
+/*   Updated: 2023/03/29 14:16:32 by jchamorr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	ft_wait_childs(t_mini *mini)
@@ -26,4 +38,3 @@ void	ft_wait_childs(t_mini *mini)
 		free(c);
 	}
 }
-//falta gestionar los posibles errores para q no den conflicto con el exit o  podemos borrar esta parte

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_exp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:41 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/27 11:24:52 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/29 19:02:47 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 char	*ft_cpyn(char *s, int start, int end)
 {
@@ -35,18 +35,6 @@ char	*ft_cpyn(char *s, int start, int end)
 	return (dest);
 }
 
-char	*ft_strdup_space(char *s, char c, int start)
-{
-	int	i;
-
-	i = start + 1;
-	while (s[i] && s[i] != c && s[i] != 34 && s[i] != 39)
-		i++;
-	return (ft_cpyn(s, start, i));
-}
-
-// La idea es llamar a la ft antes de hacer el split o fill
-// Creo que está ready, solo falta llamarla por ahí
 int	is_quote_closed(char *s)
 {
 	int	i;
@@ -75,16 +63,6 @@ int	is_quote_closed(char *s)
 	return (EXIT_FAILURE);
 }
 
-char	*ft_strdup_quote(char *s, int start, char quote_type)
-{
-	int	i;
-
-	i = start + 1;
-	while (s[i] != quote_type)
-		i++;
-	return (ft_cpyn(s, start, i));
-}
-
 char	**ft_fill_2(char **dst, char *s, char c)
 {
 	int		i;
@@ -106,15 +84,13 @@ char	**ft_fill_2(char **dst, char *s, char c)
 		}
 		if (s[i] != c && in_quote == 0)
 		{
-			dst[n] = ft_strdup_space(s, c, i);
-			n++;
+			dst[n++] = ft_strdup_space(s, c, i);
 			i += ft_strlen(dst[n - 1]) - 1;
 		}
-		else if (in_quote == 1) /*&&  is_quote_closed(s, i, quote_type)) */ // Lo comentado no va a hacer falta
+		else if (in_quote == 1)
 		{
-			dst[n] = ft_strdup_quote(s, i, quote_type);
+			dst[n++] = ft_strdup_quote(s, i, quote_type);
 			in_quote = 0;
-			n++;
 			i += ft_strlen(dst[n - 1]) - 1;
 		}
 		if (s[i] == '\0')
@@ -123,17 +99,6 @@ char	**ft_fill_2(char **dst, char *s, char c)
 	}
 	dst[n] = NULL;
 	return (dst);
-}
-
-int	init_vars(int *i, char **dst, char *s)
-{
-	i[0] = 0;
-	i[1] = 0;
-	i[2] = 0;
-	dst[i[1]] = (char *)malloc(sizeof(char) * ft_cmd_len(s, i[0]));
-	if (!dst[i[1]])
-		exit (1);
-	return (0);
 }
 
 size_t	ft_lines_2(char *s, char c, int quotes)
@@ -158,7 +123,7 @@ size_t	ft_lines_2(char *s, char c, int quotes)
 			else if (quotes == *s)
 				quotes = 0;
 		}
-		if (*s == c && quotes == 0 && *(s + 1) && *(s + 1) != 32)//
+		if (*s == c && quotes == 0 && *(s + 1) && *(s + 1) != 32)
 		{
 			i++;
 			while (*s == c && *s != '\0')
@@ -168,31 +133,4 @@ size_t	ft_lines_2(char *s, char c, int quotes)
 			s++;
 	}
 	return (i + 1);
-}
-
-int	ft_cmd_len(char *s, int i)
-{
-	int	n;
-	int	z;
-
-	n = 0;
-	z = i;
-	while (s[z + n])
-		n++;
-	return (n + 1);
-}
-
-char	**ft_split_quotes(char *s, char c)
-{
-	char	**dst;
-
-	if (!s)
-		return (NULL);
-	if (is_quote_closed(s))
-		return (0);
-	dst = (char **)malloc(sizeof(char *) * (ft_lines_2(s, c, 0) + ft_strlen(s)));
-	if (!dst)
-		return (NULL);
-	ft_fill_2(dst, s, c);
-	return (dst);
 }

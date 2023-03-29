@@ -12,27 +12,32 @@ U	=	utils_env\
 		utils_parser\
 		utils_child\
 		utils\
+		ft_split_exp\
+		ft_split_exp_2\
+		ft_split_utils\
 
 P	=	print_pepe\
 
-FILES = main\
-		ft_parser\
-		ft_split_exp\
-		ft_split_utils\
+M	=	main\
+		error\
+		executor\
+		ft_exit\
 		ft_free\
 		ft_expander\
-		ft_exit\
+		ft_parser\
 		signals\
-		error\
-		$(BLT)\
+
+FILES =	$(BLT)\
 		$(ULT)\
 		$(PLT)\
+		$(MFT)\
 
 LIBFT = Libft/libft.a
 
 BLT = $(addprefix Builting/, $(B))
 ULT = $(addprefix Utils/, $(U))
 PLT = $(addprefix PrintPepe/, $(P))
+MFT = $(addprefix main_fts/, $(M))
 SRC = $(addsuffix .c, $(FILES))
 OBJ = $(addsuffix .o, $(FILES))
 
