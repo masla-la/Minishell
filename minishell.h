@@ -83,6 +83,7 @@ void	ft_free_comand(t_mini *mini);
 void	ft_free_exprt(t_exprt *exprt);
 void	ft_free_lst(t_list *lst);
 void	ft_free(t_mini *mini);
+void	ft_free_pepe(t_mini *mini);
 
 //Parser
 int		ft_parse(t_mini *mini, char **arg);

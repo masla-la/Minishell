@@ -44,7 +44,7 @@ int	check_dl(char *str, int i)
 	while (str[n] && str[n] != ' ' && str[n] != ':'\
 	&& str[n] != ';' && str[n] != '$' && str[n] != '\0')
 		n++;
-	if (n - 1 < i)
+	if (n - 1 <= i)
 		return (0);
 	return (1);
 }

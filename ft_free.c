@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:37 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/24 10:43:07 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:04:33 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,26 @@ void	ft_free_exprt(t_exprt *exprt)
 {
 	t_exprt	*aux;
 
-	while (exprt)
+	while (exprt->env)
 	{
 		aux = exprt->next;
 		free(exprt->env);
 		free(exprt);
 		exprt = aux;
 	}
+}
+
+void	ft_free_pepe(t_mini *mini)
+{
+	int i;
+
+	i = 0;
+	while (mini->path[i])
+	{
+		free(mini->path[i]);
+		i++;
+	}
+	free(mini->path);
 }
 
 void	ft_free_lst(t_list *lst)

@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:45 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/29 11:13:28 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:04:57 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	tml_executor(t_mini *mini, int *fd, t_list *lst)
 {
 	signal(SIGINT, sig_child);
 	signal(SIGIOT, sig_child);
+	signal(SIGQUIT, sig_child);
 	ft_reddir_childs(mini, lst->fd, fd, lst);
 	exit(127);
 }
@@ -144,7 +145,7 @@ int	ft_init(t_mini *mini)
 	{
 		signal(SIGINT, ft_sig);
 		ft_init_var(mini);
-		comand = ft_readline("\033[0;31mMiniShell: \033[0;37m");
+		comand = ft_readline("MiniShell: ");
 		if (!comand)
 			return (sig_rl(comand, mini));
 		mini->comand = ft_split_quotes(comand, ' ');
@@ -179,11 +180,7 @@ int	main(int ac, char **av, char **env)
 }
 
 /* Cosas que se rompren o que he roto:
-	- He puesto unset ENV y segfault
-	- Si usas /bin/ls lo tiene que hacer aunque elimines el PATH
-	- expr $? + $?
 	- El ctrl + D da leaks pero 'exit' no, asi que hay que mandar la señal a que haga el exit normal.
-	- Los fallos de '/bin/ls pepe' tiene que dar el mismo error que bash.
 */
 
 // ignorar las redirecciones dando valor a los outputs e intputs
@@ -196,6 +193,4 @@ int	main(int ac, char **av, char **env)
 
 //Contador de comillas
 
-//gestionar las salidas de error
-
-//ft_rm_to_env se peta si no encuentra el env, almenos con unset
+//gestionar las salidas de error *
