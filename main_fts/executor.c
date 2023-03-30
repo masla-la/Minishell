@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:43:02 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/29 16:44:45 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/30 12:33:29 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	ft_executor(t_mini *mini)
 			close(lst->fd[WRITE]);
 		fd = lst->fd;
 		lst = lst->next;
+		usleep(10);
 	}
 	ft_wait_childs(mini);
 	return (EXIT_SUCCESS);

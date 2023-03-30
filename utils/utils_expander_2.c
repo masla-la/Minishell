@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_expander_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:43:43 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/29 15:43:44 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/30 09:03:40 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ int	check_dl(char *str, int i)
 	while (str[n] && str[n] != ' ' && str[n] != ':'\
 	&& str[n] != ';' && str[n] != '$' && str[n] != '\0')
 		n++;
-	if (n - 1 <= i)
+	if (str[0] == 34 && n - 1 == i)
+		return (0);
+	if (n - 1 < i)
 		return (0);
 	return (1);
 }

@@ -14,6 +14,7 @@ U	=	utils_env\
 		utils\
 		ft_split_exp\
 		ft_split_exp_2\
+		ft_split_exp_3\
 		ft_split_utils\
 
 P	=	print_pepe\
@@ -49,7 +50,7 @@ COMPILE = -lreadline -L$(READLINE_DIR)/lib
 
 CC = clang
 CFLAGS = -Wall -Wextra -Werror
-CFLAGS += -Wstring-compare -fsanitize=address -g3
+##CFLAGS += -Wstring-compare -fsanitize=address -g3
 RM = rm -rf
 
 ifneq (,$(findstring xterm,${TERM}))

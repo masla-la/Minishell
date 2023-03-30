@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:46:32 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/29 15:59:35 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/30 13:02:19 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_parse_to_lst(t_mini *mini, char **arg, int i)
 	lst->index = 0;
 	while (arg && *arg)
 	{
-		if (!ft_strcmp(*arg, "<") || !ft_strcmp(*arg, ">"))
+		if (!ft_strcmp(*arg, "<") || !ft_strcmp(*arg, ">"))//
 			ft_reddir(mini, arg, lst);
 		else if (!ft_strncmp(*arg, "||", 2))
 			break ;

@@ -1,5 +1,5 @@
 #ifndef MINISHELL_H
-#define MINISHELL_H
+# define MINISHELL_H
 
 # include "libft/libft.h"
 # include <signal.h>
@@ -19,28 +19,22 @@
 
 int	g_sig;
 
-typedef struct	s_mini
+typedef struct s_mini
 {
 	char			**comand;
 	char			**path;
 	char			*cmd_path;
 	int				pid;
 	char			**env;
-	struct	s_exprt	*exprt;
-	struct	s_list	*lst;
+	struct s_exprt	*exprt;
+	struct s_list	*lst;
 }				t_mini;
 
-typedef struct	s_exprt
+typedef struct s_exprt
 {
 	char			*env;
-	struct	s_exprt	*next;
+	struct s_exprt	*next;
 }				t_exprt;
-
-typedef	struct	s_signal
-{
-	int		siginit;
-	pid_t	pid_line;
-}				t_signal;
 
 //Utils_env
 int		ft_get_env(t_mini *mini, char **env);
@@ -55,12 +49,14 @@ char	*ft_strdup2(const char *src);
 void	ft_init_var(t_mini *mini);
 
 //Split Utils
-int     ft_cmd_len(char *s, int i);
+int		ft_cmd_len(char *s, int i);
 void	final_split_condition(int *i, char **dst);
 int		split_condition_2(char *type, char c);
-char	**split_condition(char **dst, int *i,  char *s);
+char	**split_condition(char **dst, int *i, char *s);
 int		another_condition(char *s, int *i, int in_quotes, char **dst);
-int 	split_condition_quote(char **dst, int *i,  char *s);
+int		split_condition_quote(char **dst, int *i, char *s);
+char	**ft_exp(char **dst, char *s, char quote_type, int i[3]);
+size_t	ft_exp_2(char *s, int i, int quotes, char c);
 
 //Utils_lexer
 int		ft_total_arg(char **ptr);//
@@ -96,7 +92,7 @@ int		ft_ex_bin(t_mini *mini, t_list *lst);
 int		ft_redir_b(t_mini *mini, t_list *lst);
 
 //Error
-int		ft_exit_error(t_mini *mini, int	error);
+int		ft_exit_error(t_mini *mini, int error);
 int		write_error(t_mini *mini, int err, char *str, char *str2);
 
 //Builtings
@@ -127,7 +123,7 @@ int		ft_executor(t_mini *mini);
 char	*ft_cpyn(char *s, int start, int end);
 size_t	ft_lines_2(char *s, char c, int quotes);
 int		is_quote_closed(char *s);
-char	**ft_fill_2(char **dst, char *s, char c);
+char	**ft_fill_2(char **dst, char *s);
 
 //Pepe
 void	print_pepe(char *n);

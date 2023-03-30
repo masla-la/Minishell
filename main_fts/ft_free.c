@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:37 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/29 17:46:45 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/30 12:49:03 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	ft_free_exprt(t_exprt *exprt)
 		free(exprt);
 		exprt = aux;
 	}
+	free(exprt);
 }
 
 void	ft_free_pepe(t_mini *mini)

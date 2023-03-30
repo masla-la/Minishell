@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_exp_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:57:15 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/29 17:00:03 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/30 10:52:35 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,6 @@ char	**ft_split_quotes(char *s, char c)
 			(ft_lines_2(s, c, 0) + ft_strlen(s)));
 	if (!dst)
 		return (NULL);
-	ft_fill_2(dst, s, c);
+	ft_fill_2(dst, s);
 	return (dst);
 }

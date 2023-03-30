@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:45 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/29 17:46:38 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/30 13:02:02 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ char	*ft_readline(char *name)
 
 	cmd = readline(name);
 	if (!cmd)
+	{
+		free(cmd);
 		return (NULL);
+	}
 	cmd = ft_strtrim(cmd, " ");
 	if (cmd && cmd[0] != '\0')
 		add_history(cmd);

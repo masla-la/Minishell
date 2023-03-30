@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:00:12 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/29 14:12:33 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/30 10:07:29 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,9 @@ void	print_export(char **export)
 					printf("%c", 39);
 				i++;
 			}
-			printf("%c\n", 39);
+			if (export[n][i] == '=')
+				printf("%c", 39);
+			printf("\n");
 		}
 		n++;
 	}

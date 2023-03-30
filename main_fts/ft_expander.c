@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expander.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:33 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/29 19:17:45 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/30 09:24:15 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char	*ft_join_path(char *s1, char *s2)
 	if (i > 0)
 		cpy = ft_strdup_len(s1, i);
 	if (!cpy)
-		return (s2);
+		return (ft_strdup(s2));
 	if (!s2)
 		return (cpy);
 	dest = ft_strjoin(cpy, s2);
@@ -112,7 +112,7 @@ char	*ft_expand_var(t_mini *mini, char *arg, char *arg_cpy, int i)
 	free(var);
 	var = ft_join_path(arg, path);
 	var = ft_cpy_rest(arg, var);
-	if (path && path != var)
+	if (path)
 		free(path);
 	free(arg);
 	free(arg_cpy);

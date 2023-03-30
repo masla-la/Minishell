@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 19:24:28 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/29 14:16:03 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/30 12:48:12 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	ft_get_env(t_mini *mini, char **env)
 	t_exprt	*exprt;
 
 	i = 0;
-	exprt = (t_exprt *)malloc(sizeof(t_exprt));
+	exprt = malloc(sizeof(t_exprt));
 	mini->exprt = exprt;
 	exprt->next = NULL;
 	if (!mini->exprt)

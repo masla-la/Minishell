@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_exp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:41 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/29 19:02:47 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/30 11:10:45 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,41 +63,16 @@ int	is_quote_closed(char *s)
 	return (EXIT_FAILURE);
 }
 
-char	**ft_fill_2(char **dst, char *s, char c)
+char	**ft_fill_2(char **dst, char *s)
 {
-	int		i;
-	int		n;
-	int		in_quote;
+	int		i[3];
 	char	quote_type;
 
-	i = 0;
-	n = 0;
-	in_quote = 0;
-	while (s[i])
-	{
-		while (s[i] == c)
-			i++;
-		if (s[i + 1] && (s[i] == 34 || s[i] == 39))
-		{
-			in_quote = 1;
-			quote_type = s[i];
-		}
-		if (s[i] != c && in_quote == 0)
-		{
-			dst[n++] = ft_strdup_space(s, c, i);
-			i += ft_strlen(dst[n - 1]) - 1;
-		}
-		else if (in_quote == 1)
-		{
-			dst[n++] = ft_strdup_quote(s, i, quote_type);
-			in_quote = 0;
-			i += ft_strlen(dst[n - 1]) - 1;
-		}
-		if (s[i] == '\0')
-			break ;
-		i++;
-	}
-	dst[n] = NULL;
+	i[0] = -1;
+	i[1] = 0;
+	i[2] = 0;
+	quote_type = '\0';
+	dst = ft_exp(dst, s, quote_type, i);
 	return (dst);
 }
 
@@ -108,29 +83,6 @@ size_t	ft_lines_2(char *s, char c, int quotes)
 	i = 0;
 	while (*s == c && *s != '\0')
 		s++;
-	while (*s != '\0')
-	{
-		if (*s == 34 || *s == 39)
-		{
-			if (quotes == *s && (*(s) == 34 || *(s + 1) == 39))
-			{
-				i++;
-				if (*(s + 1) != '\0' && *(s + 1) != ' ')
-					s++;
-			}
-			if (quotes == 0)
-				quotes = *s;
-			else if (quotes == *s)
-				quotes = 0;
-		}
-		if (*s == c && quotes == 0 && *(s + 1) && *(s + 1) != 32)
-		{
-			i++;
-			while (*s == c && *s != '\0')
-				s++;
-		}
-		else
-			s++;
-	}
-	return (i + 1);
+	i = ft_exp_2(s, quotes, i, c);
+	return (i);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:36:58 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/29 17:46:50 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/30 12:56:53 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int	ft_exit_error(t_mini *mini, int error)
 	er = ft_itoa(error);
 	dest = ft_strjoin2("?=", er);
 	ft_add_to_env(mini, dest);
+	free(er);
 	free(dest);
 	return (error);
 }
