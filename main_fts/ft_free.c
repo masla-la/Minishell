@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:37 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/30 20:20:46 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/31 12:32:57 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,17 @@ void	ft_free(t_mini *mini)
 		ft_free_lst(mini->lst);
 	if (mini->exprt)
 		ft_free_exprt(mini->exprt);
+}
+
+void	ft_free_content(t_list *lst, char *arg)
+{
+	int	i;
+
+	i = 0;
+	while (!ft_strncmp(lst->content[i], arg, ft_strlen(arg)))
+	{
+		free(lst->content[i]);
+		i++;
+	}
+	free(lst->content[i + 1]);
 }

@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:43:43 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/30 09:03:40 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/31 09:10:04 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_dl(char *str, int i)
 	int	n;
 
 	n = i;
-	while (str[n] && str[n] != ' ' && str[n] != ':'\
+	while (str[n] && str[n] != ':'\
 	&& str[n] != ';' && str[n] != '$' && str[n] != '\0')
 		n++;
 	if (str[0] == 34 && n - 1 == i)

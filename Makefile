@@ -27,6 +27,7 @@ M	=	main\
 		ft_expander\
 		ft_parser\
 		signals\
+		here_doc\
 
 FILES =	$(BLT)\
 		$(ULT)\

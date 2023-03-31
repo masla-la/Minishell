@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_executor.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:16:40 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/29 15:23:31 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/31 13:00:35 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_child_3(t_mini *mini, int fd[2], t_list *lst)
 {
 	close(fd[WRITE]);
 	if (lst->output > 0)
-		dup2(lst->output, 1);
+		dup2(lst->output, STDOUT_FILENO);
 	if (lst->input > 0)
 		dup2(lst->input, STDIN_FILENO);
 	else

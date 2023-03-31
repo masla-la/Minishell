@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:45 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/30 13:02:02 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/03/31 10:29:52 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,3 +74,6 @@ int	main(int ac, char **av, char **env)
 	ft_init(&mini);
 	return (g_sig);
 }
+
+//redirecciones tienen q cojer la ultima
+//echo | wc ctr + d

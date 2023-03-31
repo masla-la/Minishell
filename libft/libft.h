@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 18:18:05 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/13 19:04:33 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/31 11:03:30 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_list
 	int				pid;
 	int				fd[2];
 	int				index;
+	char			*delimiter;
 	struct s_list	*next;
 }				t_list;
 

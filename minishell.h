@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:49:26 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/30 18:51:59 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/03/31 12:30:59 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	*ft_sust(char *str, char c);
 char	*ft_expand_var(t_mini *mini, char *arg, char *arg_cpy, int i);
 
 //Utils_expander
-void	ft_reddir(t_mini *mini, char **arg, t_list *lst);
+void	ft_reddir(t_mini *mini, char **arg, t_list *lst, int i);
 char	*ft_expand(char *arg, t_mini *mini);
 
 //Ft_free
@@ -139,5 +139,9 @@ char	**ft_fill_2(char **dst, char *s);
 
 //Pepe
 void	print_pepe(char *n);
+
+void	ft_free_content(t_list *lst, char *arg);
+
+int	here_doc(int fd, char *delimiter);
 
 #endif
