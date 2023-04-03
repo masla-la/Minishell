@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:37 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/31 12:32:57 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/04/03 11:58:55 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,7 @@ void	ft_free_comand(t_mini *mini)
 {
 	int	i;
 
-	i = 0;
-	/* while (mini->comand[i])
-	{
-		if (ft_strlen(mini->comand[i]) > 0)
-			free(mini->comand[i]);
-		i++;
-	printf("FREE COMAND = %s\n", mini->comand[++i]);
-	} */
-	free(mini->comand);
+	ft_doublefree(mini->comand);
 	i = 0;
 	if (!mini->path)
 		return ;
@@ -73,7 +65,7 @@ void	ft_free_lst(t_list *lst)
 	int		i;
 	t_list	*aux;
 
-	while (lst && lst->next)
+	while (lst)
 	{
 		aux = lst->next;
 		i = 0;

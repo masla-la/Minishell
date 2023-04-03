@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:49:26 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/31 12:30:59 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/04/03 12:27:08 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ void	print_pepe(char *n);
 
 void	ft_free_content(t_list *lst, char *arg);
 
-int	here_doc(int fd, char *delimiter);
+void	here_doc(int fd, char *delimiter);
+void	here_doc2(int fd, char *arg);
 
 #endif

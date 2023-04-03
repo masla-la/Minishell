@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:42:28 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/04/03 11:02:12 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/04/03 12:26:37 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_reddir_input(t_mini *mini, char *arg, t_list *lst)
 
 void	ft_reddir_output(t_mini *mini, char *arg, t_list *lst)
 {
-	lst->output = open(arg, O_RDWR | O_TRUNC | O_CREAT, 0000744);
+	lst->output = open(arg, O_RDWR);
 	if (!access(arg, F_OK))
 		ft_exit_error(mini, '1');
 }
@@ -38,7 +38,8 @@ void	ft_reddir_input_2(t_mini *mini, char *arg, t_list *lst)
 
 void	ft_reddir_output_2(t_mini *mini, char *arg, t_list *lst)
 {
-	lst->output = open(arg, O_RDWR | O_TRUNC | O_CREAT, 0644);
+	lst->output = open(arg, O_CREAT | O_WRONLY, 0666);
+	here_doc2(lst->output, arg);
 	if (!access(arg, F_OK))
 	{
 		printf("ACCESS = %d\n", access(arg, F_OK));
