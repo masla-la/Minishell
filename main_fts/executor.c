@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:43:02 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/31 13:19:19 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/04/03 10:59:22 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int	ft_executor(t_mini *mini)
 	signal(SIGINT, ft_sig2);
 	while (lst && lst->content[0] != NULL)
 	{
-		if (lst->index == 2)
-			here_doc(lst->input, lst->delimiter);
 		pipe(lst->fd);
 		if (!is_builting(lst->content[0], lst))
 			lst->pid = fork();
