@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:49:26 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/04/05 11:51:03 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/04/05 12:44:46 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define STDIN	0
 # define STDOUT	1
 
-int g_sig;
+int		g_sig;
 
 typedef struct s_mini
 {
