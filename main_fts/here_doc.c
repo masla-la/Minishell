@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   here_doc.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/05 14:15:53 by jchamorr          #+#    #+#             */
+/*   Updated: 2023/04/05 14:15:55 by jchamorr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	here_doc2(int fd, char *arg)
@@ -38,4 +50,20 @@ void	here_doc(int fd, char *delimiter)
 	close(fd2[1]);
 	dup2(fd2[0], fd);
 	close(fd2[0]);
+}
+
+void	ft_free_comand(t_mini *mini)
+{
+	int	i;
+
+	ft_doublefree(mini->comand);
+	i = 0;
+	if (!mini->path)
+		return ;
+	while (mini->path[i])
+	{
+		free(mini->path[i]);
+		i++;
+	}
+	free(mini->path);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:41:43 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/04/03 13:09:31 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/04/05 14:25:46 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	sig_rl(char	*c, t_mini *mini)
 	free(c);
 	ft_free_pepe(mini);
 	ft_free_exprt(mini->exprt);
-	//ft_free_lst(mini->lst);//
 	g_sig = 1;
 	rl_replace_line("exit", 0);
 	print_pepe("PrintPepe/pepe2");

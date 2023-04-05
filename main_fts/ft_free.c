@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:37 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/04/05 09:31:55 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/04/05 14:15:25 by jchamorr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	ft_free_comand(t_mini *mini)
-{
-	int	i;
-
-	ft_doublefree(mini->comand);
-	i = 0;
-	if (!mini->path)
-		return ;
-	while (mini->path[i])
-	{
-		free(mini->path[i]);
-		i++;
-	}
-	free(mini->path);
-}
 
 void	ft_free_exprt(t_exprt *exprt)
 {
