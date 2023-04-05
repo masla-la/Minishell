@@ -3,7 +3,7 @@
 void	here_doc2(int fd, char *arg)
 {
 	char	*line;
-	int	fd2;
+	int		fd2;
 
 	fd2 = open(arg, O_RDONLY);
 	line = get_next_line(fd2);

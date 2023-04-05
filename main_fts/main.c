@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:45 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/04/03 13:09:31 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/04/05 11:54:36 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ int	ft_init(t_mini *mini)
 		if (mini->comand && mini->comand[0] != NULL)
 		{
 			ft_parse(mini, mini->comand);
-			ft_executor(mini);
+			if (!g_sig)
+				ft_executor(mini);
+			else
+				g_sig = 0;
 			ft_free_lst(mini->lst);
 			ft_free_comand(mini);
 		}

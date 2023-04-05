@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:39 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/04/05 10:49:26 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/04/05 11:45:25 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	ft_lstadd(t_list **lst, t_list *new)
 
 int	ft_parse(t_mini *mini, char **arg)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	t_list	*aux;
 
 	i = 0;

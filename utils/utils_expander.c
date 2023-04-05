@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:42:28 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/04/05 09:37:08 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/04/05 12:42:52 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,63 +14,65 @@
 
 void	ft_reddir_input(t_mini *mini, char *arg, t_list *lst)
 {
+	if (lst->input)
+		close(lst->input);
 	lst->input = open(arg, O_RDONLY);
-	if (!access(arg, F_OK))
-		ft_exit_error(mini, '1');
+	if (access(arg, F_OK))
+	{
+		write(2, "Minishell: ", 12);
+		write_error(mini, 1, arg, ": No such file or directory");
+	}
+	else if (access(arg, F_OK) || access(arg, R_OK))
+		write_error(mini, 1, "Minishell: permission denied: ", arg);
 }
 
 void	ft_reddir_output(t_mini *mini, char *arg, t_list *lst)
 {
+	if (lst->output)
+		close(lst->output);
 	lst->output = open(arg, O_RDWR | O_CREAT);
-	if (!access(arg, F_OK))
-		ft_exit_error(mini, '1');
+	if (access(arg, W_OK))
+		write_error(mini, 1, "Minishell: permission denied: ", arg);
 }
 
 void	ft_reddir_input_2(t_mini *mini, char *arg, t_list *lst)
 {
+	if (lst->input)
+		close(lst->input);
 	lst->input = open(arg, O_WRONLY | O_APPEND | O_CREAT, 0660);
 	lst->index = 2;
 	lst->delimiter = ft_strdup(arg);
 	here_doc(lst->input, lst->delimiter);
-	if (!access(arg, F_OK))
-		ft_exit_error(mini, '1');//
+	if (access(arg, W_OK))
+		write_error(mini, 1, "Minishell: permission denied: ", arg);
 }
 
 void	ft_reddir_output_2(t_mini *mini, char *arg, t_list *lst)
 {
+	if (lst->output)
+		close(lst->output);
 	lst->output = open(arg, O_CREAT | O_WRONLY, 0666);
 	here_doc2(lst->output, arg);
-	if (!access(arg, F_OK))
-	{
-		printf("ACCESS = %d\n", access(arg, F_OK));
-		printf("ACCESS ERROR\n");
-		ft_exit_error(mini, '1');
-	}
+	if (access(arg, W_OK))
+		write_error(mini, 1, "Minishell: permission denied: ", arg);
 }
 
 void	ft_reddir(t_mini *mini, char **arg, t_list *lst, int i)
 {
+	int	n;
+
+	n = i + 1;
 	lst->index = 1;
-	// comprobar el builting
-	if (!ft_strcmp(arg[i], "<<"))
-	{
-		printf("ENTRAMOS AQUI 1\n");
-		ft_reddir_input_2(mini, arg[i + 1], lst);
-	}
-	else if (!ft_strcmp(arg[i], ">>"))
-	{
-		printf("ENTRAMOS AQUI 2\n");
-		ft_reddir_output_2(mini, arg[i + 1], lst);
-	}
-	else if (ft_strchr(arg[i], '<'))
-	{
-		printf("ENTRAMOS AQUI 3\n");
-		ft_reddir_input(mini, arg[i + 1], lst);
-	}
-	else if (ft_strchr(arg[i], '>'))
-	{
-		printf("ENTRAMOS AQUI 4\n");
-		ft_reddir_output(mini, arg[i + 1], lst);
-	}
-	i++;
+	while (arg[n] && ft_strcmp2(arg[n], "|"))
+		n++;
+	n--;
+	if (!ft_strcmp2(arg[i], "<<"))
+		ft_reddir_input_2(mini, arg[n], lst);
+	else if (!ft_strcmp2(arg[i], ">>"))
+		ft_reddir_output_2(mini, arg[n], lst);
+	else if (!ft_strcmp2(arg[i], "<"))
+		ft_reddir_input(mini, arg[n], lst);
+	else if (!ft_strcmp2(arg[i], ">"))
+		ft_reddir_output(mini, arg[n], lst);
+	i = n;
 }
