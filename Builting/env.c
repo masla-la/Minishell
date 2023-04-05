@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:00:12 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/30 10:07:29 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/04/05 11:03:14 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,11 @@ void	print_export(char **export)
 			{
 				printf("%c", export[n][i]);
 				if (export[n][i] == '=')
-					printf("%c", 39);
+					printf("%c", 34);
 				i++;
 			}
-			if (export[n][i] == '=')
-				printf("%c", 39);
+			if (ft_strchr(export[n], '='))
+				printf("%c", 34);
 			printf("\n");
 		}
 		n++;

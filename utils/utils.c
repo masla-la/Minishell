@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:15:20 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/29 14:15:21 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/04/05 09:21:26 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,16 @@ int	check_env(char *str)
 	if (str[i] == '=')
 		return (1);
 	return (0);
+}
+
+int	ft_strcmp2(char *s1, char *s2)
+{
+	size_t	i;
+
+	i = 0;
+	while (s2[i] && s1[i] == s2[i] && ft_strlen(s1) == ft_strlen(s2))
+		i++;
+	if (i == ft_strlen(s2))
+		return (0);
+	return (1);
 }

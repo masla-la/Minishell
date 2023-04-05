@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:37 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/04/03 11:58:55 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/04/05 09:31:55 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,9 @@ void	ft_free_content(t_list *lst, char *arg)
 	int	i;
 
 	i = 0;
-	while (!ft_strncmp(lst->content[i], arg, ft_strlen(arg)))
+	while (!ft_strncmp(lst->content[i], arg, ft_strlen(arg) - 1))
 	{
+		printf("%s\n", arg);
 		free(lst->content[i]);
 		i++;
 	}

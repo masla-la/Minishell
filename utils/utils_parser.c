@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:46:32 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/31 12:28:27 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/04/05 10:52:03 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_arg_len(char **arg)
 	int	i;
 
 	i = 0;
-	while (arg[i] && arg[i][0] != '|')
+	while (arg[i] && ft_strcmp2(arg[i], "|"))
 		i++;
 	return (i + 1);
 }
@@ -53,14 +53,15 @@ int	ft_parse_to_lst(t_mini *mini, char **arg, int j)
 	lst->index = 0;
 	while (arg && arg[i])
 	{
-		if (ft_strchr(arg[i], '<') || ft_strchr(arg[i], '>'))
+		printf("%s\n", *arg);
+		if (!ft_strcmp2(arg[i], "<") || !ft_strcmp2(arg[i], ">") ||\
+		!ft_strcmp2(arg[i], ">>") || !ft_strcmp2(arg[i], "<<"))
 			ft_reddir(mini, arg, lst, i);
-		else if (!ft_strncmp(arg[i], "||", 2))
-			break ;
-		else if (ft_strncmp(arg[i], "|", 1) && lst->index == 0 && arg[i] != NULL)
+		else if (ft_strcmp2(arg[i], "|") && lst->index == 0 && arg[i] != NULL)
 			lst->content[j++] = ft_strdup(arg[i]);
-		else if (!ft_strncmp(arg[i], "|", 1) && (arg[i + 1]))
+		else if (!ft_strcmp2(arg[i], "|") && (arg[i + 1]))
 		{
+			printf("123\n");
 			j = ft_add_something(&lst, ft_arg_len(&arg[i + 1]), j);
 			lst = lst->next;
 			lst->index = 0;

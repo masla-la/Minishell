@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchamorr <jchamorr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:39 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/30 20:12:24 by jchamorr         ###   ########.fr       */
+/*   Updated: 2023/04/05 10:49:26 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,24 @@ int	ft_parse(t_mini *mini, char **arg)
 {
 	int	i;
 	int	j;
+	t_list	*aux;
 
 	i = 0;
 	j = 0;
-	while (arg[i])
+	ft_parse_to_lst(mini, arg, j);
+	aux = mini->lst;
+	while (aux)
 	{
-		arg[i] = ft_expand(arg[i], mini);
-		i++;
+		i = 0;
+		while (aux->content[i])
+		{
+			aux->content[i] = ft_expand(aux->content[i], mini);
+			i++;
+		}
+		aux = aux->next;
 	}
 	if (arg[0][0] == '|')
 		arg++;
-	ft_parse_to_lst(mini, arg, j);
 	if (!mini->lst)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCES);

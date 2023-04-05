@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:49:26 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/04/03 12:27:08 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/04/05 11:04:36 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int		check_env(char *str);
 char	**ft_split_quotes(char *s, char c);
 char	*ft_strdup2(const char *src);
 void	ft_init_var(t_mini *mini);
+int		ft_strcmp2(char *s1, char *s2);
+
 
 //Split Utils
 int		ft_cmd_len(char *s, int i);
@@ -91,6 +93,7 @@ void	ft_free_comand(t_mini *mini);
 void	ft_free_exprt(t_exprt *exprt);
 void	ft_free_lst(t_list *lst);
 void	ft_free(t_mini *mini);
+void	ft_free_content(t_list *lst, char *arg);
 void	ft_free_pepe(t_mini *mini);
 
 //Parser
@@ -140,8 +143,7 @@ char	**ft_fill_2(char **dst, char *s);
 //Pepe
 void	print_pepe(char *n);
 
-void	ft_free_content(t_list *lst, char *arg);
-
+//Here_doc
 void	here_doc(int fd, char *delimiter);
 void	here_doc2(int fd, char *arg);
 

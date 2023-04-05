@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:42:28 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/04/03 12:26:37 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/04/05 09:37:08 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_reddir_input(t_mini *mini, char *arg, t_list *lst)
 
 void	ft_reddir_output(t_mini *mini, char *arg, t_list *lst)
 {
-	lst->output = open(arg, O_RDWR);
+	lst->output = open(arg, O_RDWR | O_CREAT);
 	if (!access(arg, F_OK))
 		ft_exit_error(mini, '1');
 }
@@ -51,12 +51,6 @@ void	ft_reddir_output_2(t_mini *mini, char *arg, t_list *lst)
 void	ft_reddir(t_mini *mini, char **arg, t_list *lst, int i)
 {
 	lst->index = 1;
-	if (!ft_strncmp(lst->content[0], "echo", 4) && lst->content[1])
-	{
-		ft_free_content(lst, arg[i - 1]);
-		lst->content[0] = (arg[i - 1]);
-		lst->content[1] = NULL;
-	}
 	// comprobar el builting
 	if (!ft_strcmp(arg[i], "<<"))
 	{
