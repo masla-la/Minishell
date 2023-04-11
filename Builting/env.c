@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:00:12 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/04/05 11:03:14 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/04/11 12:47:40 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ char	**ft_lst_to_doublestr(t_exprt *s)
 	return (env_cpy);
 }
 
-//FT especifica del comando export sin argumentos
 int	order_env(t_mini *s)
 {
 	int		i;

@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:00:15 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/03/27 11:29:17 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/04/11 12:47:24 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,3 @@ int	ft_redir_ex(t_mini *mini, t_list *lst)
 		exit (return_b(mini, lst));
 	return (ft_ex_bin(mini, lst));
 }
-
-//si no existe? pwd?
-//export no tiene mensaje de error al ser numero
-//cd no tiene mensaje si no tiene acceso
-//unset no tiene mensaje sin arg

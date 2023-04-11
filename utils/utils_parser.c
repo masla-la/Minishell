@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:46:32 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/04/05 11:43:34 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/04/11 12:47:33 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	ft_add_something(t_list **linked, int len, int i)
 	return (0);
 }
 
-//Hay que darle una vuelta a ésto
 int	ft_parse_to_lst(t_mini *mini, char **arg, int j)
 {
 	t_list	*lst;

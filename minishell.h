@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:49:26 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/04/11 11:52:24 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/04/11 12:48:05 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,8 @@ void	ft_sig(int sig);
 void	ft_sig2(int sig);
 int		sig_rl(char *c, t_mini *mini);
 
-//FT que faltan por nombrar
-int		write_error(t_mini *mini, int err, char *str, char *str2);//
+//Other FTs
+int		write_error(t_mini *mini, int err, char *str, char *str2);
 char	*ft_strdup_space(char *s, char c, int start);
 char	*ft_strdup_quote(char *s, int start, char quote_type);
 int		init_vars(int *i, char **dst, char *s);
