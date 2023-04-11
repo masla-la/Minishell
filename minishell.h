@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:49:26 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/04/11 12:48:05 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/04/11 14:34:52 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ char	**ft_exp(char **dst, char *s, char quote_type, int i[3]);
 size_t	ft_exp_2(char *s, int i, int quotes, char c);
 
 //Utils_lexer
-int		ft_total_arg(char **ptr);//
-int		ft_count_arg(char **ptr, int i);//
-void	ft_count_pipes(t_mini *mini);//
+int		ft_total_arg(char **ptr);
+int		ft_count_arg(char **ptr, int i);
+void	ft_count_pipes(t_mini *mini);
 
 //Utils_parser
 int		ft_arg_len(char **arg);
