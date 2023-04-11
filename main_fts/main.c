@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:38:45 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/04/05 11:54:36 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/04/11 12:01:10 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ char	*ft_readline(char *name)
 		free(cmd);
 		return (NULL);
 	}
-	cmd = ft_strtrim(cmd, " ");
 	if (cmd && cmd[0] != '\0')
 		add_history(cmd);
+	cmd = ft_rm_first_pipe(cmd);
+	cmd = ft_strtrim(cmd, " ");
 	if (ft_strchr(cmd, 124) && !ft_strchr(cmd, 34) && !ft_strchr(cmd, 39))
 	{
 		cmd = ft_expand_pipes(cmd);
@@ -77,6 +78,3 @@ int	main(int ac, char **av, char **env)
 	ft_init(&mini);
 	return (g_sig);
 }
-
-//redirecciones tienen q cojer la ultima
-//echo | wc ctr + d

@@ -6,7 +6,7 @@
 /*   By: masla-la <masla-la@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:15:20 by jchamorr          #+#    #+#             */
-/*   Updated: 2023/04/05 09:21:26 by masla-la         ###   ########.fr       */
+/*   Updated: 2023/04/11 11:59:59 by masla-la         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,23 @@ int	ft_strcmp2(char *s1, char *s2)
 	if (i == ft_strlen(s2))
 		return (0);
 	return (1);
+}
+
+char	*ft_rm_first_pipe(char *str)
+{
+	char	*dest;
+	int		i;
+
+	if (!str || str[0] != '|')
+		return (str);
+	dest = malloc(sizeof(char) * (ft_strlen(str)));
+	i = 1;
+	while (str[i])
+	{
+		dest[i - 1] = str[i];
+		i++;
+	}
+	dest[i - 1] = '\0';
+	free(str);
+	return (dest);
 }
